@@ -244,6 +244,7 @@
 
     <section id="view-tester" class="gt-card view" hidden>
       <div class="tester-bar"><h2>Тестер геймпада</h2><button type="button" class="tester-close" onclick="location.hash='#home'">✕ Закрыть</button></div>
+      <div class="gp-status" id="gp-status" role="status" aria-live="polite"></div>
       <div class="gt-slots" id="gt-slots"></div>
       <div class="gt-wait" id="gt-wait">Подключите геймпад по USB или Bluetooth и нажмите любую кнопку.</div>
       <div class="gt-grid idle" id="gt-grid">
@@ -340,7 +341,7 @@
   </audio>
 
   <script src="data.js?v=5"></script>
-  <script src="gamepad-tester.js?v=4"></script>
+  <script src="gamepad-tester.js?v=5"></script>
   <script>
     // Фоновая музыка с учётом autoplay policy
     (function() {

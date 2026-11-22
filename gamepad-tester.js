@@ -241,13 +241,8 @@
 
 // ===== СТАТУС-БАР ПОДКЛЮЧЁННОГО ГЕЙМПАДА =====
 (function() {
-  var header = document.querySelector('header');
-  if (!header || !navigator.getGamepads) return;
-  var bar = document.createElement('div');
-  bar.className = 'gp-status';
-  bar.setAttribute('role', 'status');
-  bar.setAttribute('aria-live', 'polite');
-  header.parentNode.insertBefore(bar, header.nextSibling);
+  var bar = document.getElementById('gp-status');
+  if (!bar || !navigator.getGamepads) return;
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
@@ -256,19 +251,13 @@
     for (var i = 0; i < pads.length; i++) if (pads[i]) { p = pads[i]; break; }
     if (!p) {
       bar.className = 'gp-status';
-      bar.innerHTML = '<span class="gp-dot"></span><span>Геймпад: не подключён <span class="gp-hint">(нажмите кнопку на контроллере для определения)</span></span>';
+      bar.innerHTML = '<span class="gp-dot"></span><span>Геймпад: не подключён · нажмите любую кнопку на контроллере для определения</span>';
       return;
     }
     bar.className = 'gp-status on';
     bar.innerHTML = '<span class="gp-dot"></span><span>Геймпад: <b>' + esc(p.id.length > 70 ? p.id.slice(0, 69) + '…' : p.id) +
-      '</b> <span class="gp-idx">[#' + p.index + ' · ' + p.buttons.length + ' кн. · ' + p.axes.length + ' оси]</span></span>' +
-      '<a href="#tester" class="gp-open">Открыть в тестере</a>';
+      '</b> · слот <b>' + p.index + '</b> · <b>' + (p.connected ? 'активен' : 'неактивен') + '</b></span>';
   }
-  bar.addEventListener('click', function(e) {
-    if (e.target.className !== 'gp-open') return;
-    e.preventDefault();
-    if (window.goToTester) window.goToTester(); else location.hash = '#tester';
-  });
   window.addEventListener('gamepadconnected', update);
   window.addEventListener('gamepaddisconnected', function() { setTimeout(update, 0); });
   update();
