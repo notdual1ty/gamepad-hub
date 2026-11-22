@@ -906,8 +906,8 @@ var FORZA_HALL = [
 
 // ===== ИЗОБРАЖЕНИЯ-СЛОТЫ (NFS ProStreet и др.) =====
 // Укажите путь к кадру, напр. 'images/prostreet-forza.jpg'. Пустая строка — слот остаётся градиентом.
-// Файл кадра: положите 1OfqHkuzlSI-topaz-enhance-4x.jpg в ./assets/ (или поменяйте путь здесь).
-var SITE_IMAGES = { forzaHall: './assets/1OfqHkuzlSI-topaz-enhance-4x.jpg', racing: '' };
+// Кадр лежит в корне проекта: teamreact.jpg (при ошибке загрузки остаётся fallback-градиент).
+var SITE_IMAGES = { forzaHall: './teamreact.jpg', racing: '' };
 
 // Конкретные замеры моделей для виджета «Быстрые ориентиры по задержке»
 (function () {
