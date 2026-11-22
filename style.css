@@ -2130,3 +2130,16 @@ main { padding-top: 32px; }
 .telemetry-ph-spec { color: #7DD3FC; font-size: 11px; letter-spacing: 0.14em; }
 .telemetry-ph-tag { position: absolute; top: 8px; left: 10px; font-size: 10px; letter-spacing: 0.14em; color: #64748B; }
 .modal-left .telemetry-ph { min-height: 300px; }
+
+/* ===== Изображения на всю площадь контейнера ===== */
+.card-media { height: 220px; padding: 0; overflow: hidden; display: block; border-radius: 0; }
+.card-media img.gamepad-image {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block; mix-blend-mode: normal; filter: none; padding: 0;
+}
+.modal-left { padding: 0; overflow: hidden; align-items: stretch; }
+.modal-image {
+  width: 100%; height: 100%; min-height: 280px; max-height: none;
+  object-fit: cover; object-position: center; display: block;
+  padding: 0; border-radius: 0; filter: none; mix-blend-mode: normal;
+}
