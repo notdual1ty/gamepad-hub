@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamepad Hub — Честная база знаний о геймпадах</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <header>
@@ -218,8 +218,7 @@
           <div class="fh-adv-row"><label>Steering Axis Deadzone Inside<span class="fh-sync"><input name="stIn" type="number" min="0" max="30" value="0" required><input type="range" min="0" max="30" value="0" aria-label="Steering Axis Deadzone Inside"></span></label><label>Steering Axis Deadzone Outside<span class="fh-sync"><input name="stOut" type="number" min="70" max="100" value="96" required><input type="range" min="70" max="100" value="96" aria-label="Steering Axis Deadzone Outside"></span></label></div>
           <button type="button" class="fh-axes-btn" id="fh-more" aria-expanded="false">+ Дополнительные оси (Газ, Тормоз, Сцепление, Линейность)</button>
           <div class="fh-extra" id="fh-extra" hidden>
-            <div class="fh-ax"><span>Steering Linearity</span><input name="lin" type="number" min="0" max="100" value="50" aria-label="Steering Linearity"></div>
-            <div class="fh-ax"><span>Acceleration Deadzone (In / Out)</span><input name="accIn" type="number" min="0" max="100" value="0" aria-label="Acceleration Deadzone (In / Out) Inside"><input name="accOut" type="number" min="0" max="100" value="100" aria-label="Acceleration Deadzone (In / Out) Outside"></div><div class="fh-ax"><span>Deceleration Deadzone (In / Out)</span><input name="decIn" type="number" min="0" max="100" value="0" aria-label="Deceleration Deadzone (In / Out) Inside"><input name="decOut" type="number" min="0" max="100" value="100" aria-label="Deceleration Deadzone (In / Out) Outside"></div><div class="fh-ax"><span>Clutch Deadzone (In / Out)</span><input name="clIn" type="number" min="0" max="100" value="0" aria-label="Clutch Deadzone (In / Out) Inside"><input name="clOut" type="number" min="0" max="100" value="100" aria-label="Clutch Deadzone (In / Out) Outside"></div>
+            <label>Steering Linearity<span class="fh-sync"><input name="lin" type="number" min="0" max="100" value="50" required><input type="range" min="0" max="100" value="50" aria-label="Steering Linearity"></span></label><label>Acceleration Axis Deadzone Inside<span class="fh-sync"><input name="accIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Acceleration Axis Deadzone Inside"></span></label><label>Acceleration Axis Deadzone Outside<span class="fh-sync"><input name="accOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Acceleration Axis Deadzone Outside"></span></label><label>Deceleration Axis Deadzone Inside<span class="fh-sync"><input name="decIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Deceleration Axis Deadzone Inside"></span></label><label>Deceleration Axis Deadzone Outside<span class="fh-sync"><input name="decOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Deceleration Axis Deadzone Outside"></span></label><label>Clutch Axis Deadzone Inside<span class="fh-sync"><input name="clIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Clutch Axis Deadzone Inside"></span></label><label>Clutch Axis Deadzone Outside<span class="fh-sync"><input name="clOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Clutch Axis Deadzone Outside"></span></label>
           </div>
         </fieldset>
         <label>Тип управления<select name="steering"><option>Simulation</option><option>Стандартное</option></select></label>
@@ -328,8 +327,8 @@
     <source src="bgm.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="data.js?v=2"></script>
-  <script src="gamepad-tester.js?v=2"></script>
+  <script src="data.js?v=3"></script>
+  <script src="gamepad-tester.js?v=3"></script>
   <script>
     // Фоновая музыка с учётом autoplay policy
     (function() {

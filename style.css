@@ -1544,7 +1544,7 @@ nav { margin-left: auto; }
 .fh-sync input[type=range] { flex: 1; padding: 0; min-width: 0; accent-color: #2563EB; }
 .fh-axes-btn { align-self: flex-start; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font: inherit; font-size: 12px; color: var(--accent); cursor: pointer; }
 .fh-adv .fh-axes-btn { margin-top: 10px; }
-.fh-extra { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; margin-top: 10px; }
+.fh-extra { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 16px; margin-top: 10px; }
 .fh-extra[hidden] { display: none; }
 .fh-ax { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
 .fh-ax span { flex: 1; }
@@ -1571,7 +1571,7 @@ nav { margin-left: auto; }
   background: linear-gradient(90deg, rgba(27, 94, 75, 0.07) 0%, rgba(163, 138, 79, 0.05) 18%, #FFFFFF 40%); }
 .fh-team-custom { --tc: #2563EB; --tc-rgb: 37, 99, 235; --wm-op: 0.05; --wm-size: 56px; --rank-bg: rgba(37, 99, 235, 0.08); --rank-fg: #2563EB; --rank-bd: #2563EB;
   background: linear-gradient(90deg, rgba(37, 99, 235, 0.06) 0%, #FFFFFF 35%); }
-.fh-card > * { position: relative; z-index: 1; }
+.fh-card > * { position: relative; z-index: 2; }
 .fh-card > .fh-wm { position: absolute; z-index: 0; right: 150px; top: 50%; transform: translateY(-50%) skewX(-12deg); font-family: var(--mono, monospace); font-size: var(--wm-size, 56px); font-weight: 900; line-height: 1; letter-spacing: -1px; white-space: nowrap; color: var(--tc); opacity: var(--wm-op, 0.05); pointer-events: none; user-select: none; padding: 0 20px; border-left: 10px solid var(--tc); }
 .fh-rank { display: inline-block; margin: 4px 0 2px; padding: 1px 8px; border: 1px solid var(--rank-bd, var(--tc)); border-radius: 4px; background: var(--rank-bg, rgba(var(--tc-rgb), 0.08)); color: var(--rank-fg, var(--tc)); font-family: var(--mono, monospace); font-size: 11px; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap; }
 .fh-card .fh-axes { background: #F8FAFC; }

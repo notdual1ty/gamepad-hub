@@ -720,7 +720,7 @@ var FORZA_HALL = [
   grid.addEventListener('click', function(e) {
     var t = e.target;
     if (t.hasAttribute && t.hasAttribute('data-axes')) {
-      var c = t; while (c && c.className !== 'fh-card') c = c.parentNode;
+      var c = t.closest('.fh-card');
       var tb = c.querySelector('.fh-axes'); tb.hidden = !tb.hidden;
       t.setAttribute('aria-expanded', String(!tb.hidden)); t.textContent = tb.hidden ? 'Расширенные параметры ▾' : 'Расширенные параметры ▴'; return;
     }
