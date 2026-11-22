@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Полезное — Gamepad Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gamepad Hub</h1>
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="reviews.html">Обзоры</a>
+  <a href="guides.html">Полезное</a>
+  <a href="drivers.html">Драйверы</a>
+  <a href="about.html">О проекте</a>
+</nav>
+  </header>
+
+  <main>
+    <h2>Полезное</h2>
+    <p>Инструкции по настройке геймпадов под конкретные игры, эмуляторы и сценарии. Всё проверено на практике, без воды.</p>
+
+    <!-- Группа 1: Базовые настройки -->
+    <h2 class="section-title">Базовые настройки</h2>
+    <div class="guide-list">
+      <div class="guide-item">
+        <h3>Настройка геймпада через Steam Input</h3>
+        <p class="difficulty">Сложность: лёгкая · Время: 10 минут · Подходит для: любой игры в Steam</p>
+        <p>Как заставить работать любой геймпад в Steam-играх без установки дополнительного ПО. Настройка мёртвых зон, кривых стиков и привязки кнопок.</p>
+        <a href="guides/steam-input.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>x360ce: эмуляция Xbox-контроллера</h3>
+        <p class="difficulty">Сложность: средняя · Время: 20 минут · Подходит для: игр без поддержки DirectInput</p>
+        <p>Как заставить работать любой геймпад в играх, которые понимают только Xbox-контроллеры. Настройка профилей и сохранение конфигурации.</p>
+        <a href="guides/x360ce.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>Геймпад в Windows 10/11 без драйверов</h3>
+        <p class="difficulty">Сложность: средняя · Время: 15 минут · Подходит для: XInput-совместимых устройств</p>
+        <p>Как подключить геймпад к Windows без установки родного софта производителя. Проверка работы, калибровка через joy.cpl.</p>
+        <a href="guides/windows-native.html">Читать инструкцию →</a>
+      </div>
+    </div>
+
+    <!-- Группа 2: Специфичные игры -->
+    <h2 class="section-title">Симрейсинг и хардкорные игры</h2>
+    <div class="guide-list">
+      <div class="guide-item">
+        <h3>Assetto Corsa: настройка геймпада для вождения</h3>
+        <p class="difficulty">Сложность: высокая · Время: 30–45 минут · Геймпады: любой с аналоговыми стиками</p>
+        <p>Assetto Corsa заточен под руль, но на геймпаде тоже можно ехать быстро. Разбираем: кривые руления, мёртвые зоны, трассировка педалей через стики, конфиги в content/manager. Плюс готовые пресеты для Apex 5 и Xbox Controller.</p>
+        <a href="guides/assetto-corsa.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>Richard Burns Rally: тонкая настройка стиков</h3>
+        <p class="difficulty">Сложность: высокая · Время: 40–60 минут · Геймпады: только с линейными стиками</p>
+        <p>RBR — самый хардкорный ралли-симулятор, и на геймпаде он почти неиграбелен из коробки. Разбираем: правку conf.ini, настройку чувствительности руления, торможение через триггеры, отключение авто-помощников.</p>
+        <a href="guides/richard-burns-rally.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>Euro Truck Simulator 2: геймпад вместо руля</h3>
+        <p class="difficulty">Сложность: средняя · Время: 15 минут · Геймпады: любой</p>
+        <p>ETS2 хорошо дружит с геймпадами, но по умолчанию руление слишком резкое. Настройка кривой, мёртвой зоны, привязка поворотников и круиза к кнопкам.</p>
+        <a href="guides/euro-truck-simulator.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>F1 2023–2024: настройка под геймпад</h3>
+        <p class="difficulty">Сложность: средняя · Время: 20 минут · Геймпады: любой с триггерами</p>
+        <p>F1 на геймпаде играбельна, если правильно настроить торможение и газ. Разбираем: кривые триггеров, мёртвая зона, привязка DRS и боксов.</p>
+        <a href="guides/f1-series.html">Читать инструкцию →</a>
+      </div>
+    </div>
+
+    <!-- Группа 3: Эмуляторы -->
+    <h2 class="section-title">Эмуляторы</h2>
+    <div class="guide-list">
+      <div class="guide-item">
+        <h3>RPCS3 (PlayStation 3): настройка геймпада</h3>
+        <p class="difficulty">Сложность: средняя · Время: 15 минут · Геймпады: любой</p>
+        <p>RPCS3 по умолчанию не видит большинство геймпадов. Разбираем: выбор эмулируемого устройства (DualShock 3 / DualShock 4 / XInput), привязка кнопок через Gamepad Configurator, проблемы с Deadzone.</p>
+        <a href="guides/rpcs3.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>PCSX2 (PlayStation 2): настройка Pad</h3>
+        <p class="difficulty">Сложность: средняя · Время: 10 минут · Геймпады: любой</p>
+        <p>PCSX2 использует DirectInput, и не все геймпады корректно определяются. Настройка через Plugin Settings → Gamepad, привязка аналоговых стиков, эмуляция DualShock 2.</p>
+        <a href="guides/pcsx2.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>Dolphin (GameCube / Wii): настройка контроллера</h3>
+        <p class="difficulty">Сложность: средняя · Время: 15 минут · Геймпады: любой</p>
+        <p>Dolphin требует эмуляции GameCube-контроллера. Разбираем: выбор профиля, настройка аналоговых кнопок (Z, L, R), мёртвые зоны стиков, калибровка для Super Smash Bros.</p>
+        <a href="guides/dolphin.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>Ryujinx / Yuzu (Nintendo Switch): привязка геймпада</h3>
+        <p class="difficulty">Сложность: лёгкая · Время: 5 минут · Геймпады: любой</p>
+        <p>Самые простые эмуляторы — геймпад определяется автоматически. Но есть нюансы: привязка HD Rumble, эмуляция Joy-Con, настройка гироскопа (если ваш геймпад его поддерживает).</p>
+        <a href="guides/ryujinx.html">Читать инструкцию →</a>
+      </div>
+
+      <div class="guide-item">
+        <h3>RetroArch: единый конфиг для всех консолей</h3>
+        <p class="difficulty">Сложность: средняя · Время: 20 минут · Геймпады: любой</p>
+        <p>RetroArch использует свою систему привязки (Autoconfigure). Разбираем: создание профиля, сохранение конфигурации, настройка мёртвых зон, эмуляция разных поколений контроллеров.</p>
+        <a href="guides/retroarch.html">Читать инструкцию →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer><p>© 2026 Gamepad Hub</p></footer>
+</body>
+</html>

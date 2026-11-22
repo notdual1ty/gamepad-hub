@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аксессуары — Gamepad Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gamepad Hub</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="reviews.html">Обзоры</a>
+      <a href="accessories.html" class="active">Аксессуары</a>
+      <a href="guides.html">Гайды</a>
+      <a href="about.html">О проекте</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Аксессуары для геймпадов</h2>
+    <p>Зарядные станции, сменные стики, накладки и другие полезные дополнения. Все позиции проверены на совместимость с геймпадами из нашей базы.</p>
+    <div id="accessory-list" class="gamepad-grid"></div>
+  </main>
+
+  <footer><p>© 2026 Gamepad Hub</p></footer>
+  <script src="data.js"></script>
+  <script>
+    if (document.readyState === 'loading')
+      document.addEventListener('DOMContentLoaded', () => renderAccessories(ACCESSORIES, 'accessory-list'));
+    else renderAccessories(ACCESSORIES, 'accessory-list');
+  </script>
+</body>
+</html>

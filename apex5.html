@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обзор Apex 5 — Gamepad Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .review-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 56px;
+            align-items: start;
+        }
+        .review-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 32px;
+        }
+        .review-specs {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+        .review-specs h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-3);
+            margin-bottom: 16px;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+        .spec-row:last-child { border-bottom: none; }
+        .spec-label { color: var(--text-2); }
+        .spec-value { font-weight: 600; color: var(--text); }
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 48px 0;
+        }
+        .pros-cons-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+        .pros-cons-box h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pros-cons-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .pros-cons-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+        .pros-cons-box li:before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            font-weight: 700;
+        }
+        .pros li:before { color: #059669; }
+        .cons li:before { color: #dc2626; }
+        .game-test {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .game-test h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .game-test .genre {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-3);
+            background: var(--accent-soft);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .game-test p {
+            font-size: 14px;
+            color: var(--text-2);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .rating {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .rating-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .rating-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-3);
+            font-weight: 600;
+        }
+        .rating-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .alternatives {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .alt-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .alt-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .alt-card .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .alt-card p {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+        .verdict-box {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 28px 32px;
+            margin: 48px 0;
+        }
+        .verdict-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .verdict-box p {
+            font-size: 15px;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+        @media (max-width: 900px) {
+            .review-hero { grid-template-columns: 1fr; }
+            .pros-cons { grid-template-columns: 1fr; }
+            .alternatives { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gamepad Hub</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="reviews.html">Обзоры</a>
+            <a href="guides.html">Гайды</a>
+            <a href="about.html">О проекте</a>
+        </nav>
+    </header>
+
+    <main>
+        <div style="margin-bottom: 24px;">
+            <a href="reviews.html" style="font-size: 14px; color: var(--text-3);">← Назад к обзорам</a>
+        </div>
+
+        <h1 style="font-size: 36px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 12px;">Apex 5</h1>
+        <p style="font-size: 16px; color: var(--text-2); margin-bottom: 8px;">Беспроводной геймпад до 3000 ₽ с USB-C и Bluetooth</p>
+        <p style="font-size: 13px; color: var(--text-3); font-family: var(--mono);">Куплен в марте 2026 · Опыт использования: 8 месяцев</p>
+
+        <div class="review-hero">
+            <div>
+                <img src="images/apex5.jpg" alt="Apex 5" class="review-image">
+            </div>
+            <div class="review-specs">
+                <h3>Характеристики</h3>
+                <div class="spec-row">
+                    <span class="spec-label">Цена</span>
+                    <span class="spec-value">2 490 ₽</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Подключение</span>
+                    <span class="spec-value">USB-C, Bluetooth 5.0</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Автономность</span>
+                    <span class="spec-value">~18 часов</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Вибрация</span>
+                    <span class="spec-value">Да</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Гироскоп</span>
+                    <span class="spec-value">Нет</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Hall Effect стики</span>
+                    <span class="spec-value">Нет</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Сертификация Microsoft</span>
+                    <span class="spec-value">Нет</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Кроссплатформенность</span>
+                    <span class="spec-value">Только Windows</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros-cons-box">
+                <h3><span style="color: #059669;">✓</span> Плюсы</h3>
+                <ul class="pros">
+                    <li>Хорошая цена до 3000 ₽</li>
+                    <li>Работает в Windows 11 без драйверов (XInput)</li>
+                    <li>Удобная эргономика</li>
+                    <li>Приличная автономность (18 часов)</li>
+                    <li>USB-C зарядка</li>
+                    <li>Bluetooth 5.0</li>
+                </ul>
+            </div>
+            <div class="pros-cons-box">
+                <h3><span style="color: #dc2626;">✗</span> Минусы</h3>
+                <ul class="cons">
+                    <li>Нет гироскопа</li>
+                    <li>Стики без Hall Effect (будет дрифт через год)</li>
+                    <li>Точность стиков недостаточна для шутеров</li>
+                    <li>Только для Windows</li>
+                    <li>Качество пластика среднее</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Тесты в играх</h2>
+
+        <div class="game-test">
+            <h4>Forza Horizon 5</h4>
+            <span class="genre">Гонки</span>
+            <p>В аркадных гонках геймпад показывает себя отлично. Стики достаточно отзывчивые для управления дрифтом, триггеры удобные. Вибрация работает корректно и не мешает.</p>
+            <p>Единственная проблема — отсутствие тонкой настройки зон мёртвых стиков в самом геймпаде. Приходится настраивать в игре.</p>
+            <div class="rating">
+                <div class="rating-item">
+                    <span class="rating-label">Управление</span>
+                    <span class="rating-value">8/10</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">Эргономика</span>
+                    <span class="rating-value">9/10</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-test">
+            <h4>Call of Duty: Warzone</h4>
+            <span class="genre">Шутер</span>
+            <p>Здесь начинаются проблемы. Стики недостаточно точные для прицеливания на средних и дальних дистанциях. В ближнем бою играть можно, но для соревновательного уровня этот геймпад не подходит.</p>
+            <p>Отсутствие гироскопа — критический минус. В шутерах гироскоп даёт точность, сравнимую с мышью.</p>
+            <div class="rating">
+                <div class="rating-item">
+                    <span class="rating-label">Точность</span>
+                    <span class="rating-value">5/10</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">Комфорт</span>
+                    <span class="rating-value">7/10</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-test">
+            <h4>Streets of Rage 4</h4>
+            <span class="genre">Аркада</span>
+            <p>В аркадных играх геймпад работает идеально. Крестовина чёткая, кнопки отзывчивые. Для платформеров и beat 'em up это отличный бюджетный вариант.</p>
+            <div class="rating">
+                <div class="rating-item">
+                    <span class="rating-label">Управление</span>
+                    <span class="rating-value">9/10</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-label">Отклик</span>
+                    <span class="rating-value">8/10</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Альтернативы</h2>
+        <div class="alternatives">
+            <div class="alt-card">
+                <h4>Xbox Wireless Controller</h4>
+                <span class="price">5 990 ₽</span>
+                <p>Если нужна точность для шутеров и кроссплатформенность, лучше доплатить за официальный геймпад Microsoft. Работает везде из коробки.</p>
+                <a href="xbox-wireless.html" style="margin-top: 8px; font-size: 13px; font-weight: 600;">Читать обзор →</a>
+            </div>
+            <div class="alt-card">
+                <h4>8BitDo Ultimate</h4>
+                <span class="price">~4 500 ₽</span>
+                <p>Золотая середина по цене с Hall Effect стиками. Нет гироскопа, но стики точнее и не будет дрифта.</p>
+            </div>
+        </div>
+
+        <div class="verdict-box">
+            <h3>Итоговый вердикт</h3>
+            <p>Apex 5 — хороший бюджетный геймпад для аркадных игр и казуальных гонок. Если вы не играете в шутеры и вам не нужен гироскоп, это достойный выбор до 3000 ₽.</p>
+            <p style="margin-top: 12px;">Но если вы играете в соревновательные шутеры или хотите геймпад "на годы" — лучше доплатить за Xbox Wireless Controller или 8BitDo Ultimate с Hall Effect стиками.</p>
+        </div>
+
+        <div style="text-align: center; margin: 48px 0;">
+            <a href="reviews.html" class="btn btn-primary">Смотреть все обзоры</a>
+        </div>
+    </main>
+
+    <footer><p>© 2026 Gamepad Hub</p></footer>
+</body>
+</html>

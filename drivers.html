@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Драйверы и утилиты — Gamepad Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gamepad Hub</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="reviews.html">Обзоры</a>
+      <a href="guides.html">Полезное</a>
+      <a href="drivers.html" class="active">Драйверы</a>
+      <a href="about.html">О проекте</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Драйверы, прошивки и утилиты</h2>
+    <p>Каталог проверенных файлов для геймпадов. Все ссылки ведут на официальные источники. Обсуждения — в темах GitHub Discussions.</p>
+
+    <form class="search" onsubmit="return false;">
+      <input type="text" id="driver-query" placeholder="Поиск: Apex 5, прошивка, x360ce…">
+      <button type="submit" aria-label="Искать">🔍</button>
+    </form>
+
+    <div class="driver-filters">
+      <button class="filter-btn active" data-type="all">Все</button>
+      <button class="filter-btn" data-type="driver">Драйверы</button>
+      <button class="filter-btn" data-type="firmware">Прошивки</button>
+      <button class="filter-btn" data-type="utility">Утилиты</button>
+    </div>
+
+    <div id="driver-list" class="driver-grid"></div>
+  </main>
+
+  <footer><p>© 2026 Gamepad Hub</p></footer>
+
+  <script src="drivers.js"></script>
+</body>
+</html>

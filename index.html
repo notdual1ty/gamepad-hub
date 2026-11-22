@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamepad Hub — Честная база знаний о геймпадах</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gamepad Hub</h1>
+    <nav>
+  <a href="index.html">Главная</a>
+  <a href="reviews.html">Обзоры</a>
+  <a href="guides.html">Полезное</a>
+  <a href="drivers.html">Драйверы</a>
+  <a href="about.html">О проекте</a>
+</nav>
+  </header>
+
+  <main class="home">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Всё о геймпадах — без маркетинга.</h1>
+      <p class="hero-sub">Обзоры, гайды и честные выводы о том, как геймпады ведут себя в реальных играх. Тестируем лично, пишем без прикрас.</p>
+      <span class="badge">Данные собраны в реальных играх</span>
+    </section>
+
+    <!-- ПОИСК -->
+    <form class="search" action="reviews.html" method="get">
+      <input type="text" name="q" placeholder="Поиск: Apex 5, DualSense, Bluetooth…">
+      <button type="submit" aria-label="Искать">🔍</button>
+    </form>
+
+    <!-- СТАТИСТИКА -->
+    <section class="stat-chips">
+      <a href="reviews.html" class="chip">
+        <span class="chip-num">3</span>
+        <span class="chip-label">Геймпадов<br>в базе</span>
+        <span class="chip-arrow">›</span>
+      </a>
+      <a href="guides.html" class="chip">
+        <span class="chip-num">8</span>
+        <span class="chip-label">Инструкций<br>по настройке</span>
+        <span class="chip-arrow">›</span>
+      </a>
+      <a href="guides.html" class="chip">
+        <span class="chip-num">15+</span>
+        <span class="chip-label">Игр<br>протестировано</span>
+        <span class="chip-arrow">›</span>
+      </a>
+      <a href="about.html" class="chip">
+        <span class="chip-num">0</span>
+        <span class="chip-label">Рекламных<br>интеграций</span>
+        <span class="chip-arrow">›</span>
+      </a>
+      <a href="drivers.html" class="chip">
+  <span class="chip-num">10</span>
+  <span class="chip-label">Файлов<br>в каталоге</span>
+  <span class="chip-arrow">›</span>
+</a>
+    </section>
+    
+
+    <!-- КАТЕГОРИИ -->
+    <h2 class="section-title">Категории геймпадов</h2>
+    <section class="category-grid">
+      <a href="reviews.html?cat=racing" class="cat">
+        <span class="cat-name">Гонки</span>
+        <span class="cat-count" id="count-racing">—</span>
+      </a>
+      <a href="reviews.html?cat=shooter" class="cat">
+        <span class="cat-name">Шутеры</span>
+        <span class="cat-count" id="count-shooter">—</span>
+      </a>
+      <a href="reviews.html?cat=fighting" class="cat">
+        <span class="cat-name">Файтинги</span>
+        <span class="cat-count" id="count-fighting">—</span>
+      </a>
+      <a href="reviews.html?cat=arcade" class="cat">
+        <span class="cat-name">Аркадные игры</span>
+        <span class="cat-count" id="count-arcade">—</span>
+      </a>
+      <a href="reviews.html?cat=certified" class="cat">
+        <span class="cat-name">Сертифицированные Microsoft</span>
+        <span class="cat-count" id="count-certified">—</span>
+      </a>
+      <a href="accessories.html" class="cat">
+        <span class="cat-name">Аксессуары для геймпадов</span>
+        <span class="cat-count" id="count-accessories">—</span>
+      </a>
+    </section>
+
+    <!-- ПОСЛЕДНИЕ ОБЗОРЫ -->
+    <h2 class="section-title">Последние обзоры</h2>
+    <div class="gamepad-grid" id="home-gamepads">
+      <!-- Заполняется из data.js -->
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="reviews.html" class="btn btn-secondary">Все обзоры →</a>
+    </div>
+
+    <!-- ПОПУЛЯРНЫЕ ИГРЫ -->
+    <h2 class="section-title">Популярные игры</h2>
+    <p style="color:var(--text-2); max-width:720px; margin-bottom:24px;">Игры, в которых мы чаще всего тестируем геймпады. По каждой — отдельная инструкция по настройке.</p>
+    <div class="games-grid">
+      <a href="guides/assetto-corsa.html" class="game-card">
+        <span class="game-genre">Симрейсинг</span>
+        <h3>Assetto Corsa</h3>
+        <p>Хардкорный симулятор. Геймпад настраивается через кривые руления и мёртвые зоны.</p>
+        <span class="game-meta">Сложность: высокая</span>
+      </a>
+      <a href="guides/richard-burns-rally.html" class="game-card">
+        <span class="game-genre">Ралли</span>
+        <h3>Richard Burns Rally</h3>
+        <p>Самый требовательный ралли-симулятор. Требует правки conf.ini.</p>
+        <span class="game-meta">Сложность: высокая</span>
+      </a>
+      <a href="guides/f1-series.html" class="game-card">
+        <span class="game-genre">Формула 1</span>
+        <h3>F1 2023–2024</h3>
+        <p>Кривые триггеров, привязка DRS и боксов. Играбельно на любом геймпаде.</p>
+        <span class="game-meta">Сложность: средняя</span>
+      </a>
+      <a href="guides/euro-truck-simulator.html" class="game-card">
+        <span class="game-genre">Симулятор</span>
+        <h3>Euro Truck Simulator 2</h3>
+        <p>Хорошо дружит с геймпадами. Нужна только настройка кривой руления.</p>
+        <span class="game-meta">Сложность: лёгкая</span>
+      </a>
+      <a href="guides/rpcs3.html" class="game-card">
+        <span class="game-genre">Эмулятор PS3</span>
+        <h3>RPCS3</h3>
+        <p>Эмуляция DualShock 3/4. Требует ручной привязки кнопок.</p>
+        <span class="game-meta">Сложность: средняя</span>
+      </a>
+      <a href="guides/dolphin.html" class="game-card">
+        <span class="game-genre">Эмулятор GC/Wii</span>
+        <h3>Dolphin</h3>
+        <p>Эмуляция GameCube-контроллера. Аналоговые кнопки Z/L/R.</p>
+        <span class="game-meta">Сложность: средняя</span>
+      </a>
+    </div>
+
+    <!-- СВЕЖЕЕ В ПОЛЕЗНОМ -->
+    <h2 class="section-title">Свежее в «Полезном»</h2>
+    <section class="guide-links">
+      <a href="guides/assetto-corsa.html"><span>Assetto Corsa: настройка геймпада для вождения</span><em>высокая · 30 мин</em></a>
+      <a href="guides/richard-burns-rally.html"><span>Richard Burns Rally: тонкая настройка стиков</span><em>высокая · 40 мин</em></a>
+      <a href="guides/rpcs3.html"><span>RPCS3: настройка геймпада для PS3</span><em>средняя · 15 мин</em></a>
+      <a href="guides/steam-input.html"><span>Настройка через Steam Input</span><em>лёгкий · 10 мин</em></a>
+    </section>
+    <div style="text-align:center; margin-top:16px;">
+      <a href="guides.html" class="btn btn-secondary">Все инструкции →</a>
+    </div>
+
+    <!-- ЧТО НОВОГО -->
+    <h2 class="section-title">Что нового</h2>
+    <div class="changelog">
+      <div class="changelog-item">
+        <span class="changelog-date">22 ноября 2026</span>
+        <p>Добавлен обзор <strong>Sony DualSense</strong> с тестами в Death Stranding и Cyberpunk 2077.</p>
+      </div>
+      <div class="changelog-item">
+        <span class="changelog-date">18 ноября 2026</span>
+        <p>Опубликована инструкция по настройке <strong>Assetto Corsa</strong> под геймпад.</p>
+      </div>
+      <div class="changelog-item">
+        <span class="changelog-date">10 ноября 2026</span>
+        <p>Добавлен обзор <strong>Xbox Wireless Controller</strong> — эталон совместимости.</p>
+      </div>
+      <div class="changelog-item">
+        <span class="changelog-date">1 ноября 2026</span>
+        <p>Запуск сайта. Первый обзор: <strong>Apex 5</strong>.</p>
+      </div>
+    </div>
+
+    <!-- ПРОМО -->
+    <section class="promo">
+      <div class="promo-text">
+        <h3>Нашли ошибку или хотите геймпад в базе?</h3>
+        <p>Каждый обзор — личный опыт. Пишите, если тестировали модель, которой у нас нет.</p>
+      </div>
+      <a href="about.html#contacts" class="btn btn-primary">Связаться</a>
+    </section>
+  </main>
+
+  <footer><p>© 2026 Gamepad Hub</p></footer>
+
+  <script src="data.js"></script>
+  <script>
+    // Рендер 3 последних обзоров на главной
+    (function() {
+      var container = document.getElementById('home-gamepads');
+      if (!container || typeof GAMEPADS === 'undefined') return;
+      var latest = GAMEPADS.filter(function(g) { return g.price > 0; }).slice(0, 3);
+      container.innerHTML = latest.map(function(g) {
+        var meta = 'Куплен в ' + g.purchaseDate + ' · ' + g.price.toLocaleString('ru-RU') + ' ₽ · ' + g.usageMonths + ' мес.';
+        var hasImage = g.image ? '<img src="' + g.image + '" alt="' + g.name + '" onerror="this.style.display=\'none\'">' : '';
+        return '<a class="gamepad-card" href="' + g.fullReview + '">' +
+          hasImage +
+          '<h3>' + g.name + '</h3>' +
+          '<p class="meta">' + meta + '</p>' +
+          '<p class="desc">' + g.description + '</p>' +
+          '<p class="verdict">' + g.verdict + '</p>' +
+          '<span class="review-link">Полный обзор →</span>' +
+          '</a>';
+      }).join('');
+    })();
+
+    // Счётчики категорий
+    (function() {
+      if (typeof CATEGORIES === 'undefined') return;
+      Object.keys(CATEGORIES).forEach(function(key) {
+        var el = document.getElementById('count-' + key);
+        if (el) {
+          var count = GAMEPADS.filter(function(g) { return g.price > 0 && CATEGORIES[key].filter(g); }).length;
+          var word = count === 1 ? 'обзор' : (count < 5 ? 'обзора' : 'обзоров');
+          el.textContent = count + ' ' + word;
+        }
+      });
+      var accEl = document.getElementById('count-accessories');
+      if (accEl) accEl.textContent = '3 позиции';
+    })();
+  </script>
+</body>
+</html>

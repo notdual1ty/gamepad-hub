@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[НАЗВАНИЕ] — Gamepad Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gamepad Hub</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="reviews.html">Обзоры</a>
+            <a href="guides.html">Гайды</a>
+            <a href="about.html">О проекте</a>
+        </nav>
+    </header>
+
+    <div class="gp-layout">
+        <!-- БОКОВОЕ МЕНЮ (как у ProSettings) -->
+        <aside class="sidebar">
+            <div class="sidebar-group-title">Обзор</div>
+            <a href="#specs" class="active">Характеристики</a>
+            <a href="#pros-cons">Плюсы и минусы</a>
+            <a href="#games">Тесты в играх</a>
+            <a href="#alternatives">Альтернативы</a>
+            <a href="#verdict">Вердикт</a>
+
+            <div class="sidebar-group-title">Мета</div>
+            <a href="#photos">Фотографии</a>
+            <a href="reviews.html">← Все обзоры</a>
+        </aside>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ -->
+        <div class="gp-content">
+            <!-- HERO: фото + таблица -->
+            <section class="gp-hero" id="specs">
+                <div class="gp-hero-image">
+                    <img src="images/[ФАЙЛ].jpg" alt="[НАЗВАНИЕ]">
+                </div>
+                <div class="gp-hero-info">
+                    <h2>[НАЗВАНИЕ ГЕЙМПАДА]</h2>
+                    <p class="subtitle">[Одно честное предложение о сути устройства]</p>
+                    <div class="spec-table">
+                        <div class="spec"><div class="spec-label">Цена на момент покупки</div><div class="spec-value">[2 490 ₽]</div></div>
+                        <div class="spec"><div class="spec-label">Срок использования</div><div class="spec-value">[8 месяцев]</div></div>
+                        <div class="spec"><div class="spec-label">Подключение</div><div class="spec-value">[USB-C · BT 5.0]</div></div>
+                        <div class="spec"><div class="spec-label">Батарея</div><div class="spec-value">[18 часов]</div></div>
+                        <div class="spec"><div class="spec-label">Вес</div><div class="spec-value">[210 г]</div></div>
+                        <div class="spec"><div class="spec-label">Без родного софта</div><div class="spec-value">[Да, XInput]</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ПЛЮСЫ / МИНУСЫ -->
+            <section class="pros-cons" id="pros-cons">
+                <div class="pros">
+                    <h4>Плюсы</h4>
+                    <ul><li>[плюс 1]</li><li>[плюс 2]</li><li>[плюс 3]</li></ul>
+                </div>
+                <div class="cons">
+                    <h4>Минусы</h4>
+                    <ul><li>[минус 1]</li><li>[минус 2]</li></ul>
+                </div>
+            </section>
+
+            <!-- ТЕСТЫ В ИГРАХ -->
+            <section class="gp-section" id="games">
+                <h3>Тесты в играх</h3>
+                <div class="game-test">
+                    <h4>[Игра 1]</h4>
+                    <div class="genre">Жанр: [жанр]</div>
+                    <p>[Честный опыт: как ведёт себя в этой игре и почему]</p>
+                </div>
+                <div class="game-test">
+                    <h4>[Игра 2]</h4>
+                    <div class="genre">Жанр: [жанр]</div>
+                    <p>[Честный опыт]</p>
+                </div>
+            </section>
+
+            <!-- АЛЬТЕРНАТИВЫ -->
+            <section class="gp-section" id="alternatives">
+                <h3>Альтернативы в этой цене</h3>
+                <ul>
+                    <li><a href="[ССЫЛКА]">[Геймпад]</a> — [чем лучше/хуже]</li>
+                    <li><a href="[ССЫЛКА]">[Геймпад]</a> — [чем лучше/хуже]</li>
+                </ul>
+            </section>
+
+            <!-- ВЕРДИКТ -->
+            <section class="verdict-box" id="verdict">
+                <h3>Вердикт</h3>
+                <p>[Одна честная фраза без «рекомендуем»]</p>
+            </section>
+        </div>
+    </div>
+
+    <footer><p>© 2026 Gamepad Hub</p></footer>
+</body>
+</html>
