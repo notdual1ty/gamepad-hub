@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Russo+One&family=Exo+2:ital,wght@1,700;1,800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -15,10 +15,12 @@
   --shadow: 0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
   --shadow-hover: 0 8px 24px rgba(15,23,42,.10);
   --mono: "JetBrains Mono", "SF Mono", "Cascadia Code", Consolas, monospace;
+  --font-racing: "Russo One", "Exo 2", "Bank Gothic", Eurostile, "Arial Narrow", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -1874,3 +1876,193 @@ h1, h2, h3, h4, .card-info h3, .news-card h3, .kb-card h3, .cat h3 { color: var(
 .modal-verdict h4, .modal-column h4 { color: var(--g-title); }
 /* Тестер: геймпад на тёмной подложке */
 #gt-svg .body { fill: rgba(248, 250, 252, 0.08); stroke: rgba(248, 250, 252, 0.35); }
+
+/* ===== Плотное стекло: чёткое отделение блоков от фона ===== */
+:root {
+  --glass: rgba(15, 23, 42, 0.83);
+  --glass-2: rgba(15, 23, 42, 0.86);
+  --glass-hover: rgba(30, 41, 59, 0.9);
+  --glass-line: 1px solid rgba(226, 232, 240, 0.22);
+  --glass-line-hover: 1px solid rgba(96, 165, 250, 0.55);
+  --glass-shadow: 0 10px 28px rgba(2, 6, 23, 0.35);
+  --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --glass-sep: rgba(148, 163, 184, 0.16);
+}
+.gamepad-card, .game-card, .driver-card, .kb-card, .news-card, .lab-card, .queue-card,
+.gt-card, .fh-card, .cat, .hero-quick, .widget, .lat-table, .stat-chips, .footer-lab-card,
+.gp-status, .fh-form, .news-featured, .hero-showcase, .modal-content {
+  background-color: var(--glass);
+  border: var(--glass-line);
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  transition: background-color .2s, border-color .2s, box-shadow .2s;
+}
+.widget.has-img, .forza-widget-bg { background-color: var(--glass-2); }
+.widget, .fh-card { border-left: 3px solid var(--g-accent); }
+.fh-card { border-left-color: var(--tc); }
+.gamepad-card:hover, .game-card:hover, .driver-card:hover, .kb-card:hover, .news-card:hover, .cat:hover,
+.queue-card:hover, .hero-quick:hover, .widget:hover, .fh-card:hover, .gt-card:hover, .lab-card:hover {
+  background-color: var(--glass-hover);
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: var(--glass-shadow), var(--glass-shine);
+}
+.widget:hover, .fh-card:hover { border-left-color: var(--g-accent); }
+.fh-card:hover { border-left-color: var(--tc); }
+
+/* Заголовки и метрики */
+.widget h3, .wg-tag { text-shadow: 0 1px 6px rgba(2, 6, 23, 0.6); }
+.widget h3 { color: #F8FAFC; font-weight: 800; letter-spacing: -0.2px; padding-bottom: 10px; border-bottom: 1px solid var(--glass-sep); }
+.wg-tag { color: #7DD3FC; }
+.wg-rows { gap: 0; }
+.wg-rows li { padding: 9px 0; border-bottom: 1px solid var(--glass-sep); }
+.wg-rows li:last-child { border-bottom: 0; }
+.wg-rows b, .latency-line, .lat-table td.mono, .hs-val { color: #F8FAFC; font-weight: 700; }
+.wg-rows b { font-size: 14px; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+.wg-models { border-top: 1px solid var(--glass-sep); }
+.wg-models li { padding: 5px 0; border-bottom: 1px solid var(--glass-sep); }
+.wg-models li:last-child { border-bottom: 0; }
+.lat-table th, .lat-table td { border-color: var(--glass-sep); }
+.lat-table th { color: #CBD5E1; }
+.lat-table tr:hover td { background: rgba(96, 165, 250, 0.10); }
+
+/* Бейджи и ранги */
+.badge, .news-badge, .fh-badge, .lab-games li, .fh-steer {
+  background: rgba(56, 189, 248, 0.2); color: #E0F2FE;
+  border: 1px solid rgba(125, 211, 252, 0.45); font-weight: 700;
+}
+.fh-rank { border-width: 1px; font-weight: 800; box-shadow: var(--glass-shine); }
+.fh-pad { background: rgba(248, 250, 252, 0.16); border: 1px solid rgba(226, 232, 240, 0.22); }
+.fh-cell { border-color: var(--glass-sep); }
+.cat-name { color: #F8FAFC; font-weight: 800; }
+.cat-count { color: #93C5FD; }
+
+/* ===== Финальная полировка: тёмное стекло, без белых элементов ===== */
+/* Фильтры (Forza Hall, Каталог, База знаний, Драйверы) */
+#view-forza .filter-tag, #view-forza .filter-tag:not(.active),
+.filter-tag, .filter-btn, .review-filters .filter-btn, .kb-chip, .hero-tag, .sort-select, .kb-search {
+  background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(226, 232, 240, 0.2); color: #E2E8F0;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+#view-forza .filter-tag:hover, .filter-tag:hover, .filter-btn:hover, .review-filters .filter-btn:hover,
+.kb-chip:hover, .hero-tag:hover {
+  background: rgba(30, 41, 59, 0.9); border-color: #38BDF8; color: #38BDF8;
+}
+#view-forza .filter-tag.active, .filter-tag.active, .filter-btn.active, .review-filters .filter-btn.active, .kb-chip.active,
+#view-forza .filter-tag.active:hover, .filter-tag.active:hover, .filter-btn.active:hover, .kb-chip.active:hover {
+  background: #2563EB; border-color: #38BDF8; color: #F8FAFC; font-weight: 700;
+}
+.sort-select option { background: #0F172A; color: #E2E8F0; }
+
+/* Карточки каталога: единый монолит */
+.gamepad-card { overflow: hidden; }
+.card-media { background: rgba(15, 23, 42, 0.65); border-bottom: 1px solid rgba(226, 232, 240, 0.14); }
+.card-media img.gamepad-image { mix-blend-mode: normal; filter: drop-shadow(0 6px 14px rgba(2, 6, 23, 0.6)); }
+.placeholder-img { color: #94A3B8; }
+.card-info .verdict, .gamepad-card .verdict, .modal-verdict {
+  background: rgba(30, 41, 59, 0.78); border: 1px solid rgba(226, 232, 240, 0.14);
+  border-left: 3px solid #38BDF8; color: #E2E8F0;
+}
+.gamepad-card:hover .card-info .verdict { border-left-color: #7DD3FC; background: rgba(30, 41, 59, 0.9); }
+.gamepad-card:hover .review-link { color: #7DD3FC; }
+.card-footer { background: transparent; border: 0; }
+
+/* Остальные виджеты: формы, тестер, оси, кнопки */
+#view-forza .fh-form { background: rgba(15, 23, 42, 0.83); }
+.fh-cell, .fh-axes, .fh-card .fh-axes, .fh-card .fh-axes-btn, .fh-ghost, .fh-ico, .fh-del,
+.gt-slot, .gt-actions button, .btn-secondary, .hero-cta-alt, .hero-quick, .hero-card, .news-card {
+  background: rgba(15, 23, 42, 0.72); border-color: rgba(226, 232, 240, 0.2); color: #E2E8F0;
+}
+.gt-slot.sel { background: rgba(56, 189, 248, 0.16); border-color: #38BDF8; }
+.fh-ghost:hover, .gt-actions button:hover, .btn-secondary:hover, .fh-ico:hover, .fh-del:hover {
+  background: rgba(30, 41, 59, 0.9); border-color: #38BDF8; color: #38BDF8;
+}
+.fh-input, .fh-form input, .fh-form select, .fh-form textarea, .search input {
+  background: rgba(15, 23, 42, 0.72); color: #E2E8F0; border: 1px solid rgba(226, 232, 240, 0.2);
+}
+.fh-input:focus, .fh-form input:focus, .fh-form select:focus, .fh-form textarea:focus, .kb-search:focus {
+  outline: none; border-color: #38BDF8; box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+.sort-select, .lat-table, .stat-chips { color: #E2E8F0; }
+.news-date { color: #94A3B8; }
+footer { background: rgba(15, 23, 42, 0.7); }
+
+/* ===== Мягкая интеграция: без рамок у hero, тонкие поверхности ===== */
+:root {
+  --soft: rgba(15, 23, 42, 0.62);
+  --soft-hover: rgba(15, 23, 42, 0.7);
+  --soft-line: 1px solid rgba(255, 255, 255, 0.09);
+  --soft-line-hover: 1px solid rgba(255, 255, 255, 0.18);
+  --glass: var(--soft); --glass-2: var(--soft); --glass-hover: var(--soft-hover);
+  --glass-line: var(--soft-line); --glass-line-hover: var(--soft-line-hover);
+  --glass-shadow: none; --glass-shine: none;
+  --glass-sep: rgba(255, 255, 255, 0.07);
+}
+body {
+  background-image:
+    linear-gradient(180deg, rgba(8, 12, 24, 0.86) 0%, rgba(8, 12, 24, 0.6) 38%, rgba(8, 12, 24, 0.82) 100%),
+    url('./teamreact.jpg');
+}
+
+/* Hero: без коробки и обводки */
+.hero, .hero-card, .hero .hero-card, .hero-main {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.hero-card { padding: 24px 0 8px; }
+.hero { position: relative; margin-bottom: 8px; }
+.hero::before {
+  content: ''; position: absolute; inset: -80px -120px -60px; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 30% 50%, rgba(8, 12, 24, 0.45) 0%, rgba(8, 12, 24, 0.2) 45%, rgba(8, 12, 24, 0) 75%);
+}
+.hero h1, .hero .hero-card h1 { text-shadow: 0 2px 18px rgba(2, 6, 23, 0.85); }
+.hero-sub { color: #E2E8F0; text-shadow: 0 1px 8px rgba(2, 6, 23, 0.7); }
+
+/* Карточки и виджеты: тонкая граница, мягкое стекло */
+.gamepad-card, .game-card, .driver-card, .kb-card, .news-card, .lab-card, .queue-card,
+.gt-card, .fh-card, .cat, .hero-quick, .widget, .lat-table, .stat-chips, .footer-lab-card,
+.gp-status, .fh-form, .news-featured, .hero-showcase, .modal-content, #view-forza .fh-form {
+  background-color: var(--soft);
+  border: var(--soft-line);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.widget, .fh-card { border-left-width: 2px; }
+.widget.has-img, .forza-widget-bg { background-color: var(--soft); }
+.news-card, .hero-quick { background: var(--soft); border-color: rgba(255, 255, 255, 0.09); }
+.gamepad-card:hover, .game-card:hover, .driver-card:hover, .kb-card:hover, .news-card:hover, .cat:hover,
+.queue-card:hover, .hero-quick:hover, .widget:hover, .fh-card:hover, .gt-card:hover, .lab-card:hover {
+  background-color: var(--soft-hover); border-color: rgba(255, 255, 255, 0.18); box-shadow: none;
+}
+.stat-chips .chip { border-color: rgba(255, 255, 255, 0.09); }
+.card-media, .card-footer { border-color: rgba(255, 255, 255, 0.07); }
+.card-info .verdict, .gamepad-card .verdict, .modal-verdict { border-color: rgba(255, 255, 255, 0.09); border-left: 2px solid #38BDF8; background: rgba(15, 23, 42, 0.5); }
+.lat-table th, .lat-table td { border-color: rgba(255, 255, 255, 0.07); }
+.filter-tag, .filter-btn, .kb-chip, .hero-tag, .sort-select, .kb-search, .search input {
+  background: rgba(15, 23, 42, 0.56); border: var(--soft-line);
+}
+
+/* Ритм */
+main { padding-top: 32px; }
+.home section.block, .block { margin-top: 40px; }
+.section-title { margin: 40px 0 16px; }
+.widget-grid, .news-grid, .category-grid, .gamepad-grid, .driver-grid { gap: 20px; }
+.stat-chips { margin-top: 28px; }
+
+/* ===== Racing typography (ProStreet-style accents; body text stays on --font-body) ===== */
+.logo-text, .footer-logo, .logo-sub,
+.hero h1, .hero .hero-card h1,
+.section-title, .section-head h2,
+.hs-val, .hs-label, .hero-quick-label, .news-badge, .wg-tag {
+  font-family: var(--font-racing);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-synthesis: none;
+}
+.logo-text { letter-spacing: 1.5px; font-style: italic; }
+.logo-sub { letter-spacing: 2px; }
+.hero h1, .hero .hero-card h1 { line-height: 1.1; letter-spacing: 0.02em; font-style: italic; }
+.section-title, .section-head h2 { letter-spacing: 0.06em; line-height: 1.25; }
+.hs-val { letter-spacing: 0.04em; }
+.hs-label, .hero-quick-label, .news-badge, .wg-tag { letter-spacing: 0.12em; }
