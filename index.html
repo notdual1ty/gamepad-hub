@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamepad Hub — Честная база знаний о геймпадах</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header>
@@ -41,17 +41,15 @@
         <input id="search-input" type="text" name="q" placeholder="Поиск: Apex 5, DualSense, Bluetooth…">
         <button type="submit" aria-label="Искать">🔍</button>
       </form>
+      <div class="hero-tags">
+        <button type="button" class="hero-tag" data-quick="budget">До 3 000 ₽</button>
+        <button type="button" class="hero-tag" data-quick="shooter">Для шутеров</button>
+        <button type="button" class="hero-tag" data-quick="gyro">С гироскопом</button>
       </div>
-      <aside class="hero-quick" aria-label="Быстрые действия">
-        <a href="#tester" class="hero-cta">Открыть онлайн-тестер геймпада →</a>
-        <p class="hero-cta-note">Проверка стиков, дрифта и вибрации прямо в браузере</p>
-        <div class="hero-quick-label">Быстрый поиск</div>
-        <div class="hero-tags">
-          <button type="button" class="hero-tag" data-quick="budget">До 3 000 ₽</button>
-          <button type="button" class="hero-tag" data-quick="shooter">Для шутеров</button>
-          <button type="button" class="hero-tag" data-quick="gyro">С гироскопом</button>
-        </div>
-      </aside>
+      <div class="hero-actions">
+        <a href="#tester" class="hero-cta">Открыть тестер геймпада →</a>
+      </div>
+      </div>
      </div>
       <section class="stat-chips">
         <a href="#catalog" class="chip"><span class="chip-num">3</span><span class="chip-label">Геймпадов<br>в базе</span><span class="chip-arrow">›</span></a>
@@ -101,6 +99,14 @@
         <button class="filter-tag" data-filter="certified">Сертификат Microsoft</button>
         <button class="filter-tag" data-filter="nofix">Без костылей в Windows</button>
         <button class="filter-tag" data-filter="gyro">С гироскопом</button>
+      </div>
+      <div class="sort-bar">
+        <label for="sort-select">Сортировка:</label>
+        <select id="sort-select" class="sort-select">
+          <option value="">По умолчанию</option>
+          <option value="latency">Задержка: меньше — лучше</option>
+          <option value="polling">Частота опроса: выше — лучше</option>
+        </select>
       </div>
       <div id="gamepad-list" class="gamepad-grid"></div>
     </section>
@@ -158,6 +164,10 @@
           <ul class="lab-obs"><li><span>Дрифт стиков</span><b>лёгкий, ~2%</b></li><li><span>Автономность</span><b>проводной</b></li><li><span>Сборка</span><b>пластик гнётся у бамперов</b></li></ul>
         </article>
       </div>
+      </div>
+      <div id="latency-block" style="margin-top:32px">
+        <h3 class="lab-h">Сравнение задержек</h3>
+        <div id="latency-table"></div>
       </div>
       <div id="planned" style="margin-top:32px">
         <h3 class="lab-h">Запланировано к тестированию</h3>
@@ -295,7 +305,8 @@
   </main>
 
   <footer>
-    <div class="footer-inner">
+    <div class="footer-container">
+    <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="footer-logo">GAMEPAD HUB</a>
         <p>Независимые обзоры геймпадов. Все устройства куплены за свои деньги, рекламных интеграций нет.</p>
@@ -320,6 +331,7 @@
       </div>
     </div>
     <div class="footer-bottom">© 2026 Gamepad Hub. Все права защищены.</div>
+    </div>
   </footer>
 
   <!-- BACKGROUND MUSIC -->
@@ -327,7 +339,7 @@
     <source src="bgm.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="data.js?v=3"></script>
+  <script src="data.js?v=4"></script>
   <script src="gamepad-tester.js?v=3"></script>
   <script>
     // Фоновая музыка с учётом autoplay policy

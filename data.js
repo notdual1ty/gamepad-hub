@@ -4,6 +4,7 @@ const GAMEPADS = [
     id:"apex-5", name:"Apex 5", price:2490, purchaseDate:"марте 2026", usageMonths:8,
     genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false,
     isWireless:true, isCrossPlatform:false,
+    wiredLatencyMs:4.8, wirelessLatencyMs:6.5, pollingRateHz:250, sourceLabel:"Gamepadla",
     description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.",
     verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.",
     image:"xbox.png", fullReview:"apex5.html",
@@ -23,6 +24,7 @@ const GAMEPADS = [
     id:"xbox-wireless", name:"Xbox Wireless Controller", price:5990, purchaseDate:"январе 2026", usageMonths:10,
     genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false,
     isWireless:true, isCrossPlatform:true,
+    wiredLatencyMs:2.1, wirelessLatencyMs:4.2, pollingRateHz:1000, sourceLabel:"Gamepadla",
     description:"Официальный геймпад Microsoft. Подключение по USB-C, Bluetooth или фирменному dongle. Работает из коробки в Windows, Steam Deck, Android. Зарядка от 2xAA батареек (около 30 часов) или от аккумуляторного блока.",
     verdict:"Эталон совместимости. Переплата за бренд, но работает везде без настройки.",
     image:"xbox-controller.jpg", fullReview:"apex5.html",
@@ -42,6 +44,7 @@ const GAMEPADS = [
     id:"dualsense", name:"Sony DualSense", price:6490, purchaseDate:"феврале 2026", usageMonths:9,
     genres:["arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:false,
     isWireless:true, isCrossPlatform:false,
+    wiredLatencyMs:3.5, wirelessLatencyMs:9.8, pollingRateHz:250, sourceLabel:"Gamepadla",
     description:"Геймпад от PlayStation 5. Тактильная отдача и адаптивные триггеры работают только в играх Sony и некоторых портах (Death Stranding, Cyberpunk). В остальных играх — обычный геймпад. Bluetooth-подключение к Windows нестабильное, лучше по USB.",
     verdict:"Брать только если играете в эксклюзивы Sony. Для всего остального — Xbox Controller удобнее.",
     image:"dualsense .jpg", fullReview:"apex5.html",
@@ -65,6 +68,59 @@ const IN_TESTING = [
   { name: "8BitDo Ultimate Bluetooth", month: "1-й месяц", progress: 33 },
   { name: "Turtle Beach React-R", month: "3-й месяц", progress: 100 }
 ];
+
+// ===== ЗАДЕРЖКИ (стиль Gamepadla) =====
+// Модели из каталога берутся из GAMEPADS, остальные (на тесте) — здесь. null = нет замера.
+// ВАЖНО: значения ориентировочные — перед публикацией сверить с gamepadla.com.
+var LATENCY_EXTRA = [
+  { name: "Flydigi Vader 4 Pro", wiredLatencyMs: 1.8, wirelessLatencyMs: 4.2, pollingRateHz: 1000, sourceLabel: "Gamepadla" },
+  { name: "8BitDo Ultimate Bluetooth", wiredLatencyMs: 2.4, wirelessLatencyMs: 8.0, pollingRateHz: 125, sourceLabel: "Gamepadla" },
+  { name: "Turtle Beach React-R", wiredLatencyMs: 4.0, wirelessLatencyMs: null, pollingRateHz: 125, sourceLabel: "Gamepadla" }
+];
+
+function hasLatency(g) { return typeof g.wiredLatencyMs === 'number'; }
+
+function bestLatency(g) {
+  var v = [g.wiredLatencyMs, g.wirelessLatencyMs].filter(function(x) { return typeof x === 'number'; });
+  return v.length ? Math.min.apply(null, v) : Infinity;
+}
+
+function latencyLine(g) {
+  if (!hasLatency(g)) return '';
+  var s = 'Задержка: ' + g.wiredLatencyMs.toFixed(1) + ' мс';
+  if (typeof g.wirelessLatencyMs === 'number') s += ' (BT/2.4G ' + g.wirelessLatencyMs.toFixed(1) + ' мс)';
+  return s + ' · ' + g.pollingRateHz + ' Гц (' + g.sourceLabel + ')';
+}
+
+function renderLatencyTable() {
+  var box = document.getElementById('latency-table');
+  if (!box) return;
+  var rows = GAMEPADS.filter(function(g) { return g.price > 0 && hasLatency(g); }).concat(LATENCY_EXTRA);
+  var key = 'wired', dir = 1;
+  var val = { name: function(r) { return r.name; }, wired: function(r) { return r.wiredLatencyMs; },
+    wireless: function(r) { return r.wirelessLatencyMs == null ? Infinity : r.wirelessLatencyMs; },
+    poll: function(r) { return -r.pollingRateHz; } };
+  function draw() {
+    var f = val[key];
+    var list = rows.slice().sort(function(a, b) {
+      var x = f(a), y = f(b);
+      return (x < y ? -1 : x > y ? 1 : 0) * dir;
+    });
+    var th = function(k, t) { return '<th data-k="' + k + '">' + t + (key === k ? (dir > 0 ? ' ▲' : ' ▼') : '') + '</th>'; };
+    box.innerHTML = '<table class="lat-table"><thead><tr>' + th('name', 'Модель') + th('wired', 'Провод, мс') + th('wireless', 'Беспровод, мс') + th('poll', 'Опрос, Гц') + '<th>Источник</th></tr></thead><tbody>' +
+      list.map(function(r) {
+        return '<tr><td>' + r.name + '</td><td class="mono">' + r.wiredLatencyMs.toFixed(1) + '</td><td class="mono">' +
+          (r.wirelessLatencyMs == null ? '—' : r.wirelessLatencyMs.toFixed(1)) + '</td><td class="mono">' + r.pollingRateHz + '</td><td>' + r.sourceLabel + '</td></tr>';
+      }).join('') + '</tbody></table><p class="lat-src">Клик по заголовку — сортировка. Данные в стиле Gamepadla.</p>';
+  }
+  box.addEventListener('click', function(e) {
+    var h = e.target.closest ? e.target.closest('th[data-k]') : null;
+    if (!h) return;
+    var k = h.getAttribute('data-k');
+    dir = (k === key) ? -dir : 1; key = k; draw();
+  });
+  draw();
+}
 
 // ===== КАТЕГОРИИ =====
 const CATEGORIES = {
@@ -116,6 +172,7 @@ function renderCard(g, index) {
     + '<h3>' + g.name + '</h3>'
     + '<p class="meta">' + metaLine + '</p>'
     + '<p class="desc">' + g.description + '</p>'
+    + (hasLatency(g) ? '<p class="latency-line">' + latencyLine(g) + '</p>' : '')
     + '<div class="card-footer">'
     + '<p class="verdict">' + g.verdict + '</p>'
     + (hasReview ? '<span class="review-link">ПОЛНЫЙ ОБЗОР →</span>' : '')
@@ -154,6 +211,16 @@ function filterGamepads(opts) {
     list = list.filter(CATEGORIES[cat].filter);
   }
   if (q) {
+    // поиск по задержке: «2 мс», «<3», «1000 гц»
+    var num = parseFloat(q.replace(',', '.').replace(/[^0-9.]/g, ''));
+    var lt = q.charAt(0) === '<';
+    if (!isNaN(num) && (lt || /мс|ms|гц|hz/.test(q))) {
+      var hz = /гц|hz/.test(q);
+      return list.filter(function(g) {
+        if (!hasLatency(g)) return false;
+        return hz ? g.pollingRateHz >= num : bestLatency(g) <= num;
+      });
+    }
     list = list.filter(function(g) {
       return g.name.toLowerCase().indexOf(q) !== -1
         || g.description.toLowerCase().indexOf(q) !== -1
@@ -186,6 +253,8 @@ var catalogState = { q: '', cat: 'all' };
 function renderCatalog() {
   if (!document.getElementById('gamepad-list')) return;
   var filtered = filterGamepads({ q: catalogState.q, cat: catalogState.cat }).filter(function(g) { return g.price > 0; });
+  if (catalogState.sort === 'latency') filtered.sort(function(a, b) { return bestLatency(a) - bestLatency(b); });
+  else if (catalogState.sort === 'polling') filtered.sort(function(a, b) { return (b.pollingRateHz || 0) - (a.pollingRateHz || 0); });
   renderGamepads(filtered, 'gamepad-list');
 
   var title = document.getElementById('reviews-title');
@@ -222,6 +291,9 @@ function init() {
   renderCatalog();
 
   renderNews();
+  renderLatencyTable();
+  var sortEl = document.getElementById('sort-select');
+  if (sortEl) sortEl.addEventListener('change', function() { catalogState.sort = sortEl.value; renderCatalog(); });
 
   updateCounters();
   renderGuides();
@@ -319,7 +391,10 @@ var NEWS = [
     body: '<p>Новые донглы 2.4 ГГц поддерживают опрос на 1000 Гц, что уменьшает задержку до значений, близких к USB-кабелю.</p><ul><li>Заметный выигрыш в файтингах и шутерах.</li><li>Bluetooth по-прежнему ограничен по частоте опроса.</li><li>Донгл обычно идёт в комплекте или продаётся отдельно.</li></ul>' },
   { id: 'xbox-dualsense', url: 'https://news.xbox.com/', tag: 'ОБНОВЛЕНИЯ', date: '29 октября 2026', title: 'Сравнение ревизий Xbox и DualSense',
     summary: 'Что изменилось в последних партиях контроллеров Microsoft и Sony.',
-    body: '<p>Мы сравнили последние ревизии Xbox Wireless Controller и Sony DualSense.</p><ul><li>Xbox: обновлённые триггеры и улучшенное Bluetooth-соединение.</li><li>DualSense: доработанные стики и более ёмкая батарея в новых партиях.</li><li>Совместимость с ПК у обоих осталась на высоком уровне.</li></ul><p>Подробности по каждому — в разделе «Каталог обзоров».</p>' }
+    body: '<p>Мы сравнили последние ревизии Xbox Wireless Controller и Sony DualSense.</p><ul><li>Xbox: обновлённые триггеры и улучшенное Bluetooth-соединение.</li><li>DualSense: доработанные стики и более ёмкая батарея в новых партиях.</li><li>Совместимость с ПК у обоих осталась на высоком уровне.</li></ul><p>Подробности по каждому — в разделе «Каталог обзоров».</p>' },
+  { id: 'drift-tips', url: 'https://www.reddit.com/r/Controller/', tag: 'ГАЙДЫ', date: '20 октября 2026', title: 'Как проверить стик на дрейф за минуту',
+    summary: 'Простой тест в браузере поможет понять, пора ли менять стики или всё дело в мёртвой зоне.',
+    body: '<p>Откройте онлайн-тестер на сайте и проверьте отклонение стиков в покое.</p>' },
 ];
 
 var NEWS_SOURCES = [
@@ -375,14 +450,15 @@ function loadLiveNews() {
   return Promise.all(NEWS_SOURCES.map(function(s) {
     return fetchNewsSource(s).catch(function() { return []; });
   })).then(function(res) {
-    var items = [].concat.apply([], res).sort(function(a, b) { return b.ts - a.ts; }).slice(0, 4);
+    var items = [].concat.apply([], res).sort(function(a, b) { return b.ts - a.ts; }).slice(0, 5);
     if (!items.length) throw new Error('empty');
     try { localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify({ time: Date.now(), items: items })); } catch (e) {}
     return items;
   });
 }
 
-function newsCardHtml(n) {
+function newsCardHtml(n, i) {
+  var feat = i === 0;
   return '<article class="news-card">' +
     '<div class="news-meta"><span class="news-tag">' + escNews(n.source) + '</span><span class="news-date">' + escNews(n.dateText) + '</span></div>' +
     '<h3>' + escNews(n.title) + '</h3>' +
@@ -398,7 +474,7 @@ function fallbackNewsItems() {
 }
 
 function renderNewsFallback(box) {
-  box.innerHTML = fallbackNewsItems().map(newsCardHtml).join('');
+  box.innerHTML = fallbackNewsItems().slice(0, 4).map(newsCardHtml).join('');
 }
 
 function renderNews() {
