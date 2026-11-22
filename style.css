@@ -1694,8 +1694,14 @@ header h1 a.logo:hover .logo-sub { background: var(--accent); }
 
 /* Слот под кадры NFS ProStreet: --img задаётся из data.js (SITE_IMAGES) */
 .has-img { background-color: #0F172A; background-image: linear-gradient(115deg, #0F172A 0%, #1e293b 100%); border-left-color: #fff; color: #F8FAFC; min-height: 190px; display: flex; align-items: flex-end; }
-.has-img::before { content: ''; position: absolute; inset: 0; background: var(--img) center / cover no-repeat; opacity: .55; z-index: 0; }
-.has-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,23,42,.92) 0%, rgba(15,23,42,.55) 60%, rgba(15,23,42,.25) 100%); z-index: 1; }
+.has-img::before { content: ''; position: absolute; inset: 0; background-image: var(--img, none); background-size: cover; background-position: center 45%; background-repeat: no-repeat; z-index: 0; }
+.has-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.78) 52%, rgba(15, 23, 42, 0.25) 100%); z-index: 1; }
+.wg-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 0; }
+.wg-facts li { font-family: var(--mono); font-size: 11px; color: #E2E8F0; padding: 3px 8px; border: 1px solid rgba(147,197,253,.45); border-radius: 4px; background: rgba(15,23,42,.55); }
+.wg-models { list-style: none; margin: 14px 0 0; padding: 10px 0 0; border-top: 1px dashed var(--border); display: flex; flex-direction: column; gap: 6px; }
+.wg-models li { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--text-2); }
+.wg-models em { font-style: normal; font-family: var(--mono); font-size: 10px; color: var(--text-3); margin-left: 4px; }
+.wg-models b { font-family: var(--mono); color: var(--text); white-space: nowrap; }
 .has-img .wg-body { position: relative; z-index: 2; }
 .has-img h3 { color: #fff; margin-bottom: 8px; }
 .has-img p { color: #CBD5E1; margin-bottom: 10px; max-width: 420px; }

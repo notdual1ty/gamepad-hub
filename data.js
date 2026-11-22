@@ -906,7 +906,29 @@ var FORZA_HALL = [
 
 // ===== ИЗОБРАЖЕНИЯ-СЛОТЫ (NFS ProStreet и др.) =====
 // Укажите путь к кадру, напр. 'images/prostreet-forza.jpg'. Пустая строка — слот остаётся градиентом.
-var SITE_IMAGES = { forzaHall: '', racing: '' };
+// Файл кадра: положите 1OfqHkuzlSI-topaz-enhance-4x.jpg в ./assets/ (или поменяйте путь здесь).
+var SITE_IMAGES = { forzaHall: './assets/1OfqHkuzlSI-topaz-enhance-4x.jpg', racing: '' };
+
+// Конкретные замеры моделей для виджета «Быстрые ориентиры по задержке»
+(function () {
+  var box = document.getElementById('wg-models');
+  if (!box || typeof GAMEPADS === 'undefined') return;
+  var picks = [
+    { id: 'gamesir-g7-pro', mode: 'wired' },
+    { id: 'razer-wolverine-v3-pro', mode: 'wireless' },
+    { id: 'xbox-wireless', mode: 'wireless' }
+  ];
+  var html = '';
+  picks.forEach(function (p) {
+    var g = GAMEPADS.filter(function (x) { return x.id === p.id; })[0];
+    if (!g) return;
+    var ms = p.mode === 'wired' ? g.wiredLatencyMs : g.wirelessLatencyMs;
+    if (ms == null) return;
+    html += '<li><span>' + g.name + ' <em>' + (p.mode === 'wired' ? 'USB' : '2.4 ГГц/BT') + '</em></span>' +
+      '<b>' + ms.toFixed(1) + ' мс · ' + g.pollingRateHz + ' Гц</b></li>';
+  });
+  box.innerHTML = html;
+})();
 (function () {
   var els = document.querySelectorAll('[data-img]');
   for (var i = 0; i < els.length; i++) {
