@@ -7,7 +7,7 @@ const GAMEPADS = [
     wiredLatencyMs:4.8, wirelessLatencyMs:6.5, pollingRateHz:250, sourceLabel:"Gamepadla",
     description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.",
     verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.",
-    image:"xbox.png", fullReview:"apex5.html",
+    image:"apex5.webp", fullReview:"apex5.html",
     specLine: "X-INPUT",
     specs: {
       sticks: "Аналоговые, точные, дрейфа не замечено",
@@ -218,6 +218,23 @@ const CATEGORIES = {
 // ===== SVG-PLACEHOLDER =====
 var PLACEHOLDER_SVG = '<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 9h12a4 4 0 014 4l-1 4a2 2 0 01-3.5 1L16 16H8l-1.5 2A2 2 0 013 17l-1-4a4 4 0 014-4z"/><circle cx="8.5" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><path d="M7 14.5h3M7 13v3"/></svg>';
 
+// Телеметрическая заглушка для геймпадов без фото
+function renderTelemetryPlaceholder(g) {
+  var tags = [];
+  if (g.hasHallEffect) tags.push('HALL');
+  if (g.hasGyro) tags.push('GYRO');
+  if (g.isWireless) tags.push('WIRELESS');
+  if (g.isMicrosoftCertified) tags.push('MS CERT');
+  if (g.specLine) tags.unshift(g.specLine);
+  var meta = tags.length ? tags.join(' · ') : 'NO IMAGE';
+  return '<div class="telemetry-ph">'
+    + '<span class="telemetry-ph-icon">' + PLACEHOLDER_SVG + '</span>'
+    + '<span class="telemetry-ph-name">' + g.name + '</span>'
+    + '<span class="telemetry-ph-spec">' + meta + '</span>'
+    + '<span class="telemetry-ph-tag">IMG // N/A</span>'
+    + '</div>';
+}
+
 // ===== СЛОВА ДЛЯ СЧЁТЧИКОВ =====
 function wordForCount(n, one, few, many) {
   var mod10 = n % 10;
@@ -237,7 +254,7 @@ function renderCard(g, index) {
   if (g.image) {
     media = '<img src="' + g.image + '" alt="' + g.name + '" class="gamepad-image">';
   } else {
-    media = '<div class="placeholder-img">' + PLACEHOLDER_SVG + '</div>';
+    media = renderTelemetryPlaceholder(g);
   }
 
   var metaLine = isPlaceholder
@@ -696,7 +713,7 @@ function openGamepadModal(e, gamepadId) {
     document.body.appendChild(modal);
   }
 
-  var image = gamepad.image ? '<img src="' + gamepad.image + '" alt="' + gamepad.name + '" class="modal-image">' : '<div class="modal-placeholder">' + PLACEHOLDER_SVG + '</div>';
+  var image = gamepad.image ? '<img src="' + gamepad.image + '" alt="' + gamepad.name + '" class="modal-image">' : '<div class="modal-placeholder">' + renderTelemetryPlaceholder(gamepad) + '</div>';
 
   var specsHtml = '<div class="modal-specs-row">' +
     '<span class="modal-spec-label">Стики:</span> <strong>' + gamepad.specs.sticks + '</strong>' +
@@ -740,7 +757,7 @@ function openGamepadModal(e, gamepadId) {
             '<div class="modal-pros-cons">' + prosHtml + consHtml + '</div>' +
           '</div>' +
           '<div class="modal-verdict">' +
-            '<h4>Итог после 3 месяцев тестов</h4>' +
+            '<h4>Итог после ' + gamepad.usageMonths + ' ' + wordForCount(gamepad.usageMonths, 'месяц', 'месяца', 'месяцев') + ' тестов</h4>' +
             '<p>' + gamepad.fullVerdict + '</p>' +
           '</div>' +
           '<a href="reviews.html#gamepad-tester" class="modal-tester-btn" onclick="return goToTester(event)">Проверить геймпад в тестере →</a>' +

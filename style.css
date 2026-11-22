@@ -2074,3 +2074,59 @@ main { padding-top: 32px; }
 .news-tag { color: #7DD3FC; }
 .news-date, .card-info .meta, .gamepad-card .meta { color: #CBD5E1; font-size: 13px; }
 .card-info .verdict, .gamepad-card .verdict { color: #F1F5F9; font-size: 14px; line-height: 1.55; }
+
+/* ===== Тёмное стекло: модальное окно обзора и медиа-блок карточек ===== */
+.modal-specs, .modal-left {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  color: #F8FAFC;
+}
+.modal-specs-row, .modal-spec { color: #F8FAFC; border-color: rgba(255, 255, 255, 0.08); }
+.modal-spec-label, .modal-spec span { color: #94A3B8; }
+.modal-specs-row strong, .modal-spec strong { color: #F8FAFC; }
+
+.modal-close {
+  background: rgba(15, 23, 42, 0.78);
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: none;
+}
+.modal-close:hover { background: rgba(56, 189, 248, 0.18); border-color: rgba(56, 189, 248, 0.6); color: #F8FAFC; }
+
+.card-media, .modal-left {
+  background: linear-gradient(145deg, #1E293B 0%, #0F172A 60%, #0B1220 100%);
+  overflow: hidden;
+}
+.card-media { border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.card-media img.gamepad-image, .modal-image {
+  mix-blend-mode: normal;
+  background: transparent;
+  transition: transform .45s ease;
+  filter: drop-shadow(0 8px 18px rgba(2, 6, 23, 0.65));
+}
+.gamepad-card:hover .card-media img.gamepad-image, .modal-left:hover .modal-image { transform: scale(1.06); }
+
+/* Телеметрическая заглушка */
+.modal-placeholder, .placeholder-img { background: none; border: 0; }
+.telemetry-ph {
+  position: relative; width: 100%; height: 100%; min-height: 200px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 16px; box-sizing: border-box; text-align: center;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Courier New", monospace;
+  color: #94A3B8;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.telemetry-ph-icon { color: rgba(125, 211, 252, 0.55); display: block; line-height: 0; }
+.telemetry-ph-icon svg { width: 84px; height: 84px; }
+.telemetry-ph-name { color: #F8FAFC; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.telemetry-ph-spec { color: #7DD3FC; font-size: 11px; letter-spacing: 0.14em; }
+.telemetry-ph-tag { position: absolute; top: 8px; left: 10px; font-size: 10px; letter-spacing: 0.14em; color: #64748B; }
+.modal-left .telemetry-ph { min-height: 300px; }
