@@ -906,8 +906,8 @@ var FORZA_HALL = [
 
 // ===== ИЗОБРАЖЕНИЯ-СЛОТЫ (NFS ProStreet и др.) =====
 // Укажите путь к кадру, напр. 'images/prostreet-forza.jpg'. Пустая строка — слот остаётся градиентом.
-// Кадр лежит в корне проекта: teamreact.jpg (при ошибке загрузки остаётся fallback-градиент).
-var SITE_IMAGES = { forzaHall: './teamreact.jpg', racing: '' };
+// teamreact.jpg теперь общий фон сайта (style.css, body). Для виджета Forza Hall подставьте другой кадр в forzaHall.
+var SITE_IMAGES = { forzaHall: '', racing: '' };
 
 // Конкретные замеры моделей для виджета «Быстрые ориентиры по задержке»
 (function () {
