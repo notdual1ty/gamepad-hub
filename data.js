@@ -1,8 +1,8 @@
 // ===== ДАННЫЕ О ГЕЙМПАДАХ =====
 const GAMEPADS = [
-  { id:"apex-5", name:"Apex 5", price:2490, purchaseDate:"март 2026", usageMonths:8, genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.", verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.", image:"images/apex5.jpg", fullReview:"apex5.html" },
-  { id:"xbox-wireless", name:"Xbox Wireless Controller", price:5990, purchaseDate:"январь 2026", usageMonths:10, genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:true, description:"Официальный геймпад Microsoft. Подключение по USB-C, Bluetooth или фирменному dongle. Работает из коробки в Windows, Steam Deck, Android. Зарядка от 2xAA батареек (около 30 часов) или от аккумуляторного блока.", verdict:"Эталон совместимости. Переплата за бренд, но работает везде без настройки.", image:"images/xbox-controller.jpg", fullReview:"xbox-wireless.html" },
-  { id:"dualsense", name:"Sony DualSense", price:6490, purchaseDate:"февраль 2026", usageMonths:9, genres:["arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Геймпад от PlayStation 5. Тактильная отдача и адаптивные триггеры работают только в играх Sony и некоторых портах (Death Stranding, Cyberpunk). В остальных играх — обычный геймпад. Bluetooth-подключение к Windows нестабильное, лучше по USB.", verdict:"Брать только если играете в эксклюзивы Sony. Для всего остального — Xbox Controller удобнее.", image:"images/dualsense.jpg", fullReview:"dualsense.html" },
+  { id:"apex-5", name:"Apex 5", price:2490, purchaseDate:"марте 2026", usageMonths:8, genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.", verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.", image:"xbox.png", fullReview:"apex5.html" },
+  { id:"xbox-wireless", name:"Xbox Wireless Controller", price:5990, purchaseDate:"январе 2026", usageMonths:10, genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:true, description:"Официальный геймпад Microsoft. Подключение по USB-C, Bluetooth или фирменному dongle. Работает из коробки в Windows, Steam Deck, Android. Зарядка от 2xAA батареек (около 30 часов) или от аккумуляторного блока.", verdict:"Эталон совместимости. Переплата за бренд, но работает везде без настройки.", image:"xbox-controller.jpg", fullReview:"apex5.html" },
+  { id:"dualsense", name:"Sony DualSense", price:6490, purchaseDate:"феврале 2026", usageMonths:9, genres:["arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Геймпад от PlayStation 5. Тактильная отдача и адаптивные триггеры работают только в играх Sony и некоторых портах (Death Stranding, Cyberpunk). В остальных играх — обычный геймпад. Bluetooth-подключение к Windows нестабильное, лучше по USB.", verdict:"Брать только если играете в эксклюзивы Sony. Для всего остального — Xbox Controller удобнее.", image:"dualsense .jpg", fullReview:"apex5.html" },
   { id:"placeholder-1", name:"Геймпад #4", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
   { id:"placeholder-2", name:"Геймпад #5", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
   { id:"placeholder-3", name:"Геймпад #6", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
@@ -38,41 +38,36 @@ function wordForCount(n, one, few, many) {
 function renderCard(g, index) {
   var isPlaceholder = g.price === 0;
   var hasReview = !isPlaceholder && g.fullReview;
-  var hasImage = !isPlaceholder && g.image;
-  var num = String(index + 1).padStart(2, '0');
 
-  var media = '<div class="card-media">';
-  if (hasImage) {
-    media += '<img src="' + g.image + '" alt="' + g.name + '" onerror="this.classList.add(\'broken\')">';
+  var media = '';
+  if (g.image) {
+    media = '<img src="' + g.image + '" alt="' + g.name + '" class="gamepad-image">';
+  } else {
+    media = '<div class="placeholder-img">' + PLACEHOLDER_SVG + '</div>';
   }
-  media += '<div class="placeholder-img">' + PLACEHOLDER_SVG + '</div></div>';
 
   var metaLine = isPlaceholder
     ? 'Данные не заполнены'
     : 'Куплен в ' + g.purchaseDate + ' · ' + g.price.toLocaleString('ru-RU') + ' ₽ · ' + g.usageMonths + ' мес.';
 
-  var badge = '';
-  if (!isPlaceholder && g.genres && g.genres.length > 0) {
-    var firstGenre = g.genres[0];
-    var genreLabels = {racing:'GONKI', shooter:'SHOOTER', fighting:'FIGHTING', arcade:'ARCADE'};
-    if (genreLabels[firstGenre]) {
-      badge = '<span class="card-badge">' + genreLabels[firstGenre] + '</span>';
-    }
-  }
-
-  var inner = '<span class="card-number">' + num + '</span>'
-    + badge
-    + media
+  var inner = '<div class="card-media">' + media + '</div>'
+    + '<div class="card-info">'
     + '<h3>' + g.name + '</h3>'
     + '<p class="meta">' + metaLine + '</p>'
     + '<p class="desc">' + g.description + '</p>'
+    + '<div class="card-footer">'
     + '<p class="verdict">' + g.verdict + '</p>'
-    + (hasReview ? '<span class="review-link">Полный обзор →</span>' : '');
+    + (hasReview ? '<span class="review-link">Полный обзор →</span>' : '')
+    + '</div>'
+    + '</div>';
+
+  var cardClass = 'gamepad-card';
+  if (isPlaceholder) cardClass += ' placeholder';
 
   if (hasReview) {
-    return '<a class="gamepad-card" href="' + g.fullReview + '">' + inner + '</a>';
+    return '<a class="' + cardClass + '" href="' + g.fullReview + '" data-gamepad-id="' + g.id + '" onclick="return openGamepadModal(event, \'' + g.id + '\')">' + inner + '</a>';
   } else {
-    return '<div class="gamepad-card placeholder">' + inner + '</div>';
+    return '<div class="' + cardClass + '">' + inner + '</div>';
   }
 }
 
@@ -147,6 +142,69 @@ function init() {
   updateCounters();
 
   console.log('Gamepad Hub загружен. Геймпадов:', GAMEPADS.length, '| Отфильтровано:', filtered.length);
+}
+
+// ===== МОДАЛЬНОЕ ОКНО С ПОЛНЫМ ОБЗОРОМ =====
+function getGamepadById(id) {
+  return GAMEPADS.find(function(g) { return g.id === id; });
+}
+
+function openGamepadModal(e, gamepadId) {
+  e.preventDefault();
+  var gamepad = getGamepadById(gamepadId);
+  if (!gamepad) return;
+
+  var modal = document.getElementById('gamepad-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'gamepad-modal';
+    modal.className = 'gamepad-modal';
+    document.body.appendChild(modal);
+  }
+
+  var genresText = gamepad.genres && gamepad.genres.length ? gamepad.genres.join(', ') : 'Универсальный';
+  var image = gamepad.image ? '<img src="' + gamepad.image + '" alt="' + gamepad.name + '" class="modal-image">' : '<div class="modal-placeholder">' + PLACEHOLDER_SVG + '</div>';
+
+  var specsHtml = [
+    '<div class="modal-spec"><span>Цена</span><strong>' + gamepad.price.toLocaleString('ru-RU') + ' ₽</strong></div>',
+    '<div class="modal-spec"><span>Дата покупки</span><strong>' + gamepad.purchaseDate + '</strong></div>',
+    '<div class="modal-spec"><span>Использование</span><strong>' + gamepad.usageMonths + ' месяцев</strong></div>',
+    '<div class="modal-spec"><span>Жанры</span><strong>' + genresText + '</strong></div>',
+    '<div class="modal-spec"><span>Беспроводной</span><strong>' + (gamepad.isWireless ? 'Да' : 'Нет') + '</strong></div>',
+    '<div class="modal-spec"><span>Гироскоп</span><strong>' + (gamepad.hasGyro ? 'Да' : 'Нет') + '</strong></div>',
+    '<div class="modal-spec"><span>Сертифицирован Microsoft</span><strong>' + (gamepad.isMicrosoftCertified ? 'Да' : 'Нет') + '</strong></div>',
+    '<div class="modal-spec"><span>Кроссплатформенный</span><strong>' + (gamepad.isCrossPlatform ? 'Да' : 'Нет') + '</strong></div>'
+  ].join('');
+
+  var html = '<div class="modal-overlay" onclick="closeGamepadModal()">' +
+    '<div class="modal-content" onclick="event.stopPropagation()">' +
+      '<button class="modal-close" onclick="closeGamepadModal()" aria-label="Закрыть">✕</button>' +
+      '<div class="modal-body">' +
+        '<div class="modal-left">' + image + '</div>' +
+        '<div class="modal-right">' +
+          '<h2>' + gamepad.name + '</h2>' +
+          '<p class="modal-desc">' + gamepad.description + '</p>' +
+          '<div class="modal-specs">' + specsHtml + '</div>' +
+          '<div class="modal-verdict">' +
+            '<h4>Вердикт</h4>' +
+            '<p>' + gamepad.verdict + '</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+
+  modal.innerHTML = html;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGamepadModal() {
+  var modal = document.getElementById('gamepad-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

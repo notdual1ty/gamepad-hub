@@ -29,6 +29,12 @@
             </button>
         </form>
 
+        <!-- Фильтр: Все / Опубликованные -->
+        <div class="review-filters" style="margin-bottom: 24px;">
+            <button class="filter-btn active" data-filter="published">Опубликованные</button>
+            <button class="filter-btn" data-filter="all">Все (с заглушками)</button>
+        </div>
+
         <!-- Сюда JS вставит карточки -->
         <div id="gamepad-list" class="gamepad-grid"></div>
     </main>
@@ -36,5 +42,36 @@
     <footer><p>© 2026 Gamepad Hub</p></footer>
 
     <script src="data.js"></script>
+    <script>
+      // Фильтр опубликованные/все
+      (function() {
+        var filterBtns = document.querySelectorAll('.review-filters .filter-btn');
+        var currentFilter = 'published';
+
+        function applyFilter() {
+          var params = new URLSearchParams(window.location.search);
+          var q = params.get('q') || '';
+          var cat = params.get('cat') || '';
+          var list = filterGamepads({ q: q, cat: cat });
+
+          if (currentFilter === 'published') {
+            list = list.filter(function(g) { return g.price > 0; });
+          }
+
+          renderGamepads(list);
+        }
+
+        filterBtns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            applyFilter();
+          });
+        });
+
+        applyFilter();
+      })();
+    </script>
 </body>
 </html>

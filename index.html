@@ -187,6 +187,23 @@
 
   <footer><p>© 2026 Gamepad Hub</p></footer>
 
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgm" loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+  </audio>
+  <button id="bgm-toggle" class="bgm-btn" aria-label="Переключить фоновую музыку" title="Включить/выключить музыку">
+    <svg class="icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+    <svg class="icon-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+  </button>
+
   <script src="data.js"></script>
   <script>
     // Рендер 3 последних обзоров на главной
@@ -195,15 +212,19 @@
       if (!container || typeof GAMEPADS === 'undefined') return;
       var latest = GAMEPADS.filter(function(g) { return g.price > 0; }).slice(0, 3);
       container.innerHTML = latest.map(function(g) {
+        var image = g.image ? '<img src="' + g.image + '" alt="' + g.name + '" class="gamepad-image">' : '<div class="placeholder-img">' + PLACEHOLDER_SVG + '</div>';
         var meta = 'Куплен в ' + g.purchaseDate + ' · ' + g.price.toLocaleString('ru-RU') + ' ₽ · ' + g.usageMonths + ' мес.';
-        var hasImage = g.image ? '<img src="' + g.image + '" alt="' + g.name + '" onerror="this.style.display=\'none\'">' : '';
-        return '<a class="gamepad-card" href="' + g.fullReview + '">' +
-          hasImage +
+        return '<a class="gamepad-card" href="' + g.fullReview + '" data-gamepad-id="' + g.id + '" onclick="return openGamepadModal(event, \'' + g.id + '\')">' +
+          '<div class="card-media">' + image + '</div>' +
+          '<div class="card-info">' +
           '<h3>' + g.name + '</h3>' +
           '<p class="meta">' + meta + '</p>' +
           '<p class="desc">' + g.description + '</p>' +
+          '<div class="card-footer">' +
           '<p class="verdict">' + g.verdict + '</p>' +
           '<span class="review-link">Полный обзор →</span>' +
+          '</div>' +
+          '</div>' +
           '</a>';
       }).join('');
     })();
@@ -221,6 +242,66 @@
       });
       var accEl = document.getElementById('count-accessories');
       if (accEl) accEl.textContent = '3 позиции';
+    })();
+
+    // Фоновая музыка с учётом autoplay policy
+    (function() {
+      var audio = document.getElementById('bgm');
+      var btn = document.getElementById('bgm-toggle');
+      if (!audio || !btn) return;
+
+      audio.volume = 0.35;
+      var hasInteracted = false;
+      var musicPlaying = false;
+
+      function updateButton() {
+        if (musicPlaying) {
+          btn.classList.add('playing');
+          btn.setAttribute('aria-label', 'Выключить музыку');
+        } else {
+          btn.classList.remove('playing');
+          btn.setAttribute('aria-label', 'Включить музыку');
+        }
+      }
+
+      function tryAutoplay() {
+        var playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            musicPlaying = true;
+            updateButton();
+          }).catch(function() {
+            musicPlaying = false;
+            updateButton();
+          });
+        }
+      }
+
+      function handleFirstInteraction() {
+        if (hasInteracted) return;
+        hasInteracted = true;
+        if (!musicPlaying) {
+          tryAutoplay();
+        }
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        hasInteracted = true;
+        if (musicPlaying) {
+          audio.pause();
+          musicPlaying = false;
+        } else {
+          audio.play();
+          musicPlaying = true;
+        }
+        updateButton();
+      });
+
+      document.addEventListener('click', handleFirstInteraction, { once: true });
+      document.addEventListener('keydown', handleFirstInteraction, { once: true });
+
+      tryAutoplay();
     })();
   </script>
 </body>
