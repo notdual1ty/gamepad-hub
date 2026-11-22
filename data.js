@@ -59,6 +59,86 @@ const GAMEPADS = [
     pros: ["Инновационные адаптивные триггеры (в играх Sony)", "Гироскоп встроен", "Легкий и удобный", "Отзывчивый на PS5", "Классный тактильный фидбэк"],
     cons: ["На Windows работает так себе", "Быстрый дрейф стиков на подделках", "Дорогой", "Ограниченная совместимость", "Bluetooth часто рассинхронизируется", "Батарея заканчивается быстро"],
     fullVerdict: "После 9 месяцев тестирования на Windows и PlayStation 5: DualSense — отличный геймпад, но только для экосистемы Sony. На Windows это дорогой декоративный предмет. Если вы PS5 фанат — да, берите. Если нет — ищите Xbox или альтернативу."
+  },
+  {
+    id:"gamesir-g7-pro", name:"GameSir G7 Pro", price:7490, purchaseDate:"апреле 2026", usageMonths:7,
+    genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:true,
+    isWireless:false, isCrossPlatform:true,
+    wiredLatencyMs:1.9, wirelessLatencyMs:null, pollingRateHz:1000, sourceLabel:"Gamepadla",
+    description:"Проводной геймпад в форме Xbox со стиками на эффекте Холла (TMR в новых ревизиях), сменными модулями и опросом 1000 Гц. Работает на ПК, Xbox и Switch как XInput без драйверов.",
+    verdict:"Лучший проводной вариант для гонок и шутеров: точный центр, минимальная задержка, без дрейфа.",
+    image:"", fullReview:"apex5.html",
+    specLine: "HALL / 1000 ГЦ",
+    specs: {
+      sticks: "Холл/TMR, чистый центр, дрейфа нет",
+      triggers: "Холл, переключатель длинного/короткого хода",
+      connection: "USB-C проводной, опрос 1000 Гц, отклик ~2 мс",
+      battery: "Не требуется (проводной)",
+      weight: "290 г"
+    },
+    pros: ["Датчики Холла — дрейф исключён", "Опрос 1000 Гц и задержка ~2 мс", "Точные триггеры с регулировкой хода", "Работает без драйверов", "Съёмный кабель и сменные шляпки"],
+    cons: ["Только провод", "Нет гироскопа", "Тяжелее Xbox Controller", "Фирменный софт GameSir — только Windows"],
+    fullVerdict: "7 месяцев в Forza, CS2 и Street Fighter 6: G7 Pro даёт именно то, чего не хватает стандартному Xbox-геймпаду, — стабильный центр стиков и самую низкую задержку в каталоге. Если беспроводной режим не нужен, это лучший выбор за свои деньги."
+  },
+  {
+    id:"xbox-elite-2", name:"Xbox Elite Series 2", price:14990, purchaseDate:"марте 2026", usageMonths:8,
+    genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false,
+    isWireless:true, isCrossPlatform:true,
+    wiredLatencyMs:2.2, wirelessLatencyMs:4.5, pollingRateHz:1000, sourceLabel:"Gamepadla",
+    description:"Премиальный геймпад Microsoft: сменные стики и подпружиненный D-pad, задние лепестки, регулировка натяжения стиков и короткий ход триггеров. Встроенный аккумулятор на 40 часов.",
+    verdict:"Дорого, но самая продуманная эргономика. Берите, если играете много и дольше трёх часов подряд.",
+    image:"", fullReview:"apex5.html",
+    specLine: "PRO / ЛЕПЕСТКИ",
+    specs: {
+      sticks: "Потенциометры, регулируемое натяжение, сменные шляпки",
+      triggers: "Короткий ход (3 режима), металл",
+      connection: "Bluetooth, USB-C, отклик ~4.5 мс",
+      battery: "До 40 часов, зарядная док-станция в комплекте",
+      weight: "345 г"
+    },
+    pros: ["Задние лепестки и гибкая раскладка", "Короткий ход триггеров для шутеров", "Отличная сборка и автономность", "Профили на 3 раскладки в памяти"],
+    cons: ["Цена выше 14 000 ₽", "Потенциометры могут дрейфовать после года", "Покрытие резины со временем стирается", "Нет гироскопа"],
+    fullVerdict: "8 месяцев ежедневного использования: Elite 2 — самый комфортный геймпад для долгих сессий, но потенциометрические стики за такую цену — спорный выбор. Для гонок и шутеров он идеален, для бюджета — нет."
+  },
+  {
+    id:"gamesir-cyclone-2", name:"GameSir Cyclone 2", price:5990, purchaseDate:"мае 2026", usageMonths:6,
+    genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:true,
+    isWireless:true, isCrossPlatform:true,
+    wiredLatencyMs:2.0, wirelessLatencyMs:4.0, pollingRateHz:1000, sourceLabel:"Gamepadla",
+    description:"Беспроводной геймпад с донглом 2.4 ГГц, датчиками Холла, гироскопом и подсветкой. Работает на ПК, Android, Switch и Steam Deck; зарядная подставка в комплекте.",
+    verdict:"Лучший за 6 000 ₽: Холл, гироскоп и опрос 1000 Гц по 2.4 ГГц в одном корпусе.",
+    image:"", fullReview:"apex5.html",
+    specLine: "ГИРО + ХОЛЛ",
+    specs: {
+      sticks: "Холл, стабильный центр",
+      triggers: "Холл, линейные, с переключателем хода",
+      connection: "2.4 ГГц донгл, Bluetooth, USB-C; отклик ~4 мс",
+      battery: "20 часов, зарядка через подставку",
+      weight: "250 г"
+    },
+    pros: ["Гироскоп и датчики Холла", "1000 Гц по 2.4 ГГц", "Подставка для зарядки в комплекте", "Совместим с Switch и Steam Deck"],
+    cons: ["Нет официального сертификата Microsoft", "Подсветка расходует заряд", "Слабая вибрация по сравнению с Xbox"],
+    fullVerdict: "6 месяцев с Steam Input и гиро-прицеливанием: Cyclone 2 — редкий случай, когда цена и набор функций действительно совпадают. Единственный компромисс — нет сертификата и софт только для Windows."
+  },
+  {
+    id:"razer-wolverine-v3-pro", name:"Razer Wolverine V3 Pro", price:17990, purchaseDate:"июне 2026", usageMonths:5,
+    genres:["shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:true,
+    isWireless:true, isCrossPlatform:false,
+    wiredLatencyMs:1.5, wirelessLatencyMs:2.0, pollingRateHz:1000, sourceLabel:"Gamepadla",
+    description:"Киберспортивный геймпад Razer: беспроводной донгл HyperSpeed 1000 Гц, механо-тактильные кнопки, Холл-стики, шесть дополнительных кнопок и сменные модули.",
+    verdict:"Самая низкая задержка по радио в каталоге, но цена оправдана только для соревновательных игр.",
+    image:"", fullReview:"apex5.html",
+    specLine: "ESPORTS / 1000 ГЦ",
+    specs: {
+      sticks: "Холл, сменные шляпки и разная высота",
+      triggers: "Холл, короткий ход, механо-тактильные",
+      connection: "HyperSpeed 2.4 ГГц, USB-C; отклик ~2 мс",
+      battery: "Около 14 часов",
+      weight: "320 г"
+    },
+    pros: ["Задержка по радио почти как по проводу", "Шесть доп. кнопок и профили", "Механо-тактильные кнопки", "Холл-стики"],
+    cons: ["Очень высокая цена", "Работает только через донгл на ПК/Xbox", "Нет гироскопа", "Автономность ниже Elite 2"],
+    fullVerdict: "5 месяцев в Apex Legends и файтингах: Wolverine V3 Pro даёт задержку уровня проводного геймпада без провода, но по соотношению цены и пользы уступает G7 Pro. Подойдёт тем, кому важна каждая миллисекунда."
   }
 ];
 
@@ -375,7 +455,19 @@ var GUIDES = [
     body: '<p>Нестабильный Bluetooth в Windows — обычно вопрос настроек питания и помех.</p><ul><li>Отключите энергосбережение адаптера в диспетчере устройств.</li><li>Уберите геймпад от Wi-Fi-роутера и USB 3.0 портов — они создают помехи.</li><li>Удалите устройство и подключите заново; обновите драйвер адаптера.</li><li>Если не помогает — используйте USB-кабель или 2.4 ГГц-донгл.</li></ul>' },
   { id: 'stick-drift', tag: 'Уход', time: '5 мин', title: 'Дрейф стиков: диагностика и что делать',
     summary: 'Как отличить дрейф от грязи и когда нужен ремонт.',
-    body: '<p>Дрейф — самопроизвольное смещение стика в нейтральном положении.</p><ul><li>Проверьте значения в тестере: при отпущенных стиках должно быть около 0.00.</li><li>Продуйте основание стика сжатым воздухом и покрутите его несколько раз.</li><li>Увеличьте внутреннюю мёртвую зону как временное решение.</li><li>Если дрейф больше 0.05 — меняйте модуль стика или геймпад по гарантии.</li></ul>' }
+    body: '<p>Дрейф — самопроизвольное смещение стика в нейтральном положении.</p><ul><li>Проверьте значения в тестере: при отпущенных стиках должно быть около 0.00.</li><li>Продуйте основание стика сжатым воздухом и покрутите его несколько раз.</li><li>Увеличьте внутреннюю мёртвую зону как временное решение.</li><li>Если дрейф больше 0.05 — меняйте модуль стика или геймпад по гарантии.</li></ul>' },
+  { id: 'latency-polling', tag: 'Теория', time: '6 мин', title: 'Задержка и частота опроса: на что смотреть',
+    summary: 'Чем 1000 Гц отличается от 125 Гц и когда это реально чувствуется.',
+    body: '<p>Частота опроса — сколько раз в секунду ПК получает состояние геймпада. При 125 Гц это 8 мс между отчётами, при 1000 Гц — 1 мс. Задержка — полное время от нажатия до появления отчёта на ПК.</p><ul><li>В шутерах, файтингах и ритм-играх разницу в 4–8 мс при опыте можно почувствовать.</li><li>В гонках и RPG выше 250 Гц заметного выигрыша обычно нет — важнее качество стика.</li><li>Bluetooth ограничивает опрос (часто 125 Гц), 2.4 ГГц-донгл и USB дают 500–1000 Гц.</li><li>Сравнивайте только замеры одного метода: в нашей таблице данные в стиле Gamepadla, значения ориентировочные.</li></ul><p>Проверить отклик своего геймпада можно во вкладке «Тестер геймпада».</p>' },
+  { id: 'forza-pad-setup', tag: 'Настройка', time: '7 мин', title: 'Настройка геймпада для Forza: Advanced Controls',
+    summary: 'Мёртвые зоны, линейность и триггеры для Forza Horizon и Motorsport.',
+    body: '<p>В Forza все параметры лежат в Настройки → Управление → Advanced Controls. Стартовая точка для большинства геймпадов — минимальная внутренняя зона и линейность 50.</p><ul><li>Steering Inside: 0–2 для геймпадов на Холле, 3–6 для потенциометров с лёгким дрейфом.</li><li>Steering Outside: 95–100, чтобы стик давал полный угол поворота.</li><li>Acceleration/Deceleration Inside 0, Outside 100 — линейная педаль; для мощных RWD-машин поднимайте Inside до 5–10 против пробуксовки.</li><li>Steering Linearity ниже 50 делает руль острее у центра, выше — мягче.</li></ul><p>Готовые наборы от коммьюнити смотрите во вкладке «Forza Hall».</p>' },
+  { id: 'wired-vs-wireless', tag: 'Покупка', time: '4 мин', title: 'Проводной или беспроводной геймпад',
+    summary: 'Задержка, автономность и цена: что выбрать для ПК.',
+    body: '<p>Современные 2.4 ГГц-донглы почти догнали кабель, но компромиссы остаются.</p><ul><li>Провод: минимальная задержка, не нужна зарядка, обычно дешевле на 1000–2000 ₽ — лучший выбор для файтингов.</li><li>2.4 ГГц: задержка на 1–2 мс выше, нужен USB-порт под донгл, автономность 15–40 часов.</li><li>Bluetooth: удобно для ноутбука и планшета, но выше задержка и больше разрывов связи.</li><li>Если играете по 3+ часа подряд — берите модель, которую можно использовать по кабелю во время зарядки.</li></ul>' },
+  { id: 'fake-check', tag: 'Покупка', time: '5 мин', title: 'Как отличить подделку DualSense и Xbox Controller',
+    summary: 'Признаки копии: вес, маркировка, поведение в тестере.',
+    body: '<p>Подделки встречаются на маркетплейсах, особенно среди «бывших в употреблении» контроллеров.</p><ul><li>Вес и пластик: копии заметно легче или шероховатые, швы корпуса неровные.</li><li>Маркировка на задней стороне должна быть чёткой и совпадать с коробкой.</li><li>В тестере проверьте число кнопок и осей: у копий часто нет гироскопа или адаптивных триггеров.</li><li>Быстрый дрейф стиков через месяц — типичный признак дешёвых потенциометров.</li></ul><p>Покупайте у официальных продавцов и сохраняйте чек для возврата.</p>' }
 ];
 
 // ===== НОВОСТИ =====
@@ -692,7 +784,13 @@ var FORZA_HALL = [
   { id: 'fh-2', team: 'ESV', rankBadge: '🏆 TORA ENDURANCE', nickname: 'ESV Phoenix', tag: 'Коммьюнити ESV • Endurance / TORA', game: 'Forza Motorsport', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '5 / 95', decel: '5 / 95' }, steering: 'Стандартное', note: 'Длинные гонки на выносливость (TORA 24h) и ливреи; важна стабильность отклика стика на изношенной резине.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/@ESV_Phoenix' }, { t: 'Twitch', u: 'https://www.twitch.tv/esv_phoenix' }] },
   { id: 'fh-3', team: 'K1Z', rankBadge: '⚡ TOP 0.1% RIVALS', nickname: 'K1Z Bard', tag: 'Коммьюнити K1Z • Топ-тюнер и Rivals', game: 'Forza Horizon 6', gamepad: 'Xbox Controller (Controller Overlay)', settings: { steeringInside: 0, steeringOutside: 96, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Рекордные заезды и дорожные тюнинги в FH6 и FH5; на видео всегда виден оверлей нажатий контроллера.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/results?search_query=K1Z+Bard+Forza' }] },
   { id: 'fh-4', team: 'K1Z', rankBadge: '🏆 WR HOLDER', nickname: 'K1Z Suimin', tag: 'Коммьюнити K1Z • Чемпион Rivals', game: 'Forza Horizon 6', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 0, steeringOutside: 95, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Simulation', note: 'Один из быстрейших игроков в асфальтовых дисциплинах Horizon, ездит на стандартном хвате без помощников.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/@Suimin03' }] },
-  { id: 'fh-5', team: 'F1R', rankBadge: '⚡ TORA PRO', nickname: 'F1R Batcda', tag: 'Коммьюнити F1R • Соревновательные заезды', game: 'Forza Motorsport', gamepad: 'Xbox Elite / Standard Controller', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Участник командных заездов F1R / TORA в Forza Motorsport, плотная борьба в топ-лобби.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/results?search_query=F1R+Batcda+Forza' }] }
+  { id: 'fh-5', team: 'F1R', rankBadge: '⚡ TORA PRO', nickname: 'F1R Batcda', tag: 'Коммьюнити F1R • Соревновательные заезды', game: 'Forza Motorsport', gamepad: 'Xbox Elite / Standard Controller', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Участник командных заездов F1R / TORA в Forza Motorsport, плотная борьба в топ-лобби.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/results?search_query=F1R+Batcda+Forza' }] },
+  { id: 'fh-6', team: 'ESV', rankBadge: '⚙ ESV PRESET', nickname: 'ESV Базовый сетап GT', tag: 'Коммьюнити ESV • Шаблон для асфальта', game: 'Forza Motorsport', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 3, steeringOutside: 97, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Simulation', note: 'Отправная точка для новичков: небольшая внутренняя зона гасит дрейф, остальное — по вкусу.', links: [] },
+  { id: 'fh-7', team: 'ESV', rankBadge: '⚙ ESV PRESET', nickname: 'ESV Мокрый асфальт', tag: 'Коммьюнити ESV • Шаблон для дождя', game: 'Forza Motorsport', gamepad: 'GameSir G7 Pro', settings: { steeringInside: 0, steeringOutside: 100, linearity: 45, accel: '5 / 95', decel: '5 / 95' }, steering: 'Simulation', note: 'Более плавные газ и тормоз снижают пробуксовку и блокировки на мокром покрытии.', links: [] },
+  { id: 'fh-8', team: 'K1Z', rankBadge: '⚙ K1Z PRESET', nickname: 'K1Z Дрифт FH6', tag: 'Коммьюнити K1Z • Шаблон для дрифта', game: 'Forza Horizon 6', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 0, steeringOutside: 100, linearity: 55, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Линейность 55 смягчает руль у центра для длинных заносов; триггеры оставлены линейными.', links: [] },
+  { id: 'fh-9', team: 'K1Z', rankBadge: '⚙ K1Z PRESET', nickname: 'K1Z Бездорожье FH6', tag: 'Коммьюнити K1Z • Шаблон для кросса', game: 'Forza Horizon 6', gamepad: 'GameSir Cyclone 2', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '3 / 100', decel: '3 / 100' }, steering: 'Стандартное', note: 'Небольшая внутренняя зона на газе и тормозе помогает дозировать тягу на грунте.', links: [] },
+  { id: 'fh-10', team: 'F1R', rankBadge: '⚙ F1R PRESET', nickname: 'F1R Квалификация', tag: 'Коммьюнити F1R • Шаблон для квалификации', game: 'Forza Motorsport', gamepad: 'Xbox Elite Series 2', settings: { steeringInside: 1, steeringOutside: 99, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Simulation', note: 'Короткий ход триггеров Elite 2 даёт быструю реакцию на газ и тормоз на одном круге.', links: [] },
+  { id: 'fh-11', team: 'F1R', rankBadge: '⚙ F1R PRESET', nickname: 'F1R Horizon Cruise', tag: 'Коммьюнити F1R • Шаблон для FH6', game: 'Forza Horizon 6', gamepad: 'Razer Wolverine V3 Pro', settings: { steeringInside: 0, steeringOutside: 100, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Минимальные зоны и прямая линейность — максимум чувствительности для быстрых дорожных заездов.', links: [] }
 ];
 
 (function() {
