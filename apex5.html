@@ -85,7 +85,7 @@
             font-weight: 700;
         }
         .pros li:before { color: #059669; }
-        .cons li:before { color: #dc2626; }
+        .cons li:before { color: #2563eb; }
         .game-test {
             background: var(--card);
             border: 1px solid var(--border);
@@ -195,14 +195,18 @@
 </head>
 <body>
     <header>
-        <h1>Gamepad Hub</h1>
-        <nav>
-            <a href="index.html">Главная</a>
-            <a href="reviews.html">Обзоры</a>
-            <a href="guides.html">Гайды</a>
-            <a href="about.html">О проекте</a>
-        </nav>
-    </header>
+    <div class="header-inner">
+      <h1><a href="index.html" class="logo">GAMEPAD HUB</a></h1>
+      <nav>
+      <a href="index.html">Главная</a>
+      <a href="reviews.html#reviews">Обзоры</a>
+      <a href="index.html#categories">Категории</a>
+      <a href="reviews.html#guides">Гайды / Инструкции</a>
+      <a href="reviews.html#tester">Тестер геймпада</a>
+      <a href="reviews.html#in-testing">В работе</a>
+      </nav>
+    </div>
+  </header>
 
     <main>
         <div style="margin-bottom: 24px;">
@@ -267,7 +271,7 @@
                 </ul>
             </div>
             <div class="pros-cons-box">
-                <h3><span style="color: #dc2626;">✗</span> Минусы</h3>
+                <h3><span style="color: #2563eb;">✗</span> Минусы</h3>
                 <ul class="cons">
                     <li>Нет гироскопа</li>
                     <li>Стики без Hall Effect (будет дрифт через год)</li>
@@ -356,6 +360,28 @@
         </div>
     </main>
 
-    <footer><p>© 2026 Gamepad Hub</p></footer>
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">GAMEPAD HUB</a>
+        <p>Независимые обзоры геймпадов. Все устройства куплены за свои деньги, рекламных интеграций нет.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Разделы</h4>
+        <a href="index.html">Главная</a>
+        <a href="reviews.html#reviews">Обзоры</a>
+        <a href="index.html#categories">Категории</a>
+        <a href="reviews.html#guides">Гайды / Инструкции</a>
+      </div>
+      <div class="footer-col">
+        <h4>Инструменты</h4>
+        <a href="reviews.html#tester">Тестер геймпада</a>
+        <a href="reviews.html#in-testing">В работе</a>
+        <a href="drivers.html">Драйверы и утилиты</a>
+        <a href="about.html">О проекте</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Gamepad Hub · Независимое тестирование: мы не получаем устройства от производителей</div>
+  </footer>
 </body>
 </html>

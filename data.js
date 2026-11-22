@@ -1,24 +1,82 @@
 // ===== ДАННЫЕ О ГЕЙМПАДАХ =====
 const GAMEPADS = [
-  { id:"apex-5", name:"Apex 5", price:2490, purchaseDate:"марте 2026", usageMonths:8, genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.", verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.", image:"xbox.png", fullReview:"apex5.html" },
-  { id:"xbox-wireless", name:"Xbox Wireless Controller", price:5990, purchaseDate:"январе 2026", usageMonths:10, genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false, isWireless:true, isCrossPlatform:true, description:"Официальный геймпад Microsoft. Подключение по USB-C, Bluetooth или фирменному dongle. Работает из коробки в Windows, Steam Deck, Android. Зарядка от 2xAA батареек (около 30 часов) или от аккумуляторного блока.", verdict:"Эталон совместимости. Переплата за бренд, но работает везде без настройки.", image:"xbox-controller.jpg", fullReview:"apex5.html" },
-  { id:"dualsense", name:"Sony DualSense", price:6490, purchaseDate:"феврале 2026", usageMonths:9, genres:["arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:false, isWireless:true, isCrossPlatform:false, description:"Геймпад от PlayStation 5. Тактильная отдача и адаптивные триггеры работают только в играх Sony и некоторых портах (Death Stranding, Cyberpunk). В остальных играх — обычный геймпад. Bluetooth-подключение к Windows нестабильное, лучше по USB.", verdict:"Брать только если играете в эксклюзивы Sony. Для всего остального — Xbox Controller удобнее.", image:"dualsense .jpg", fullReview:"apex5.html" },
-  { id:"placeholder-1", name:"Геймпад #4", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-2", name:"Геймпад #5", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-3", name:"Геймпад #6", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-4", name:"Геймпад #7", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-5", name:"Геймпад #8", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-6", name:"Геймпад #9", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" },
-  { id:"placeholder-7", name:"Геймпад #10", price:0, purchaseDate:"—", usageMonths:0, genres:[], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false, isWireless:false, isCrossPlatform:false, description:"Обзор готовится. Данные будут добавлены после тестирования.", verdict:"Скоро", image:"", fullReview:"" }
+  {
+    id:"apex-5", name:"Apex 5", price:2490, purchaseDate:"марте 2026", usageMonths:8,
+    genres:["shooter","arcade"], isMicrosoftCertified:false, hasGyro:false, hasHallEffect:false,
+    isWireless:true, isCrossPlatform:false,
+    description:"Беспроводной геймпад с USB-C и Bluetooth 5.0. Работает в Windows 11 без родного софта как XInput-устройство. Вибрация есть, гироскоп отсутствует. Заряда хватает на 18 часов.",
+    verdict:"Хороший вариант до 3000 ₽, если не нужен гироскоп и точные стики для шутеров.",
+    image:"xbox.png", fullReview:"apex5.html",
+    specLine: "X-INPUT",
+    specs: {
+      sticks: "Аналоговые, точные, дрейфа не замечено",
+      triggers: "Механические, линейные, отзывчивые",
+      connection: "USB-C (2.4ГГц) + BT 5.0, отклик <5мс",
+      battery: "18 часов на одной зарядке",
+      weight: "210 г"
+    },
+    pros: ["Работает без драйверов на Windows", "Удобная форма для шутеров", "Хорошая цена", "Надежный тач", "Вибрация функционирует везде"],
+    cons: ["Нет гироскопа", "Нет Hall Effect стиков", "Bluetooth может глючить на старых ПК", "Только 2 обновления в год"],
+    fullVerdict: "После 8 месяцев тестирования в Apex Legends, CS2 и Fortnite — Apex 5 показал себя как надежный выбор для бюджетников. Не лучший, но очень стабильный. Рекомендуем тем, кто не готов тратить на Xbox, но хочет работающий геймпад без танцев с бубном."
+  },
+  {
+    id:"xbox-wireless", name:"Xbox Wireless Controller", price:5990, purchaseDate:"январе 2026", usageMonths:10,
+    genres:["racing","shooter","fighting","arcade"], isMicrosoftCertified:true, hasGyro:false, hasHallEffect:false,
+    isWireless:true, isCrossPlatform:true,
+    description:"Официальный геймпад Microsoft. Подключение по USB-C, Bluetooth или фирменному dongle. Работает из коробки в Windows, Steam Deck, Android. Зарядка от 2xAA батареек (около 30 часов) или от аккумуляторного блока.",
+    verdict:"Эталон совместимости. Переплата за бренд, но работает везде без настройки.",
+    image:"xbox-controller.jpg", fullReview:"apex5.html",
+    specLine: "СТАНДАРТ ПК",
+    specs: {
+      sticks: "Аналоговые, стабильные, минимальный дрейф",
+      triggers: "Механические, с виброотдачей, отличная точность",
+      connection: "2.4ГГц, Bluetooth, USB-C. Отклик <4мс",
+      battery: "25–30 часов (батарейки AA) или 15 часов (аккумулятор)",
+      weight: "280 г с батарейками"
+    },
+    pros: ["Работает везде: Windows, Steam Deck, Android, Xbox", "Отличное качество сборки", "Долгая автономность", "Microsoft официально поддерживает", "Хорошие триггеры"],
+    cons: ["Дорогой относительно конкурентов", "Батарейки AA (экологично, но неудобно)", "Нет гироскопа", "Нет тач-панели", "Немного тяжелый"],
+    fullVerdict: "10 месяцев на Xbox Series X, Windows 11, Steam Deck — Xbox Controller остается эталоном. Работает везде. Это не самый инновационный геймпад, но для своей цены и совместимости это стоит денег. Рекомендуем всем, кто ценит надежность над экспериментами."
+  },
+  {
+    id:"dualsense", name:"Sony DualSense", price:6490, purchaseDate:"феврале 2026", usageMonths:9,
+    genres:["arcade"], isMicrosoftCertified:false, hasGyro:true, hasHallEffect:false,
+    isWireless:true, isCrossPlatform:false,
+    description:"Геймпад от PlayStation 5. Тактильная отдача и адаптивные триггеры работают только в играх Sony и некоторых портах (Death Stranding, Cyberpunk). В остальных играх — обычный геймпад. Bluetooth-подключение к Windows нестабильное, лучше по USB.",
+    verdict:"Брать только если играете в эксклюзивы Sony. Для всего остального — Xbox Controller удобнее.",
+    image:"dualsense .jpg", fullReview:"apex5.html",
+    specLine: "ГИРОСКОП",
+    specs: {
+      sticks: "Емкостные, с haptic-отдачей, быстрый дрейф на копиях",
+      triggers: "Адаптивные (работают в PS5, иногда в портах)",
+      connection: "Bluetooth / USB-C. На Windows: нестабильно, 10–50мс",
+      battery: "12 часов на PS5, 8–10 на Windows",
+      weight: "190 г"
+    },
+    pros: ["Инновационные адаптивные триггеры (в играх Sony)", "Гироскоп встроен", "Легкий и удобный", "Отзывчивый на PS5", "Классный тактильный фидбэк"],
+    cons: ["На Windows работает так себе", "Быстрый дрейф стиков на подделках", "Дорогой", "Ограниченная совместимость", "Bluetooth часто рассинхронизируется", "Батарея заканчивается быстро"],
+    fullVerdict: "После 9 месяцев тестирования на Windows и PlayStation 5: DualSense — отличный геймпад, но только для экосистемы Sony. На Windows это дорогой декоративный предмет. Если вы PS5 фанат — да, берите. Если нет — ищите Xbox или альтернативу."
+  }
+];
+
+// ===== МОДЕЛИ НА ТЕСТИРОВАНИИ =====
+const IN_TESTING = [
+  { name: "Flydigi Vader 4 Pro", month: "2-й месяц", progress: 67 },
+  { name: "8BitDo Ultimate Bluetooth", month: "1-й месяц", progress: 33 },
+  { name: "Turtle Beach React-R", month: "3-й месяц", progress: 100 }
 ];
 
 // ===== КАТЕГОРИИ =====
 const CATEGORIES = {
-  racing:    { label:"Гонки",                       filter:function(g){ return g.genres && g.genres.indexOf("racing")!==-1; } },
-  shooter:   { label:"Шутеры",                      filter:function(g){ return g.genres && g.genres.indexOf("shooter")!==-1; } },
-  fighting:  { label:"Файтинги",                    filter:function(g){ return g.genres && g.genres.indexOf("fighting")!==-1; } },
-  arcade:    { label:"Аркадные игры",               filter:function(g){ return g.genres && g.genres.indexOf("arcade")!==-1; } },
-  certified: { label:"Сертифицированные Microsoft", filter:function(g){ return g.isMicrosoftCertified===true; } }
+  all:         { label:"Все",                         filter:function(g){ return g.price > 0; } },
+  budget:      { label:"До 3 000 ₽",                  filter:function(g){ return g.price > 0 && g.price <= 3000; } },
+  shooter:     { label:"Для шутеров",                 filter:function(g){ return g.genres && g.genres.indexOf("shooter")!==-1; } },
+  racing:      { label:"Для гонок",                   filter:function(g){ return g.genres && g.genres.indexOf("racing")!==-1; } },
+  nofix:       { label:"Без костылей в Windows",      filter:function(g){ return g.isCrossPlatform === true && g.price > 0; } },
+  gyro:        { label:"С гироскопом",                filter:function(g){ return g.hasGyro === true; } },
+  fighting:    { label:"Для файтингов",               filter:function(g){ return g.genres && g.genres.indexOf("fighting")!==-1; } },
+  arcade:      { label:"Для аркад",                   filter:function(g){ return g.genres && g.genres.indexOf("arcade")!==-1; } },
+  certified:   { label:"Сертификат Microsoft",        filter:function(g){ return g.isMicrosoftCertified === true; } }
 };
 
 // ===== SVG-PLACEHOLDER =====
@@ -50,14 +108,17 @@ function renderCard(g, index) {
     ? 'Данные не заполнены'
     : 'Куплен в ' + g.purchaseDate + ' · ' + g.price.toLocaleString('ru-RU') + ' ₽ · ' + g.usageMonths + ' мес.';
 
+  var specLine = g.specLine || '';
+  var specIndex = String(index + 1).padStart(2, '0') + (specLine ? ' · ' + specLine : '');
+
   var inner = '<div class="card-media">' + media + '</div>'
-    + '<div class="card-info">'
+    + '<div class="card-info" data-index="' + specIndex + '">'
     + '<h3>' + g.name + '</h3>'
     + '<p class="meta">' + metaLine + '</p>'
     + '<p class="desc">' + g.description + '</p>'
     + '<div class="card-footer">'
     + '<p class="verdict">' + g.verdict + '</p>'
-    + (hasReview ? '<span class="review-link">Полный обзор →</span>' : '')
+    + (hasReview ? '<span class="review-link">ПОЛНЫЙ ОБЗОР →</span>' : '')
     + '</div>'
     + '</div>';
 
@@ -120,28 +181,333 @@ function updateCounters() {
 }
 
 // ===== ИНИЦИАЛИЗАЦИЯ =====
-function init() {
-  var params = new URLSearchParams(window.location.search);
-  var q = params.get('q') || '';
-  var cat = params.get('cat') || '';
+var catalogState = { q: '', cat: 'all' };
 
-  var filtered = filterGamepads({ q: q, cat: cat });
-  renderGamepads(filtered);
+function renderCatalog() {
+  if (!document.getElementById('gamepad-list')) return;
+  var filtered = filterGamepads({ q: catalogState.q, cat: catalogState.cat }).filter(function(g) { return g.price > 0; });
+  renderGamepads(filtered, 'gamepad-list');
 
   var title = document.getElementById('reviews-title');
-  if (title && (q || cat)) {
-    var catLabel = (cat && CATEGORIES[cat]) ? CATEGORIES[cat].label : '';
+  if (title) {
+    var cat = catalogState.cat, q = catalogState.q;
+    var catLabel = (cat && cat !== 'all' && CATEGORIES[cat]) ? CATEGORIES[cat].label : '';
     var qLabel = q ? 'по запросу «' + q + '»' : '';
     var parts = [catLabel, qLabel].filter(Boolean).join(' · ');
-    title.innerHTML = 'Обзоры геймпадов <span style="font-size:16px;font-weight:500;color:var(--text-3);display:block;margin-top:8px;">Фильтр: ' + parts + ' · найдено ' + filtered.length + '</span>';
+    title.innerHTML = 'Каталог обзоров' + (parts
+      ? ' <span style="font-size:16px;font-weight:500;color:var(--text-3);display:block;margin-top:8px;">Фильтр: ' + parts + ' · найдено ' + filtered.length + '</span>'
+      : '');
   }
+  document.querySelectorAll('.filter-tag').forEach(function(t) {
+    t.classList.toggle('active', t.dataset.filter === catalogState.cat);
+  });
+  var input = document.getElementById('catalog-search-input');
+  if (input && input.value !== catalogState.q) input.value = catalogState.q;
+}
 
-  var searchInput = document.getElementById('search-input');
-  if (searchInput && q) searchInput.value = q;
+// Вызывается вкладкой «Каталог обзоров»: opts = { q, cat }
+window.setCatalogFilter = function(opts) {
+  opts = opts || {};
+  catalogState.q = opts.q || '';
+  catalogState.cat = (opts.cat && CATEGORIES[opts.cat]) ? opts.cat : 'all';
+  renderCatalog();
+};
+
+function init() {
+  var params = new URLSearchParams(window.location.search);
+  catalogState.q = params.get('q') || '';
+  catalogState.cat = params.get('cat') || 'all';
+  if (!CATEGORIES[catalogState.cat]) catalogState.cat = 'all';
+
+  renderCatalog();
+
+  renderNews();
 
   updateCounters();
+  renderGuides();
 
-  console.log('Gamepad Hub загружен. Геймпадов:', GAMEPADS.length, '| Отфильтровано:', filtered.length);
+  // Фильтры-теги каталога
+  document.querySelectorAll('.filter-tag').forEach(function(tag) {
+    tag.addEventListener('click', function() {
+      catalogState.cat = tag.dataset.filter;
+      renderCatalog();
+    });
+  });
+
+  // Поиск (главная и каталог) -> экран каталога
+  ['home-search', 'catalog-search'].forEach(function(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var q = form.querySelector('input').value;
+      if (typeof window.showTab === 'function') window.showTab('catalog', { q: q, cat: 'all' });
+      else window.setCatalogFilter({ q: q });
+    });
+  });
+
+  // Быстрые теги в hero -> каталог с фильтром
+  document.querySelectorAll('.hero-tag[data-quick]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var cat = el.getAttribute('data-quick');
+      if (typeof window.showTab === 'function') window.showTab('catalog', { cat: cat });
+      else window.setCatalogFilter({ cat: cat });
+    });
+  });
+
+  // Подборки из футера -> каталог с фильтром
+  document.querySelectorAll('[data-footer-filter]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var cat = el.getAttribute('data-footer-filter');
+      if (typeof window.showTab === 'function') window.showTab('catalog', { cat: cat });
+      else window.setCatalogFilter({ cat: cat });
+    });
+  });
+
+  // Карточки категорий на главной -> каталог с фильтром
+  document.querySelectorAll('.cat[data-cat]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (typeof window.showTab === 'function') window.showTab('catalog', { cat: el.getAttribute('data-cat') });
+    });
+  });
+}
+
+// ===== БАЗА ЗНАНИЙ: ШПАРГАЛКИ =====
+var GUIDES = [
+  { id: 'check-new', tag: 'Покупка', time: '5 мин', title: 'Как проверить новый геймпад при получении',
+    summary: 'Чек-лист на 5 минут: дрифт, кнопки, вибрация, люфты.',
+    body: '<p>Подключите геймпад и откройте тестер на этом сайте — он покажет все оси и кнопки.</p><ul><li>Отпустите стики: значения должны быть около 0.00. Дрейф больше 0.05 — повод для возврата.</li><li>Нажмите каждую кнопку B0–B16, убедитесь, что нет залипаний и двойных срабатываний.</li><li>Запустите «Test Circularity» и прокрутите стики по кругу: фигура должна быть ровной окружностью.</li><li>Проверьте вибрацию обоих моторов и плавный ход триггеров LT/RT.</li><li>Осмотрите корпус: зазоры, скрип, люфт шляпок стиков.</li></ul>' },
+  { id: 'dualsense-wireless', tag: 'Подключение', time: '10 мин', title: 'Настройка DualSense на ПК без проводов',
+    summary: 'Bluetooth-подключение, Steam Input и частые проблемы.',
+    body: '<p>DualSense работает по Bluetooth без адаптера, если у ПК есть Bluetooth 4.0+.</p><ul><li>Зажмите кнопки PS + Create до быстрого мигания световой панели.</li><li>Добавьте устройство в Windows: Параметры → Bluetooth → «Беспроводной контроллер».</li><li>Для игр без поддержки DualSense включите Steam Input и добавьте игру в Steam.</li><li>Если геймпад отваливается — отключите экономию энергии для Bluetooth-адаптера в диспетчере устройств.</li></ul>' },
+  { id: 'hall-vs-pot', tag: 'Теория', time: '4 мин', title: 'Датчики Холла vs потенциометры',
+    summary: 'Почему одни стики дрейфуют через год, а другие — нет.',
+    body: '<p>Потенциометр — это контакт, который трётся о резистивную дорожку, поэтому изнашивается и начинает дрейфовать. Датчик Холла измеряет положение магнита без контакта.</p><ul><li>Холл: нет износа, стабильный центр, обычно дороже на 500–1500 ₽.</li><li>Потенциометр: дёшево, легко заменить, но ресурс ограничен.</li><li>Если вы много играете в шутеры и гонки — выбирайте Холл.</li></ul>' },
+  { id: 'deadzones', tag: 'Настройка', time: '8 мин', title: 'Как убрать мёртвые зоны в играх',
+    summary: 'Внутренняя и внешняя мёртвая зона, кривые отклика.',
+    body: '<p>Мёртвая зона нужна, чтобы дрейф не двигал камеру. Но слишком большая делает управление «ватным».</p><ul><li>Измерьте дрейф в тестере и поставьте внутреннюю зону чуть выше этого значения.</li><li>В играх без настроек используйте Steam Input: «Мёртвая зона» и «Кривая отклика».</li><li>Для гонок уменьшайте внутреннюю зону руления до 0–3% и правьте линейность.</li><li>Внешнюю зону ставьте 95–98%, чтобы стик достигал максимума.</li></ul>' },
+  { id: 'xinput-dinput', tag: 'Совместимость', time: '6 мин', title: 'XInput или DInput: что выбрать',
+    summary: 'Режимы работы геймпада и когда переключаться.',
+    body: '<p>XInput поддерживается почти всеми современными играми, DInput нужен старым играм и эмуляторам.</p><ul><li>Большинство геймпадов переключаются зажатием кнопки при включении (см. инструкцию).</li><li>Если игра не видит геймпад — переключите режим на XInput.</li><li>Для старых игр используйте обёртки вроде x360ce или Steam Input.</li></ul>' },
+  { id: 'battery-care', tag: 'Уход', time: '3 мин', title: 'Как продлить жизнь батареи и стиков',
+    summary: 'Заряд, хранение, чистка шляпок стиков.',
+    body: '<p>Несколько привычек, которые заметно продлевают срок службы геймпада.</p><ul><li>Не оставляйте аккумулятор полностью разряженным надолго.</li><li>Протирайте шляпки стиков спиртовой салфеткой раз в месяц.</li><li>Храните геймпад вдали от прямого солнца и влаги.</li><li>Не тяните за кабель — берегите разъём USB.</li></ul>' },
+  { id: 'steam-input', tag: 'Настройка', time: '7 мин', title: 'Steam Input: один профиль для любого геймпада',
+    summary: 'Как заставить Steam видеть геймпад и переназначить кнопки.',
+    body: '<p>Steam Input превращает почти любой геймпад в стандартный XInput-контроллер.</p><ul><li>Откройте Steam → Настройки → Контроллер и включите поддержку вашего типа геймпада.</li><li>Для игр не из Steam: «Добавить игру» → «Добавить стороннюю игру» и запускайте через Steam.</li><li>В настройках раскладки меняйте кнопки, мёртвые зоны и включайте гироскоп.</li></ul>' },
+  { id: 'bluetooth-fix', tag: 'Подключение', time: '5 мин', title: 'Что делать, если Bluetooth-геймпад отваливается',
+    summary: 'Частые причины разрывов связи и быстрые способы их убрать.',
+    body: '<p>Нестабильный Bluetooth в Windows — обычно вопрос настроек питания и помех.</p><ul><li>Отключите энергосбережение адаптера в диспетчере устройств.</li><li>Уберите геймпад от Wi-Fi-роутера и USB 3.0 портов — они создают помехи.</li><li>Удалите устройство и подключите заново; обновите драйвер адаптера.</li><li>Если не помогает — используйте USB-кабель или 2.4 ГГц-донгл.</li></ul>' },
+  { id: 'stick-drift', tag: 'Уход', time: '5 мин', title: 'Дрейф стиков: диагностика и что делать',
+    summary: 'Как отличить дрейф от грязи и когда нужен ремонт.',
+    body: '<p>Дрейф — самопроизвольное смещение стика в нейтральном положении.</p><ul><li>Проверьте значения в тестере: при отпущенных стиках должно быть около 0.00.</li><li>Продуйте основание стика сжатым воздухом и покрутите его несколько раз.</li><li>Увеличьте внутреннюю мёртвую зону как временное решение.</li><li>Если дрейф больше 0.05 — меняйте модуль стика или геймпад по гарантии.</li></ul>' }
+];
+
+// ===== НОВОСТИ =====
+var NEWS = [
+  { id: 'tmr-sticks', url: 'https://www.reddit.com/r/Controller/', tag: 'NEWS // ИНДУСТРИЯ', date: '18 ноября 2026', title: 'Новые модели переходят на TMR-стики вместо обычного Холла',
+    summary: 'Туннельный магниторезистор обещает меньший расход энергии и более чистый сигнал у центра.',
+    body: '<p>Производители всё чаще заменяют датчики Холла на TMR (туннельное магнитное сопротивление) в стиках новых геймпадов.</p><ul><li>Меньшее энергопотребление — геймпад дольше держит заряд.</li><li>Более высокая точность и стабильность около центра.</li><li>Износа, как у потенциометров, нет — дрейф по-прежнему не страшен.</li></ul><p>Пока такие модели дороже, но разница в цене постепенно сокращается. Мы возьмём первые TMR-геймпады на длительный тест.</p>' },
+  { id: 'steam-gyro', url: 'https://store.steampowered.com/news/', tag: 'ОБНОВЛЕНИЯ', date: '12 ноября 2026', title: 'Steam Input: улучшенная поддержка гироскопа на ПК',
+    summary: 'Обновление клиента Steam добавило более гибкую калибровку и режимы гироприцеливания.',
+    body: '<p>В свежем обновлении Steam Input появились улучшенная калибровка гироскопа и новые режимы его работы.</p><ul><li>Отдельная чувствительность по осям и сглаживание дрожания.</li><li>Включение гиро по касанию стика или по удержанию кнопки.</li><li>Лучшая работа с DualSense и другими геймпадами с гироскопом.</li></ul><p>Особенно заметно улучшение в шутерах, где гироскоп помогает точной доводке прицела.</p>' },
+  { id: 'dongle-1000', url: 'https://www.reddit.com/r/Controller/top/?t=month', tag: 'NEWS // ИНДУСТРИЯ', date: '5 ноября 2026', title: 'Выходят беспроводные донглы с частотой опроса 1000 Гц',
+    summary: 'Задержка по радиоканалу 2.4 ГГц приближается к проводному подключению.',
+    body: '<p>Новые донглы 2.4 ГГц поддерживают опрос на 1000 Гц, что уменьшает задержку до значений, близких к USB-кабелю.</p><ul><li>Заметный выигрыш в файтингах и шутерах.</li><li>Bluetooth по-прежнему ограничен по частоте опроса.</li><li>Донгл обычно идёт в комплекте или продаётся отдельно.</li></ul>' },
+  { id: 'xbox-dualsense', url: 'https://news.xbox.com/', tag: 'ОБНОВЛЕНИЯ', date: '29 октября 2026', title: 'Сравнение ревизий Xbox и DualSense',
+    summary: 'Что изменилось в последних партиях контроллеров Microsoft и Sony.',
+    body: '<p>Мы сравнили последние ревизии Xbox Wireless Controller и Sony DualSense.</p><ul><li>Xbox: обновлённые триггеры и улучшенное Bluetooth-соединение.</li><li>DualSense: доработанные стики и более ёмкая батарея в новых партиях.</li><li>Совместимость с ПК у обоих осталась на высоком уровне.</li></ul><p>Подробности по каждому — в разделе «Каталог обзоров».</p>' }
+];
+
+var NEWS_SOURCES = [
+  { label: 'REDDIT // R/CONTROLLER', url: 'https://www.reddit.com/r/Controller/top/.rss?t=week', filter: false },
+  { label: 'STEAM NEWS', url: 'https://store.steampowered.com/feeds/news.xml', filter: true }
+];
+var NEWS_KEYWORDS = /gamepad|controller|dualsense|xbox|8bitdo|flydigi|геймпад|контроллер/i;
+var NEWS_CACHE_KEY = 'gh_news_v1';
+var NEWS_TTL = 6 * 60 * 60 * 1000;
+
+function escNews(s) {
+  return String(s).replace(/[&<>"']/g, function(c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+function stripNews(html, max) {
+  var d = document.createElement('div');
+  d.innerHTML = html || '';
+  var t = (d.textContent || '').replace(/\s+/g, ' ').trim();
+  t = t.replace(/\[(link|comments)\]|submitted by\s+\/u\/\S+/gi, '').trim();
+  return t.length > max ? t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…' : t;
+}
+
+function fmtNewsDate(ts) {
+  return new Date(ts).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function fetchNewsSource(src) {
+  var api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(src.url);
+  return fetch(api).then(function(r) { return r.json(); }).then(function(j) {
+    if (!j || j.status !== 'ok') throw new Error('rss');
+    return j.items.map(function(it) {
+      var ts = Date.parse(String(it.pubDate).replace(' ', 'T') + 'Z');
+      return {
+        source: src.label,
+        ts: isNaN(ts) ? Date.now() : ts,
+        title: stripNews(it.title, 140),
+        summary: stripNews(it.description || it.content, 120),
+        link: it.link
+      };
+    }).filter(function(n) {
+      return n.link && n.title && (!src.filter || NEWS_KEYWORDS.test(n.title + ' ' + n.summary));
+    });
+  });
+}
+
+function loadLiveNews() {
+  try {
+    var c = JSON.parse(localStorage.getItem(NEWS_CACHE_KEY) || 'null');
+    if (c && c.items && c.items.length && Date.now() - c.time < NEWS_TTL) return Promise.resolve(c.items);
+  } catch (e) {}
+  return Promise.all(NEWS_SOURCES.map(function(s) {
+    return fetchNewsSource(s).catch(function() { return []; });
+  })).then(function(res) {
+    var items = [].concat.apply([], res).sort(function(a, b) { return b.ts - a.ts; }).slice(0, 4);
+    if (!items.length) throw new Error('empty');
+    try { localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify({ time: Date.now(), items: items })); } catch (e) {}
+    return items;
+  });
+}
+
+function newsCardHtml(n) {
+  return '<article class="news-card">' +
+    '<div class="news-meta"><span class="news-tag">' + escNews(n.source) + '</span><span class="news-date">' + escNews(n.dateText) + '</span></div>' +
+    '<h3>' + escNews(n.title) + '</h3>' +
+    '<p>' + escNews(n.summary) + '</p>' +
+    '<a href="' + escNews(n.link) + '" class="review-link" target="_blank" rel="noopener">Открыть источник ↗</a>' +
+    '</article>';
+}
+
+function fallbackNewsItems() {
+  return NEWS.map(function(n) {
+    return { source: n.tag, dateText: n.date, title: n.title, summary: n.summary, link: n.url };
+  });
+}
+
+function renderNewsFallback(box) {
+  box.innerHTML = fallbackNewsItems().map(newsCardHtml).join('');
+}
+
+function renderNews() {
+  var box = document.getElementById('news-list');
+  if (!box) return;
+  var sk = '';
+  for (var i = 0; i < 4; i++) {
+    sk += '<article class="news-card news-skeleton"><span class="sk sk-s"></span><span class="sk sk-t"></span><span class="sk sk-t"></span><span class="sk sk-p"></span><span class="sk sk-p"></span></article>';
+  }
+  box.innerHTML = sk;
+  loadLiveNews().then(function(items) {
+    var cards = items.filter(function(n) { return /^https?:\/\//i.test(n.link); }).map(function(n) {
+      return { source: n.source, dateText: fmtNewsDate(n.ts), title: n.title, summary: n.summary, link: n.link };
+    });
+    // добираем резервными новостями до 4 карточек, чтобы сетка была заполнена
+    var fb = fallbackNewsItems();
+    for (var k = 0; cards.length < 4 && k < fb.length; k++) cards.push(fb[k]);
+    box.innerHTML = cards.slice(0, 4).map(newsCardHtml).join('');
+  }).catch(function() { renderNewsFallback(box); });
+}
+
+function openNewsModal(e, id) {
+  e.preventDefault();
+  var n = NEWS.filter(function(x) { return x.id === id; })[0];
+  if (!n) return false;
+  var modal = document.getElementById('gamepad-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'gamepad-modal';
+    modal.className = 'gamepad-modal';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = '<div class="modal-overlay" onclick="closeGamepadModal()">' +
+    '<div class="modal-content modal-guide" onclick="event.stopPropagation()">' +
+      '<button class="modal-close" onclick="closeGamepadModal()" aria-label="Закрыть">✕</button>' +
+      '<div class="modal-body modal-body-single">' +
+        '<div class="modal-right">' +
+          '<h2>' + n.title + '</h2>' +
+          '<p class="modal-meta">' + n.tag + ' · ' + n.date + '</p>' +
+          '<div class="guide-text">' + n.body + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  return false;
+}
+
+function renderGuides() {
+  var box = document.getElementById('kb-grid');
+  if (!box) return;
+  var qEl = document.getElementById('kb-search');
+  var chipsEl = document.getElementById('kb-chips');
+  var state = { q: '', tag: 'Все' };
+  function draw() {
+    var q = state.q.toLowerCase();
+    var list = GUIDES.filter(function(g) {
+      if (state.tag !== 'Все' && g.tag !== state.tag) return false;
+      return !q || (g.title + ' ' + g.summary + ' ' + g.tag).toLowerCase().indexOf(q) !== -1;
+    });
+    box.innerHTML = list.length ? list.map(function(g) {
+      return '<a class="kb-card" href="#guides" onclick="return openGuideModal(event, \'' + g.id + '\')">' +
+        '<span class="kb-tag">' + g.tag + ' · ' + g.time + '</span>' +
+        '<h3>' + g.title + '</h3>' +
+        '<p>' + g.summary + '</p>' +
+        '<span class="review-link kb-more">Читать →</span>' +
+        '</a>';
+    }).join('') : '<p class="kb-empty">Ничего не найдено — попробуйте другой запрос или тему.</p>';
+  }
+  if (qEl) qEl.addEventListener('input', function() { state.q = qEl.value; draw(); });
+  if (chipsEl) chipsEl.addEventListener('click', function(e) {
+    var b = e.target.closest ? e.target.closest('[data-tag]') : null;
+    if (!b) return;
+    state.tag = b.getAttribute('data-tag');
+    var all = chipsEl.querySelectorAll('[data-tag]');
+    for (var i = 0; i < all.length; i++) all[i].classList.toggle('active', all[i] === b);
+    draw();
+  });
+  draw();
+}
+
+function openGuideModal(e, id) {
+  e.preventDefault();
+  var g = GUIDES.filter(function(x) { return x.id === id; })[0];
+  if (!g) return false;
+  var modal = document.getElementById('gamepad-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'gamepad-modal';
+    modal.className = 'gamepad-modal';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = '<div class="modal-overlay" onclick="closeGamepadModal()">' +
+    '<div class="modal-content modal-guide" onclick="event.stopPropagation()">' +
+      '<button class="modal-close" onclick="closeGamepadModal()" aria-label="Закрыть">✕</button>' +
+      '<div class="modal-body modal-body-single">' +
+        '<div class="modal-right">' +
+          '<h2>' + g.title + '</h2>' +
+          '<p class="modal-meta">' + g.tag + ' · ' + g.time + ' чтения</p>' +
+          '<div class="guide-text">' + g.body + '</div>' +
+          '<a href="reviews.html#tester" class="modal-tester-btn" onclick="return goToTester(event)">Открыть тестер геймпада →</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  return false;
 }
 
 // ===== МОДАЛЬНОЕ ОКНО С ПОЛНЫМ ОБЗОРОМ =====
@@ -162,19 +528,35 @@ function openGamepadModal(e, gamepadId) {
     document.body.appendChild(modal);
   }
 
-  var genresText = gamepad.genres && gamepad.genres.length ? gamepad.genres.join(', ') : 'Универсальный';
   var image = gamepad.image ? '<img src="' + gamepad.image + '" alt="' + gamepad.name + '" class="modal-image">' : '<div class="modal-placeholder">' + PLACEHOLDER_SVG + '</div>';
 
-  var specsHtml = [
-    '<div class="modal-spec"><span>Цена</span><strong>' + gamepad.price.toLocaleString('ru-RU') + ' ₽</strong></div>',
-    '<div class="modal-spec"><span>Дата покупки</span><strong>' + gamepad.purchaseDate + '</strong></div>',
-    '<div class="modal-spec"><span>Использование</span><strong>' + gamepad.usageMonths + ' месяцев</strong></div>',
-    '<div class="modal-spec"><span>Жанры</span><strong>' + genresText + '</strong></div>',
-    '<div class="modal-spec"><span>Беспроводной</span><strong>' + (gamepad.isWireless ? 'Да' : 'Нет') + '</strong></div>',
-    '<div class="modal-spec"><span>Гироскоп</span><strong>' + (gamepad.hasGyro ? 'Да' : 'Нет') + '</strong></div>',
-    '<div class="modal-spec"><span>Сертифицирован Microsoft</span><strong>' + (gamepad.isMicrosoftCertified ? 'Да' : 'Нет') + '</strong></div>',
-    '<div class="modal-spec"><span>Кроссплатформенный</span><strong>' + (gamepad.isCrossPlatform ? 'Да' : 'Нет') + '</strong></div>'
-  ].join('');
+  var specsHtml = '<div class="modal-specs-row">' +
+    '<span class="modal-spec-label">Стики:</span> <strong>' + gamepad.specs.sticks + '</strong>' +
+    '</div>' +
+    '<div class="modal-specs-row">' +
+    '<span class="modal-spec-label">Триггеры:</span> <strong>' + gamepad.specs.triggers + '</strong>' +
+    '</div>' +
+    '<div class="modal-specs-row">' +
+    '<span class="modal-spec-label">Подключение & отклик:</span> <strong>' + gamepad.specs.connection + '</strong>' +
+    '</div>' +
+    '<div class="modal-specs-row">' +
+    '<span class="modal-spec-label">Автономность:</span> <strong>' + gamepad.specs.battery + '</strong>' +
+    '</div>' +
+    '<div class="modal-specs-row">' +
+    '<span class="modal-spec-label">Вес:</span> <strong>' + gamepad.specs.weight + '</strong>' +
+    '</div>';
+
+  var prosHtml = '<div class="modal-column"><h4>За что брать</h4><ul>';
+  for (var i = 0; i < gamepad.pros.length; i++) {
+    prosHtml += '<li>• ' + gamepad.pros[i] + '</li>';
+  }
+  prosHtml += '</ul></div>';
+
+  var consHtml = '<div class="modal-column"><h4>С чем мириться</h4><ul>';
+  for (var i = 0; i < gamepad.cons.length; i++) {
+    consHtml += '<li>• ' + gamepad.cons[i] + '</li>';
+  }
+  consHtml += '</ul></div>';
 
   var html = '<div class="modal-overlay" onclick="closeGamepadModal()">' +
     '<div class="modal-content" onclick="event.stopPropagation()">' +
@@ -183,12 +565,17 @@ function openGamepadModal(e, gamepadId) {
         '<div class="modal-left">' + image + '</div>' +
         '<div class="modal-right">' +
           '<h2>' + gamepad.name + '</h2>' +
-          '<p class="modal-desc">' + gamepad.description + '</p>' +
+          '<p class="modal-meta">Куплен в ' + gamepad.purchaseDate + ' · ' + gamepad.price.toLocaleString('ru-RU') + ' ₽ · ' + gamepad.usageMonths + ' мес. тестирования</p>' +
           '<div class="modal-specs">' + specsHtml + '</div>' +
-          '<div class="modal-verdict">' +
-            '<h4>Вердикт</h4>' +
-            '<p>' + gamepad.verdict + '</p>' +
+          '<div class="modal-review">' +
+            '<h3>Плюсы и минусы</h3>' +
+            '<div class="modal-pros-cons">' + prosHtml + consHtml + '</div>' +
           '</div>' +
+          '<div class="modal-verdict">' +
+            '<h4>Итог после 3 месяцев тестов</h4>' +
+            '<p>' + gamepad.fullVerdict + '</p>' +
+          '</div>' +
+          '<a href="reviews.html#gamepad-tester" class="modal-tester-btn" onclick="return goToTester(event)">Проверить геймпад в тестере →</a>' +
         '</div>' +
       '</div>' +
     '</div>' +
@@ -197,6 +584,20 @@ function openGamepadModal(e, gamepadId) {
   modal.innerHTML = html;
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
+
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeGamepadModal();
+});
+
+function goToTester(e) {
+  var tester = document.getElementById('gamepad-tester');
+  if (!tester) return true; // на другой странице — обычный переход по ссылке
+  e.preventDefault();
+  closeGamepadModal();
+  tester.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return false;
 }
 
 function closeGamepadModal() {
@@ -209,3 +610,122 @@ function closeGamepadModal() {
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
+// ===== FORZA HALL =====
+var FORZA_HALL = [
+  { id: 'fh-1', team: 'ESV', rankBadge: '⚡ GT2 / TORA PRO', nickname: 'ESV Aventra', tag: 'Коммьюнити ESV • Гайды и GT2', game: 'Forza Motorsport', gamepad: 'GameSir G7 Pro', settings: { steeringInside: 0, steeringOutside: 100, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Simulation', note: 'Точный проводной контроллер с TMR-стиками и высокой частотой опроса; идеален для микрокоррекций в GT2 и Rivals.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/@ESV_Aventra' }, { t: 'Twitch', u: 'https://www.twitch.tv/esv_aventra' }] },
+  { id: 'fh-2', team: 'ESV', rankBadge: '🏆 TORA ENDURANCE', nickname: 'ESV Phoenix', tag: 'Коммьюнити ESV • Endurance / TORA', game: 'Forza Motorsport', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '5 / 95', decel: '5 / 95' }, steering: 'Стандартное', note: 'Длинные гонки на выносливость (TORA 24h) и ливреи; важна стабильность отклика стика на изношенной резине.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/@ESV_Phoenix' }, { t: 'Twitch', u: 'https://www.twitch.tv/esv_phoenix' }] },
+  { id: 'fh-3', team: 'K1Z', rankBadge: '⚡ TOP 0.1% RIVALS', nickname: 'K1Z Bard', tag: 'Коммьюнити K1Z • Топ-тюнер и Rivals', game: 'Forza Horizon 6', gamepad: 'Xbox Controller (Controller Overlay)', settings: { steeringInside: 0, steeringOutside: 96, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Рекордные заезды и дорожные тюнинги в FH6 и FH5; на видео всегда виден оверлей нажатий контроллера.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/results?search_query=K1Z+Bard+Forza' }] },
+  { id: 'fh-4', team: 'K1Z', rankBadge: '🏆 WR HOLDER', nickname: 'K1Z Suimin', tag: 'Коммьюнити K1Z • Чемпион Rivals', game: 'Forza Horizon 6', gamepad: 'Xbox Wireless Controller', settings: { steeringInside: 0, steeringOutside: 95, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Simulation', note: 'Один из быстрейших игроков в асфальтовых дисциплинах Horizon, ездит на стандартном хвате без помощников.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/@Suimin03' }] },
+  { id: 'fh-5', team: 'F1R', rankBadge: '⚡ TORA PRO', nickname: 'F1R Batcda', tag: 'Коммьюнити F1R • Соревновательные заезды', game: 'Forza Motorsport', gamepad: 'Xbox Elite / Standard Controller', settings: { steeringInside: 2, steeringOutside: 98, linearity: 50, accel: '0 / 100', decel: '0 / 100' }, steering: 'Стандартное', note: 'Участник командных заездов F1R / TORA в Forza Motorsport, плотная борьба в топ-лобби.', links: [{ t: 'YouTube', u: 'https://www.youtube.com/results?search_query=F1R+Batcda+Forza' }] }
+];
+
+(function() {
+  var KEY = 'fhUserSetups';
+  var grid = document.getElementById('fh-grid');
+  if (!grid) return;
+  var form = document.getElementById('fh-form');
+  var q = '', game = 'all';
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(a) { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {} }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : ''; }
+
+  function axesBtn(s) {
+    return s ? '<button type="button" class="fh-axes-btn" data-axes aria-expanded="false">Расширенные параметры ▾</button>' : '';
+  }
+  function axesPanel(r) {
+    var s = r.settings; if (!s) return '';
+    var a = +s.steeringInside || 0, b = s.steeringOutside == null ? 100 : +s.steeringOutside;
+    var rows = [['Тип руления', r.steering || '—'], ['Steering Inside / Outside', a + ' / ' + b], ['Steering Linearity', s.linearity == null ? 50 : s.linearity],
+      ['Acceleration Inside / Outside', s.accel || '0 / 100'], ['Deceleration Inside / Outside', s.decel || '0 / 100'], ['Clutch Inside / Outside', s.clutch || '—']];
+    return '<div class="fh-axes" hidden>' + rows.map(function(x) {
+      return '<div class="fh-cell"><span>' + x[0] + '</span><b>' + esc(x[1]) + '</b></div>'; }).join('') + '</div>';
+  }
+
+  function card(r) {
+    var links = (r.links || (r.link ? [{ t: 'Профиль', u: r.link }] : [])).filter(function(l) { return safeUrl(l.u); });
+    var icons = { YouTube: '▶', Twitch: '◈' };
+    var team = /^(ESV|K1Z|F1R)$/.test(r.team) ? r.team : 'CUSTOM';
+    var wm = { ESV: 'ESV MOTORSPORT', K1Z: 'K1Z', F1R: 'F1R // FRIENDS 1ST', CUSTOM: 'CUSTOM' }[team];
+    return '<article class="fh-card fh-team-' + team.toLowerCase() + '">' +
+      '<span class="fh-wm" aria-hidden="true">' + wm + '</span>' +
+      '<div class="fh-who"><strong>' + esc(r.nickname) + '</strong>' +
+      (r.rankBadge ? '<div class="fh-rank">' + esc(r.rankBadge) + '</div>' : '') +
+      (r.tag ? '<div class="fh-tag">' + esc(r.tag) + '</div>' : '') + '</div>' +
+      '<div><span class="fh-badge">' + esc(r.game) + '</span></div>' +
+      '<div class="fh-setup"><div class="fh-pad">' + esc(r.gamepad) + '</div>' +
+      axesBtn(r.settings) + '</div>' +
+      '<p class="fh-note">' + esc(r.note) + '</p>' +
+      '<div class="fh-links">' + links.map(function(l) {
+        return '<a class="fh-ico fh-ico-' + esc(l.t.toLowerCase()) + '" href="' + esc(l.u) + '" target="_blank" rel="noopener" title="' + esc(l.t) + '" aria-label="' + esc(l.t) + '">' + (icons[l.t] || '↗') + '</a>';
+      }).join('') +
+      (r.mine ? '<button type="button" class="fh-del" title="Удалить" aria-label="Удалить" data-del="' + esc(r.id) + '">✕</button>' : '') + '</div>' +
+      axesPanel(r) + '</article>';
+  }
+
+  function render() {
+    var all = load().map(function(r) { r.mine = true; return r; }).reverse().concat(FORZA_HALL);
+    var list = all.filter(function(r) {
+      if (game !== 'all' && r.game !== game && r.game !== 'Обе') return false;
+      return !q || (r.nickname + ' ' + r.gamepad).toLowerCase().indexOf(q) !== -1;
+    });
+    grid.innerHTML = list.length ? list.map(card).join('') : '<p class="fh-empty">Ничего не найдено</p>';
+  }
+
+  document.getElementById('fh-search').addEventListener('input', function() { q = this.value.trim().toLowerCase(); render(); });
+  document.getElementById('fh-filters').addEventListener('click', function(e) {
+    var b = e.target.closest('[data-g]'); if (!b) return;
+    game = b.getAttribute('data-g');
+    [].forEach.call(this.children, function(x) { x.classList.toggle('active', x === b); });
+    render();
+  });
+  form.addEventListener('input', function(e) {
+    var t = e.target, w = t.parentNode;
+    if (!w.classList.contains('fh-sync')) return;
+    var o = w.querySelector(t.type === 'range' ? 'input[type=number]' : 'input[type=range]');
+    if (o) o.value = t.value;
+  });
+  form.addEventListener('reset', function() {
+    setTimeout(function() { [].forEach.call(form.querySelectorAll('.fh-sync input[type=number]'), function(n) { n.nextElementSibling.value = n.value; }); }, 0);
+  });
+  document.getElementById('fh-more').addEventListener('click', function() {
+    var x = document.getElementById('fh-extra'); x.hidden = !x.hidden;
+    this.setAttribute('aria-expanded', String(!x.hidden));
+  });
+  document.getElementById('fh-toggle').addEventListener('click', function() { form.hidden = !form.hidden; });
+
+  function vals() {
+    var o = {}; ['nickname', 'game', 'gamepad', 'steering', 'note', 'link'].forEach(function(k) { o[k] = form.elements[k].value.trim(); });
+    var n = function(k, d) { var v = parseFloat(form.elements[k].value); return isNaN(v) ? d : v; };
+    var p = function(i, io) { return n(i, 0) + ' / ' + n(io, 100); };
+    o.settings = { steeringInside: n('stIn', 0), steeringOutside: n('stOut', 96), linearity: n('lin', 50),
+      accel: p('accIn', 'accOut'), decel: p('decIn', 'decOut'), clutch: p('clIn', 'clOut') };
+    return o;
+  }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var o = vals(); o.id = 'u' + Date.now(); o.tag = 'Сообщество'; o.team = 'CUSTOM'; o.rankBadge = '⚙ CUSTOM SETUP';
+    var a = load(); a.push(o); save(a);
+    form.reset(); form.hidden = true; render();
+  });
+  document.getElementById('fh-issue').addEventListener('click', function() {
+    if (!form.reportValidity()) return;
+    var o = vals();
+    var body = '**Никнейм:** ' + o.nickname + '\n**Дисциплина:** ' + o.game + '\n**Геймпад:** ' + o.gamepad +
+      '\n**Advanced Controls:** Steering ' + o.settings.steeringInside + '/' + o.settings.steeringOutside + ', Linearity ' + o.settings.linearity + ', Accel ' + o.settings.accel + ', Decel ' + o.settings.decel + ', Clutch ' + o.settings.clutch +'\n**Тип управления:** ' + o.steering + '\n**Комментарий:** ' + o.note + '\n**Ссылка:** ' + o.link;
+    window.open('https://github.com/notdual1ty/gamepad-hub/issues/new?title=' + encodeURIComponent('Forza Hall: ' + o.nickname) +
+      '&body=' + encodeURIComponent(body), '_blank', 'noopener');
+  });
+  grid.addEventListener('click', function(e) {
+    var t = e.target;
+    if (t.hasAttribute && t.hasAttribute('data-axes')) {
+      var c = t; while (c && c.className !== 'fh-card') c = c.parentNode;
+      var tb = c.querySelector('.fh-axes'); tb.hidden = !tb.hidden;
+      t.setAttribute('aria-expanded', String(!tb.hidden)); t.textContent = tb.hidden ? 'Расширенные параметры ▾' : 'Расширенные параметры ▴'; return;
+    }
+    var id = t.getAttribute && t.getAttribute('data-del'); if (!id) return;
+    save(load().filter(function(r) { return r.id !== id; })); render();
+  });
+  render();
+})();

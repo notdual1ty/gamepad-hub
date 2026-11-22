@@ -8,242 +8,329 @@
 </head>
 <body>
   <header>
-    <h1>Gamepad Hub</h1>
-    <nav>
-  <a href="index.html">Главная</a>
-  <a href="reviews.html">Обзоры</a>
-  <a href="guides.html">Полезное</a>
-  <a href="drivers.html">Драйверы</a>
-  <a href="about.html">О проекте</a>
-</nav>
+    <div class="header-inner">
+      <h1><a href="index.html" class="logo">GAMEPAD HUB</a></h1>
+      <nav id="main-tabs">
+      <a href="#home" data-tab="home" class="active">Главная</a>
+      <a href="#catalog" data-tab="catalog">Каталог обзоров</a>
+      <a href="#kb" data-tab="kb">База знаний</a>
+      <a href="#forza" data-tab="forza">Forza Hall</a>
+      <a href="#testing" data-tab="testing">В работе</a>
+      <a href="#tester" data-tab="tester">Тестер геймпада</a>
+      </nav>
+      <span class="header-sep" aria-hidden="true"></span>
+      <button id="bgm-toggle" class="bgm-btn" type="button" aria-label="Включить фоновый звук" aria-pressed="false" title="Фоновый звук">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" fill-opacity=".12"/>
+          <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7"/>
+          <path class="wave" d="M18.5 5.5a9 9 0 0 1 0 13"/>
+          <path class="mute" d="M16 9l5 6M21 9l-5 6"/>
+        </svg>
+      </button>
+    </div>
   </header>
 
   <main class="home">
-    <!-- HERO -->
-    <section class="hero">
+    <div id="view-home" class="view">
+    <section class="hero block" id="hero">
+     <div class="hero-card">
+      <div class="hero-main">
       <h1>Всё о геймпадах — без маркетинга.</h1>
       <p class="hero-sub">Обзоры, гайды и честные выводы о том, как геймпады ведут себя в реальных играх. Тестируем лично, пишем без прикрас.</p>
-      <span class="badge">Данные собраны в реальных играх</span>
+      <form class="search" id="home-search" action="#catalog" method="get">
+        <input id="search-input" type="text" name="q" placeholder="Поиск: Apex 5, DualSense, Bluetooth…">
+        <button type="submit" aria-label="Искать">🔍</button>
+      </form>
+      </div>
+      <aside class="hero-quick" aria-label="Быстрые действия">
+        <a href="#tester" class="hero-cta">Открыть онлайн-тестер геймпада →</a>
+        <p class="hero-cta-note">Проверка стиков, дрифта и вибрации прямо в браузере</p>
+        <div class="hero-quick-label">Быстрый поиск</div>
+        <div class="hero-tags">
+          <button type="button" class="hero-tag" data-quick="budget">До 3 000 ₽</button>
+          <button type="button" class="hero-tag" data-quick="shooter">Для шутеров</button>
+          <button type="button" class="hero-tag" data-quick="gyro">С гироскопом</button>
+        </div>
+      </aside>
+     </div>
+      <section class="stat-chips">
+        <a href="#catalog" class="chip"><span class="chip-num">3</span><span class="chip-label">Геймпадов<br>в базе</span><span class="chip-arrow">›</span></a>
+        <a href="#kb" class="chip"><span class="chip-num">8</span><span class="chip-label">Инструкций<br>по настройке</span><span class="chip-arrow">›</span></a>
+        <a href="guides.html" class="chip"><span class="chip-num">15+</span><span class="chip-label">Игр<br>протестировано</span><span class="chip-arrow">›</span></a>
+        <a href="#about" class="chip"><span class="chip-num">0</span><span class="chip-label">Рекламных<br>интеграций</span><span class="chip-arrow">›</span></a>
+        <a href="#drivers" class="chip"><span class="chip-num">10</span><span class="chip-label">Файлов<br>в каталоге</span><span class="chip-arrow">›</span></a>
+      </section>
     </section>
 
-    <!-- ПОИСК -->
-    <form class="search" action="reviews.html" method="get">
-      <input type="text" name="q" placeholder="Поиск: Apex 5, DualSense, Bluetooth…">
-      <button type="submit" aria-label="Искать">🔍</button>
-    </form>
-
-    <!-- СТАТИСТИКА -->
-    <section class="stat-chips">
-      <a href="reviews.html" class="chip">
-        <span class="chip-num">3</span>
-        <span class="chip-label">Геймпадов<br>в базе</span>
-        <span class="chip-arrow">›</span>
-      </a>
-      <a href="guides.html" class="chip">
-        <span class="chip-num">8</span>
-        <span class="chip-label">Инструкций<br>по настройке</span>
-        <span class="chip-arrow">›</span>
-      </a>
-      <a href="guides.html" class="chip">
-        <span class="chip-num">15+</span>
-        <span class="chip-label">Игр<br>протестировано</span>
-        <span class="chip-arrow">›</span>
-      </a>
-      <a href="about.html" class="chip">
-        <span class="chip-num">0</span>
-        <span class="chip-label">Рекламных<br>интеграций</span>
-        <span class="chip-arrow">›</span>
-      </a>
-      <a href="drivers.html" class="chip">
-  <span class="chip-num">10</span>
-  <span class="chip-label">Файлов<br>в каталоге</span>
-  <span class="chip-arrow">›</span>
-</a>
-    </section>
-    
-
-    <!-- КАТЕГОРИИ -->
-    <h2 class="section-title">Категории геймпадов</h2>
-    <section class="category-grid">
-      <a href="reviews.html?cat=racing" class="cat">
-        <span class="cat-name">Гонки</span>
-        <span class="cat-count" id="count-racing">—</span>
-      </a>
-      <a href="reviews.html?cat=shooter" class="cat">
-        <span class="cat-name">Шутеры</span>
-        <span class="cat-count" id="count-shooter">—</span>
-      </a>
-      <a href="reviews.html?cat=fighting" class="cat">
-        <span class="cat-name">Файтинги</span>
-        <span class="cat-count" id="count-fighting">—</span>
-      </a>
-      <a href="reviews.html?cat=arcade" class="cat">
-        <span class="cat-name">Аркадные игры</span>
-        <span class="cat-count" id="count-arcade">—</span>
-      </a>
-      <a href="reviews.html?cat=certified" class="cat">
-        <span class="cat-name">Сертифицированные Microsoft</span>
-        <span class="cat-count" id="count-certified">—</span>
-      </a>
-      <a href="accessories.html" class="cat">
-        <span class="cat-name">Аксессуары для геймпадов</span>
-        <span class="cat-count" id="count-accessories">—</span>
-      </a>
+    <section class="block" id="categories">
+      <h2 class="section-title">Категории геймпадов</h2>
+      <div class="category-grid" style="margin-bottom:0">
+        <a href="#catalog" data-cat="racing" class="cat"><span class="cat-idx">01</span><span class="cat-name">Гонки</span><span class="cat-count" id="count-racing">—</span></a>
+        <a href="#catalog" data-cat="shooter" class="cat"><span class="cat-idx">02</span><span class="cat-name">Шутеры</span><span class="cat-count" id="count-shooter">—</span></a>
+        <a href="#catalog" data-cat="fighting" class="cat"><span class="cat-idx">03</span><span class="cat-name">Файтинги</span><span class="cat-count" id="count-fighting">—</span></a>
+        <a href="#catalog" data-cat="arcade" class="cat"><span class="cat-idx">04</span><span class="cat-name">Аркадные игры</span><span class="cat-count" id="count-arcade">—</span></a>
+        <a href="#catalog" data-cat="certified" class="cat"><span class="cat-idx">05</span><span class="cat-name">Сертифицированные Microsoft</span><span class="cat-count" id="count-certified">—</span></a>
+        <a href="accesories.html" class="cat"><span class="cat-idx">06</span><span class="cat-name">Аксессуары для геймпадов</span><span class="cat-count" id="count-accessories">—</span></a>
+      </div>
+      <p class="cat-forza">Гонщик? <a href="#forza">Forza Hall — сетапы и геймпады коммьюнити →</a></p>
     </section>
 
-    <!-- ПОСЛЕДНИЕ ОБЗОРЫ -->
-    <h2 class="section-title">Последние обзоры</h2>
-    <div class="gamepad-grid" id="home-gamepads">
-      <!-- Заполняется из data.js -->
-    </div>
-    <div style="text-align:center; margin-top:32px;">
-      <a href="reviews.html" class="btn btn-secondary">Все обзоры →</a>
-    </div>
-
-    <!-- ПОПУЛЯРНЫЕ ИГРЫ -->
-    <h2 class="section-title">Популярные игры</h2>
-    <p style="color:var(--text-2); max-width:720px; margin-bottom:24px;">Игры, в которых мы чаще всего тестируем геймпады. По каждой — отдельная инструкция по настройке.</p>
-    <div class="games-grid">
-      <a href="guides/assetto-corsa.html" class="game-card">
-        <span class="game-genre">Симрейсинг</span>
-        <h3>Assetto Corsa</h3>
-        <p>Хардкорный симулятор. Геймпад настраивается через кривые руления и мёртвые зоны.</p>
-        <span class="game-meta">Сложность: высокая</span>
-      </a>
-      <a href="guides/richard-burns-rally.html" class="game-card">
-        <span class="game-genre">Ралли</span>
-        <h3>Richard Burns Rally</h3>
-        <p>Самый требовательный ралли-симулятор. Требует правки conf.ini.</p>
-        <span class="game-meta">Сложность: высокая</span>
-      </a>
-      <a href="guides/f1-series.html" class="game-card">
-        <span class="game-genre">Формула 1</span>
-        <h3>F1 2023–2024</h3>
-        <p>Кривые триггеров, привязка DRS и боксов. Играбельно на любом геймпаде.</p>
-        <span class="game-meta">Сложность: средняя</span>
-      </a>
-      <a href="guides/euro-truck-simulator.html" class="game-card">
-        <span class="game-genre">Симулятор</span>
-        <h3>Euro Truck Simulator 2</h3>
-        <p>Хорошо дружит с геймпадами. Нужна только настройка кривой руления.</p>
-        <span class="game-meta">Сложность: лёгкая</span>
-      </a>
-      <a href="guides/rpcs3.html" class="game-card">
-        <span class="game-genre">Эмулятор PS3</span>
-        <h3>RPCS3</h3>
-        <p>Эмуляция DualShock 3/4. Требует ручной привязки кнопок.</p>
-        <span class="game-meta">Сложность: средняя</span>
-      </a>
-      <a href="guides/dolphin.html" class="game-card">
-        <span class="game-genre">Эмулятор GC/Wii</span>
-        <h3>Dolphin</h3>
-        <p>Эмуляция GameCube-контроллера. Аналоговые кнопки Z/L/R.</p>
-        <span class="game-meta">Сложность: средняя</span>
-      </a>
-    </div>
-
-    <!-- СВЕЖЕЕ В ПОЛЕЗНОМ -->
-    <h2 class="section-title">Свежее в «Полезном»</h2>
-    <section class="guide-links">
-      <a href="guides/assetto-corsa.html"><span>Assetto Corsa: настройка геймпада для вождения</span><em>высокая · 30 мин</em></a>
-      <a href="guides/richard-burns-rally.html"><span>Richard Burns Rally: тонкая настройка стиков</span><em>высокая · 40 мин</em></a>
-      <a href="guides/rpcs3.html"><span>RPCS3: настройка геймпада для PS3</span><em>средняя · 15 мин</em></a>
-      <a href="guides/steam-input.html"><span>Настройка через Steam Input</span><em>лёгкий · 10 мин</em></a>
+    <section class="block" id="news">
+      <div class="section-head">
+        <h2 class="section-title">Новости из мира геймпадов</h2>
+        <a href="#catalog" class="section-link">Перейти в каталог обзоров →</a>
+      </div>
+      <div id="news-list" class="news-grid"></div>
     </section>
-    <div style="text-align:center; margin-top:16px;">
-      <a href="guides.html" class="btn btn-secondary">Все инструкции →</a>
     </div>
 
-    <!-- ЧТО НОВОГО -->
-    <h2 class="section-title">Что нового</h2>
-    <div class="changelog">
-      <div class="changelog-item">
-        <span class="changelog-date">22 ноября 2026</span>
-        <p>Добавлен обзор <strong>Sony DualSense</strong> с тестами в Death Stranding и Cyberpunk 2077.</p>
+    <div id="view-catalog" class="view" hidden>
+    <section class="block" id="reviews">
+      <h2 class="section-title" id="reviews-title">Каталог обзоров</h2>
+      <form class="search" id="catalog-search" action="#catalog" method="get">
+        <input id="catalog-search-input" type="text" name="q" placeholder="Поиск: Apex 5, DualSense, Bluetooth…">
+        <button type="submit" aria-label="Искать">🔍</button>
+      </form>
+      <div class="quick-filters" style="margin-bottom:0">
+        <button class="filter-tag active" data-filter="all">Все</button>
+        <button class="filter-tag" data-filter="budget">До 3 000 ₽</button>
+        <button class="filter-tag" data-filter="shooter">Для шутеров</button>
+        <button class="filter-tag" data-filter="racing">Для гонок</button>
+        <button class="filter-tag" data-filter="fighting">Для файтингов</button>
+        <button class="filter-tag" data-filter="arcade">Для аркад</button>
+        <button class="filter-tag" data-filter="certified">Сертификат Microsoft</button>
+        <button class="filter-tag" data-filter="nofix">Без костылей в Windows</button>
+        <button class="filter-tag" data-filter="gyro">С гироскопом</button>
       </div>
-      <div class="changelog-item">
-        <span class="changelog-date">18 ноября 2026</span>
-        <p>Опубликована инструкция по настройке <strong>Assetto Corsa</strong> под геймпад.</p>
-      </div>
-      <div class="changelog-item">
-        <span class="changelog-date">10 ноября 2026</span>
-        <p>Добавлен обзор <strong>Xbox Wireless Controller</strong> — эталон совместимости.</p>
-      </div>
-      <div class="changelog-item">
-        <span class="changelog-date">1 ноября 2026</span>
-        <p>Запуск сайта. Первый обзор: <strong>Apex 5</strong>.</p>
-      </div>
+      <div id="gamepad-list" class="gamepad-grid"></div>
+    </section>
     </div>
 
-    <!-- ПРОМО -->
-    <section class="promo">
-      <div class="promo-text">
-        <h3>Нашли ошибку или хотите геймпад в базе?</h3>
-        <p>Каждый обзор — личный опыт. Пишите, если тестировали модель, которой у нас нет.</p>
+    <div id="view-kb" class="view" hidden>
+    <section id="guides" class="block kb">
+      <h2 class="section-title">База знаний и инструкции</h2>
+      <div class="kb-toolbar">
+        <input type="search" id="kb-search" class="kb-search" placeholder="Поиск по базе знаний…" aria-label="Поиск по базе знаний">
+        <div class="kb-chips" id="kb-chips">
+          <button type="button" class="kb-chip active" data-tag="Все">Все</button>
+          <button type="button" class="kb-chip" data-tag="Покупка">Покупка</button>
+          <button type="button" class="kb-chip" data-tag="Подключение">Подключение</button>
+          <button type="button" class="kb-chip" data-tag="Настройка">Настройка</button>
+          <button type="button" class="kb-chip" data-tag="Теория">Теория</button>
+          <button type="button" class="kb-chip" data-tag="Уход">Уход</button>
+        </div>
       </div>
-      <a href="about.html#contacts" class="btn btn-primary">Связаться</a>
+      <div class="kb-grid" id="kb-grid"></div>
+    </section>
+    </div>
+
+    <div id="view-testing" class="view" hidden>
+    <section class="block">
+      <h2 class="section-title">В работе</h2>
+      <div id="in-testing">
+      <h3 class="lab-h">Сейчас на 90-дневном тесте</h3>
+      <div class="lab-grid">
+        <article class="lab-card">
+          <h4>Flydigi Vader 4 Pro</h4>
+          <div class="lab-days"><span>60/90 дней</span><span>67%</span></div>
+          <div class="testing-progress"><div class="testing-bar" style="width:67%"></div></div>
+          <div class="lab-sub">Протестированные игры</div>
+          <ul class="lab-games"><li>Forza Horizon 5</li><li>Elden Ring</li><li>Apex Legends</li></ul>
+          <div class="lab-sub">Наблюдения</div>
+          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>не обнаружен</b></li><li><span>Автономность</span><b>~28 ч</b></li><li><span>Сборка</span><b>без люфтов</b></li></ul>
+        </article>
+        <article class="lab-card">
+          <h4>8BitDo Ultimate Bluetooth</h4>
+          <div class="lab-days"><span>30/90 дней</span><span>33%</span></div>
+          <div class="testing-progress"><div class="testing-bar" style="width:33%"></div></div>
+          <div class="lab-sub">Протестированные игры</div>
+          <ul class="lab-games"><li>Hades</li><li>Celeste</li><li>Street Fighter 6</li></ul>
+          <div class="lab-sub">Наблюдения</div>
+          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>не обнаружен</b></li><li><span>Автономность</span><b>~20 ч</b></li><li><span>Сборка</span><b>лёгкий скрип корпуса</b></li></ul>
+        </article>
+        <article class="lab-card">
+          <h4>Turtle Beach React-R</h4>
+          <div class="lab-days"><span>90/90 дней</span><span>100%</span></div>
+          <div class="testing-progress"><div class="testing-bar" style="width:100%"></div></div>
+          <div class="lab-sub">Протестированные игры</div>
+          <ul class="lab-games"><li>Forza Horizon 5</li><li>Rocket League</li><li>DOOM Eternal</li></ul>
+          <div class="lab-sub">Наблюдения</div>
+          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>лёгкий, ~2%</b></li><li><span>Автономность</span><b>проводной</b></li><li><span>Сборка</span><b>пластик гнётся у бамперов</b></li></ul>
+        </article>
+      </div>
+      </div>
+      <div id="planned" style="margin-top:32px">
+        <h3 class="lab-h">Запланировано к тестированию</h3>
+        <div class="queue-grid">
+          <div class="queue-card"><strong>GameSir G7 SE</strong><span>Старт: декабрь 2026</span></div>
+          <div class="queue-card"><strong>Razer Wolverine V3 Pro</strong><span>Старт: январь 2027</span></div>
+          <div class="queue-card"><strong>PowerA Fusion Pro 4</strong><span>Старт: февраль 2027</span></div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div id="view-drivers" class="view" hidden>
+    <section class="block kb">
+      <h2 class="section-title">Драйверы и утилиты</h2>
+      <p style="margin-bottom:20px;color:var(--text-2)">Полезное ПО для настройки, эмуляции и калибровки геймпадов на ПК.</p>
+      <div class="kb-grid"><a class="kb-card" href="https://store.steampowered.com/about/" target="_blank" rel="noopener"><span class="kb-tag">Встроенный в Steam</span><h3>Steam Input</h3><p>Универсальная настройка любых геймпадов: Xbox, DualShock/DualSense, Switch Pro, 8BitDo. Переназначение кнопок, гироскоп, профили для каждой игры (в т.ч. не из Steam).</p><p><b>Подходит для:</b> Xbox, PlayStation, Switch Pro, 8BitDo, Flydigi</p><span class="review-link kb-more">Скачать Steam →</span></a><a class="kb-card" href="https://github.com/schmaldeo/DS4Windows/releases" target="_blank" rel="noopener"><span class="kb-tag">Эмулятор Xbox</span><h3>DS4Windows</h3><p>Эмулирует Xbox 360-геймпад для DualShock 4 и DualSense, чтобы игры без поддержки PlayStation видели контроллер. Тачпад, гироскоп, макросы.</p><p><b>Подходит для:</b> DualShock 4, DualSense, DualSense Edge</p><span class="review-link kb-more">Страница загрузки →</span></a><a class="kb-card" href="https://apps.microsoft.com/detail/9nblggh30xj3" target="_blank" rel="noopener"><span class="kb-tag">Microsoft Store</span><h3>Xbox Accessories</h3><p>Официальное приложение: переназначение кнопок, настройка триггеров и стиков, обновление прошивки геймпадов Xbox.</p><p><b>Подходит для:</b> Xbox Wireless, Elite Series 2, Adaptive</p><span class="review-link kb-more">Открыть в Store →</span></a><a class="kb-card" href="https://store.steampowered.com/app/1812620/DSX/" target="_blank" rel="noopener"><span class="kb-tag">Адаптивные триггеры</span><h3>DualSenseX / DSX</h3><p>Настройка адаптивных триггеров и вибрации DualSense в играх на ПК, световая панель и эмуляция Xbox-геймпада.</p><p><b>Подходит для:</b> DualSense, DualSense Edge</p><span class="review-link kb-more">Страница в Steam →</span></a><a class="kb-card" href="https://github.com/nefarius/HidHide/releases" target="_blank" rel="noopener"><span class="kb-tag">Драйвер</span><h3>HidHide</h3><p>Скрывает физический геймпад от игр, оставляя только виртуальный. Устраняет двойной ввод при работе с DS4Windows и reWASD.</p><p><b>Подходит для:</b> Любые HID-геймпады</p><span class="review-link kb-more">Страница загрузки →</span></a><a class="kb-card" href="https://www.x360ce.com/" target="_blank" rel="noopener"><span class="kb-tag">Эмулятор XInput</span><h3>x360ce</h3><p>Позволяет играм, требующим XInput, работать со старыми DirectInput-геймпадами: ручной маппинг осей и кнопок.</p><p><b>Подходит для:</b> Старые и бюджетные DirectInput-геймпады, рули</p><span class="review-link kb-more">Сайт x360ce →</span></a><a class="kb-card" href="#tester"><span class="kb-tag">Калибровка</span><h3>Gamepad Tester Calibration</h3><p>Калибровка стиков и триггеров средствами Windows (Win+R → joy.cpl), затем проверка дрейфа и мёртвых зон в нашем онлайн-тестере.</p><p><b>Подходит для:</b> Все геймпады, определяемые Windows</p><span class="review-link kb-more">Открыть тестер →</span></a></div>
+    </section>
+    </div>
+
+    <div id="view-about" class="view" hidden>
+    <section class="block about-page">
+      <h2 class="section-title">О проекте</h2>
+      <div class="kb-grid" style="grid-template-columns:1fr">
+        <div class="kb-card"><h3>Философия проекта</h3><p>Все устройства покупаются за наши деньги — никаких бесплатных образцов от производителей. Мы отказываемся от рекламных интеграций и партнёрских сделок, поэтому вердикт зависит только от того, как геймпад ведёт себя в реальных играх.</p></div>
+        <div class="kb-card"><span class="kb-tag">Методика</span><h3>90-дневное тестирование</h3>
+          <p><b>Дни 1–7:</b> распаковка, замеры, первичная настройка и калибровка.</p>
+          <p><b>Дни 8–45:</b> ежедневное использование в играх разных жанров: гонки, шутеры, файтинги, аркады.</p>
+          <p><b>Дни 46–90:</b> проверка износа — дрейф стиков, залипание кнопок, автономность, стабильность соединения.</p>
+          <p><b>Итоговый вердикт:</b> выносится только после 90 дней использования.</p></div>
+        <div class="kb-card"><span class="kb-tag">Стенд</span><h3>Стендовые проверки</h3>
+          <p><b>Дрейф:</b> фиксируем отклонение стиков в покое в начале и конце теста.</p>
+          <p><b>Округлость стиков:</b> рисуем круг в нашем тестере и оцениваем отклонение от идеальной окружности.</p>
+          <p><b>Реальная автономность:</b> непрерывная работа от полного заряда до отключения, с вибрацией и без.</p>
+          <p><b>Задержка отклика:</b> замер времени от нажатия до реакции по проводу и по беспроводу.</p></div>
+      </div>
+    </section>
+    </div>
+
+    <section id="view-forza" class="view fh" hidden>
+      <div class="fh-bar">
+        <h2 class="section-title">Forza Hall</h2>
+        <input id="fh-search" class="fh-input" type="search" placeholder="Поиск по нику или геймпаду">
+        <div class="fh-filters" id="fh-filters">
+          <button type="button" class="filter-tag active" data-g="all">Все</button>
+          <button type="button" class="filter-tag" data-g="Forza Horizon 6">Forza Horizon 6</button>
+          <button type="button" class="filter-tag" data-g="Forza Horizon 5">Forza Horizon 5</button>
+          <button type="button" class="filter-tag" data-g="Forza Motorsport">Forza Motorsport</button>
+        </div>
+        <button type="button" id="fh-toggle" class="fh-add">+ Добавить свой сетап</button>
+      </div>
+      <form id="fh-form" class="fh-form" hidden>
+        <label>Никнейм / Gamertag *<input name="nickname" required maxlength="40"></label>
+        <label>Дисциплина<select name="game"><option>Forza Horizon 6</option><option>Forza Horizon 5</option><option>Forza Motorsport</option><option>Обе</option></select></label>
+        <label>Модель геймпада *<input name="gamepad" required maxlength="60"></label>
+        <fieldset class="fh-wide fh-adv">
+          <legend>Настройки игры (Advanced Controls)</legend>
+          <div class="fh-adv-row"><label>Steering Axis Deadzone Inside<span class="fh-sync"><input name="stIn" type="number" min="0" max="30" value="0" required><input type="range" min="0" max="30" value="0" aria-label="Steering Axis Deadzone Inside"></span></label><label>Steering Axis Deadzone Outside<span class="fh-sync"><input name="stOut" type="number" min="70" max="100" value="96" required><input type="range" min="70" max="100" value="96" aria-label="Steering Axis Deadzone Outside"></span></label></div>
+          <button type="button" class="fh-axes-btn" id="fh-more" aria-expanded="false">+ Дополнительные оси (Газ, Тормоз, Сцепление, Линейность)</button>
+          <div class="fh-extra" id="fh-extra" hidden>
+            <div class="fh-ax"><span>Steering Linearity</span><input name="lin" type="number" min="0" max="100" value="50" aria-label="Steering Linearity"></div>
+            <div class="fh-ax"><span>Acceleration Deadzone (In / Out)</span><input name="accIn" type="number" min="0" max="100" value="0" aria-label="Acceleration Deadzone (In / Out) Inside"><input name="accOut" type="number" min="0" max="100" value="100" aria-label="Acceleration Deadzone (In / Out) Outside"></div><div class="fh-ax"><span>Deceleration Deadzone (In / Out)</span><input name="decIn" type="number" min="0" max="100" value="0" aria-label="Deceleration Deadzone (In / Out) Inside"><input name="decOut" type="number" min="0" max="100" value="100" aria-label="Deceleration Deadzone (In / Out) Outside"></div><div class="fh-ax"><span>Clutch Deadzone (In / Out)</span><input name="clIn" type="number" min="0" max="100" value="0" aria-label="Clutch Deadzone (In / Out) Inside"><input name="clOut" type="number" min="0" max="100" value="100" aria-label="Clutch Deadzone (In / Out) Outside"></div>
+          </div>
+        </fieldset>
+        <label>Тип управления<select name="steering"><option>Simulation</option><option>Стандартное</option></select></label>
+        <label class="fh-wide">Комментарий о хвате / настройках<textarea name="note" rows="2" maxlength="240"></textarea></label>
+        <label class="fh-wide">Ссылка на профиль / канал<input name="link" type="url" placeholder="https://"></label>
+        <div class="fh-actions fh-wide">
+          <button type="submit" class="fh-add">Сохранить</button>
+          <button type="button" id="fh-issue" class="fh-ghost">Предложить в общую базу (GitHub) ↗</button>
+        </div>
+      </form>
+      <div class="fh-grid" id="fh-grid"></div>
+    </section>
+
+    <section id="view-tester" class="gt-card view" hidden>
+      <div class="tester-bar"><h2>Тестер геймпада</h2><button type="button" class="tester-close" onclick="location.hash='#home'">✕ Закрыть</button></div>
+      <div class="gt-slots" id="gt-slots"></div>
+      <div class="gt-wait" id="gt-wait">Подключите геймпад по USB или Bluetooth и нажмите любую кнопку.</div>
+      <div class="gt-grid idle" id="gt-grid">
+        <div class="gt-left" id="gt-left" hidden>
+          <div class="gt-title"><strong id="gt-name">—</strong><span>STANDARD GAMEPAD</span></div>
+          <div class="gt-status" id="gt-status"></div>
+          <div class="gt-btns" id="gt-btns"></div>
+          <div class="gt-sticks">
+            <div><div class="gt-cap">L STICK</div><canvas id="gt-lc" width="240" height="240"></canvas><div class="gt-axes" id="gt-lv"></div></div>
+            <div><div class="gt-cap">R STICK</div><canvas id="gt-rc" width="240" height="240"></canvas><div class="gt-axes" id="gt-rv"></div></div>
+          </div>
+          <div class="gt-actions">
+            <button type="button" id="gt-circ">Test Circularity</button>
+            <button type="button" id="gt-vib1">Vibration, 1 sec</button>
+            <button type="button" id="gt-vibinf">Vibration, infinite</button>
+          </div>
+        </div>
+        <div class="gt-right">
+<div class="gt-skin" id="gt-skin">
+          <svg id="gt-svg" viewBox="0 0 400 290" aria-label="Xbox Wireless Controller">
+            <defs>
+              <linearGradient id="xg-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8FAFC"/><stop offset="1" stop-color="#DDE3EB"/></linearGradient>
+              <pattern id="xg-grip" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#94A3B8"/></pattern>
+              <clipPath id="cp-lt"><rect x="58" y="6" width="60" height="30" rx="12"/></clipPath>
+              <clipPath id="cp-rt"><rect x="282" y="6" width="60" height="30" rx="12"/></clipPath>
+            </defs>
+            <rect class="p" id="s-b6" x="58" y="6" width="60" height="30" rx="12"/><rect class="f" id="s-b6f" x="58" y="36" width="60" height="0" clip-path="url(#cp-lt)"/>
+            <rect class="p" id="s-b7" x="282" y="6" width="60" height="30" rx="12"/><rect class="f" id="s-b7f" x="282" y="36" width="60" height="0" clip-path="url(#cp-rt)"/>
+            <text class="t" x="88" y="19">LT</text><text class="t" x="312" y="19">RT</text>
+            <text class="pc" id="s-lt-pct" x="88" y="30">0%</text><text class="pc" id="s-rt-pct" x="312" y="30">0%</text>
+            <path class="p" id="s-b4" transform="translate(0 -4)" d="M52 66c6-12 30-18 64-16l8 14c-26 0-52 2-72 12z"/><text class="t" x="92" y="60">LB</text>
+            <path class="p" id="s-b5" transform="translate(0 -4)" d="M348 66c-6-12-30-18-64-16l-8 14c26 0 52 2 72 12z"/><text class="t" x="308" y="60">RB</text>
+            <path class="body" d="M96 72c40-6 168-6 208 0 34 4 52 36 64 98 10 54 8 96-20 104-24 6-40-18-58-50-10-18-22-24-40-24H150c-18 0-30 6-40 24-18 32-34 56-58 50-28-8-30-50-20-104 12-62 30-94 64-98z"/>
+            <path class="rim" d="M104 80c36-5 156-5 192 0"/>
+            <circle cx="62" cy="214" r="26" fill="url(#xg-grip)" opacity=".35"/><circle cx="338" cy="214" r="26" fill="url(#xg-grip)" opacity=".35"/>
+            <circle class="p" id="s-b16" cx="200" cy="96" r="14"/><path class="xl" d="M193 90l14 12M207 90l-14 12"/>
+            <rect class="p" id="s-b8" x="162" y="106" width="20" height="12" rx="6"/>
+            <rect class="p" id="s-b9" x="218" y="106" width="20" height="12" rx="6"/>
+            <rect class="p" x="186" y="140" width="28" height="14" rx="7" opacity=".6"/>
+            <circle class="ring" cx="112" cy="126" r="32"/><circle class="ring2" cx="112" cy="126" r="26"/>
+            <g id="s-ls"><circle class="stk" cx="112" cy="126" r="20"/><circle class="tex" cx="112" cy="126" r="20"/><circle class="p" id="s-b10" cx="112" cy="126" r="9"/></g>
+            <circle class="ring" cx="248" cy="196" r="32"/><circle class="ring2" cx="248" cy="196" r="26"/>
+            <g id="s-rs"><circle class="stk" cx="248" cy="196" r="20"/><circle class="tex" cx="248" cy="196" r="20"/><circle class="p" id="s-b11" cx="248" cy="196" r="9"/></g>
+            <path class="p dp" id="s-b12" d="M150 206V172q0-4 4-4h12q4 0 4 4v34z"/><path class="da" d="M160 173l-5 7h10z"/>
+            <path class="p dp" id="s-b13" d="M150 186v34q0 4 4 4h12q4 0 4-4v-34z"/><path class="da" d="M160 219l-5-7h10z"/>
+            <path class="p dp" id="s-b14" d="M170 186H134q-4 0-4 4v12q0 4 4 4h36z"/><path class="da" d="M135 196l7-5v10z"/>
+            <path class="p dp" id="s-b15" d="M150 186h36q4 0 4 4v12q0 4-4 4h-36z"/><path class="da" d="M185 196l-7-5v10z"/>
+            <circle class="dpad-c" cx="160" cy="196" r="3"/>
+            <circle class="p ay" id="s-b3" cx="298" cy="102" r="13"/><text class="t" x="298" y="106">Y</text>
+            <circle class="p ax" id="s-b2" cx="272" cy="128" r="13"/><text class="t" x="272" y="132">X</text>
+            <circle class="p ab" id="s-b1" cx="324" cy="128" r="13"/><text class="t" x="324" y="132">B</text>
+            <circle class="p aa" id="s-b0" cx="298" cy="154" r="13"/><text class="t" x="298" y="158">A</text>
+          </svg>
+          <div class="gt-skin-wait" id="gt-skin-wait">Ожидание подключения контроллера...</div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer><p>© 2026 Gamepad Hub</p></footer>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">GAMEPAD HUB</a>
+        <p>Независимые обзоры геймпадов. Все устройства куплены за свои деньги, рекламных интеграций нет.</p>
+        <p class="footer-status">Методика 90 дней • Обновлено: ноябрь 2026</p>
+      </div>
+      <div class="footer-col">
+        <h4>Дополнительно</h4>
+        <a href="#drivers">Драйверы и утилиты (ПО)</a>
+        <a href="#about">О проекте и методика тестов</a>
+        <a href="#catalog" data-footer-filter="budget">Топ до 3 000 ₽</a>
+        <a href="#catalog" data-footer-filter="gyro">Модели с гироскопом</a>
+      </div>
+      <div class="footer-col footer-lab">
+        <h4>Статус лаборатории</h4>
+        <div class="footer-lab-card">
+          <span class="footer-lab-label">Сейчас на стенде</span>
+          <strong>Flydigi Vader 4 Pro</strong>
+          <div class="footer-lab-progress"><span style="width:67%"></span></div>
+          <span class="footer-lab-days">60 / 90 дней</span>
+          <a href="#testing" class="footer-lab-btn">В работе →</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Gamepad Hub. Все права защищены.</div>
+  </footer>
 
   <!-- BACKGROUND MUSIC -->
   <audio id="bgm" loop>
     <source src="bgm.mp3" type="audio/mpeg">
   </audio>
-  <button id="bgm-toggle" class="bgm-btn" aria-label="Переключить фоновую музыку" title="Включить/выключить музыку">
-    <svg class="icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-    </svg>
-    <svg class="icon-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-      <line x1="23" y1="9" x2="17" y2="15"></line>
-      <line x1="17" y1="9" x2="23" y2="15"></line>
-    </svg>
-  </button>
 
   <script src="data.js"></script>
+  <script src="gamepad-tester.js"></script>
   <script>
-    // Рендер 3 последних обзоров на главной
-    (function() {
-      var container = document.getElementById('home-gamepads');
-      if (!container || typeof GAMEPADS === 'undefined') return;
-      var latest = GAMEPADS.filter(function(g) { return g.price > 0; }).slice(0, 3);
-      container.innerHTML = latest.map(function(g) {
-        var image = g.image ? '<img src="' + g.image + '" alt="' + g.name + '" class="gamepad-image">' : '<div class="placeholder-img">' + PLACEHOLDER_SVG + '</div>';
-        var meta = 'Куплен в ' + g.purchaseDate + ' · ' + g.price.toLocaleString('ru-RU') + ' ₽ · ' + g.usageMonths + ' мес.';
-        return '<a class="gamepad-card" href="' + g.fullReview + '" data-gamepad-id="' + g.id + '" onclick="return openGamepadModal(event, \'' + g.id + '\')">' +
-          '<div class="card-media">' + image + '</div>' +
-          '<div class="card-info">' +
-          '<h3>' + g.name + '</h3>' +
-          '<p class="meta">' + meta + '</p>' +
-          '<p class="desc">' + g.description + '</p>' +
-          '<div class="card-footer">' +
-          '<p class="verdict">' + g.verdict + '</p>' +
-          '<span class="review-link">Полный обзор →</span>' +
-          '</div>' +
-          '</div>' +
-          '</a>';
-      }).join('');
-    })();
-
-    // Счётчики категорий
-    (function() {
-      if (typeof CATEGORIES === 'undefined') return;
-      Object.keys(CATEGORIES).forEach(function(key) {
-        var el = document.getElementById('count-' + key);
-        if (el) {
-          var count = GAMEPADS.filter(function(g) { return g.price > 0 && CATEGORIES[key].filter(g); }).length;
-          var word = count === 1 ? 'обзор' : (count < 5 ? 'обзора' : 'обзоров');
-          el.textContent = count + ' ' + word;
-        }
-      });
-      var accEl = document.getElementById('count-accessories');
-      if (accEl) accEl.textContent = '3 позиции';
-    })();
-
     // Фоновая музыка с учётом autoplay policy
     (function() {
       var audio = document.getElementById('bgm');
@@ -257,10 +344,12 @@
       function updateButton() {
         if (musicPlaying) {
           btn.classList.add('playing');
-          btn.setAttribute('aria-label', 'Выключить музыку');
+          btn.setAttribute('aria-label', 'Выключить фоновый звук');
+          btn.setAttribute('aria-pressed', 'true');
         } else {
           btn.classList.remove('playing');
-          btn.setAttribute('aria-label', 'Включить музыку');
+          btn.setAttribute('aria-label', 'Включить фоновый звук');
+          btn.setAttribute('aria-pressed', 'false');
         }
       }
 
