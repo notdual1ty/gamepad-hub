@@ -1715,3 +1715,162 @@ header h1 a.logo:hover .logo-sub { background: var(--accent); }
 .has-img .wg-tag { color: #93C5FD; }
 .has-img .wg-link { color: #fff; }
 @media (max-width: 900px) { .widget-grid { grid-template-columns: 1fr; } }
+
+/* ===== Единая тема поверх teamreact.jpg ===== */
+:root {
+  --ui-accent: #2563EB;
+  --ui-accent-hover: #1E40AF;
+  --ui-light: rgba(255, 255, 255, 0.94);
+  --ui-dark: rgba(15, 23, 42, 0.9);
+  --ui-border: 1px solid rgba(148, 163, 184, 0.35);
+  --ui-radius: 12px;
+}
+body {
+  background-image:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.84) 30%, rgba(15, 23, 42, 0.8) 100%),
+    radial-gradient(ellipse at 50% 35%, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.2) 70%),
+    url('./teamreact.jpg');
+}
+
+/* Текст прямо на фоне */
+.hero h1, .hero .hero-card h1, .section-title, main > h1, main > h2,
+.tester-bar h2, .block > h2, .block > h3 { color: #F8FAFC; text-shadow: 0 2px 12px rgba(2, 6, 23, 0.7); }
+.hero-sub, .section-sub, .hero-main .hero-sub { color: #CBD5E1; text-shadow: 0 1px 8px rgba(2, 6, 23, 0.7); }
+.section-title a, .block > a, .news-more, .kb-more, .hero-main a:not(.btn):not(.hero-cta) { color: #93C5FD; }
+.section-title a:hover, .block > a:hover, .kb-more:hover { color: #BFDBFE; }
+
+/* Светлые карточки */
+.gamepad-card, .game-card, .driver-card, .kb-card, .news-card, .lab-card, .queue-card,
+.gt-card, .fh-card, .cat, .chip, .hero-quick, .widget, .lat-table, .stat-chips, .footer-lab-card, .gp-status {
+  background-color: var(--ui-light);
+  border: var(--ui-border);
+  border-radius: var(--ui-radius);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.stat-chips .chip { background: transparent; border: 0; border-right: 1px solid rgba(148, 163, 184, 0.35); border-radius: 0; backdrop-filter: none; }
+.stat-chips .chip:last-child { border-right: 0; }
+.widget { border-left: 4px solid var(--ui-accent); }
+.fh-card { border-left: 4px solid var(--tc); background: linear-gradient(90deg, rgba(var(--tc-rgb), 0.08) 0%, var(--ui-light) 35%); }
+.cat:hover, .news-card:hover, .gamepad-card:hover, .kb-card:hover, .driver-card:hover { border-color: var(--ui-accent); }
+
+/* Тёмные блоки (Forza Hall и «Быстрые ориентиры») */
+.widget.has-img, .forza-widget-bg { background-color: var(--ui-dark); border: var(--ui-border); border-left: 4px solid var(--ui-accent); color: #F8FAFC; }
+.widget.has-img::after { background: linear-gradient(90deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.78) 55%, rgba(15, 23, 42, 0.4) 100%); }
+.has-img .wg-link, .has-img .wg-tag { color: #93C5FD; }
+
+/* Кнопки, фильтры, бейджи, прогресс — один акцент */
+.btn-primary, .modal-tester-btn, .hero-cta, .gt-b.on,
+.filter-tag.active, .filter-btn.active, .review-filters .filter-btn.active, .kb-chip.active {
+  background: var(--ui-accent); border-color: var(--ui-accent); color: #fff;
+}
+.btn-primary:hover, .modal-tester-btn:hover, .hero-cta:hover { background: var(--ui-accent-hover); }
+.filter-tag:hover, .filter-btn:hover, .review-filters .filter-btn:hover, .kb-chip:hover, .hero-tag:hover {
+  border-color: var(--ui-accent); color: var(--ui-accent); background: #fff;
+}
+.filter-tag.active:hover, .filter-btn.active:hover, .kb-chip.active:hover { color: #fff; background: var(--ui-accent-hover); }
+.filter-tag, .filter-btn, .kb-chip, .hero-tag, .tester-close, .sort-select, .kb-search {
+  background: var(--ui-light); border: var(--ui-border);
+}
+.badge, .news-badge, .fh-badge { background: var(--ui-accent); color: #fff; }
+.badge { background: #EFF6FF; color: var(--ui-accent); }
+.footer-lab-progress span, .testing-progress span, .wg-rows i { background: var(--ui-accent); }
+.wg-rows i { background: linear-gradient(90deg, var(--ui-accent), #1E40AF); }
+.bgm-btn.playing { color: var(--ui-accent); }
+header { border-bottom-color: rgba(148, 163, 184, 0.35); }
+
+/* ===== Стеклянный минимализм поверх teamreact.jpg ===== */
+:root {
+  --glass: rgba(15, 23, 42, 0.62);
+  --glass-2: rgba(30, 41, 59, 0.58);
+  --glass-hover: rgba(30, 41, 59, 0.72);
+  --glass-line: 1px solid rgba(248, 250, 252, 0.14);
+  --glass-line-hover: 1px solid rgba(248, 250, 252, 0.28);
+  --g-title: #F8FAFC; --g-text: #CBD5E1; --g-meta: #94A3B8; --g-accent: #38BDF8;
+  /* перенастройка базовых токенов */
+  --card: var(--glass); --border: rgba(248, 250, 252, 0.14); --text: var(--g-title);
+  --text-2: var(--g-text); --text-3: var(--g-meta); --accent: var(--g-accent);
+  --accent-soft: rgba(56, 189, 248, 0.1);
+  --shadow: 0 2px 10px rgba(2, 6, 23, 0.18); --shadow-hover: 0 4px 16px rgba(2, 6, 23, 0.25);
+  --ui-accent: #38BDF8; --ui-accent-hover: #7DD3FC;
+  --ui-light: var(--glass); --ui-dark: var(--glass); --ui-border: var(--glass-line);
+}
+body {
+  color: var(--g-text);
+  background-image:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.5) 40%, rgba(15, 23, 42, 0.72) 100%),
+    url('./teamreact.jpg');
+}
+a { color: var(--g-accent); }
+
+/* Поверхности */
+header, footer { background: rgba(15, 23, 42, 0.7); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-color: rgba(248, 250, 252, 0.14); }
+header h1, header h1 a, nav a { color: var(--g-title); }
+nav a:hover, nav a.active { color: var(--g-accent); }
+.logo-mark { box-shadow: 5px 0 0 rgba(248, 250, 252, 0.85); }
+.logo-sub { background: rgba(248, 250, 252, 0.14); }
+.gamepad-card, .game-card, .driver-card, .kb-card, .news-card, .lab-card, .queue-card,
+.gt-card, .fh-card, .cat, .chip, .hero-quick, .widget, .lat-table, .stat-chips, .footer-lab-card,
+.gp-status, .fh-form, .search, .news-featured, .hero-showcase, .modal-content {
+  background-color: var(--glass);
+  background-image: none;
+  border: var(--glass-line);
+  box-shadow: none;
+  color: var(--g-text);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.widget, .fh-card { border-left: 3px solid var(--g-accent); }
+.fh-card { border-left-color: var(--tc); background-image: linear-gradient(90deg, rgba(var(--tc-rgb), 0.18) 0%, transparent 35%); }
+.fh-team-esv, .fh-team-k1z, .fh-team-ecu, .fh-team-ea { background-image: none; }
+.widget.has-img, .forza-widget-bg { background-color: var(--glass-2); background-image: none; }
+.widget.has-img::after { background: linear-gradient(90deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.3) 100%); }
+.stat-chips .chip { background: transparent; border-color: rgba(248, 250, 252, 0.14); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.stat-chips .chip:hover, .lat-table tr:hover td { background: rgba(248, 250, 252, 0.06); }
+.gamepad-card:hover, .game-card:hover, .driver-card:hover, .kb-card:hover, .news-card:hover, .cat:hover,
+.queue-card:hover, .hero-quick:hover, .widget:hover, .fh-card:hover {
+  background-color: var(--glass-hover); border-color: rgba(248, 250, 252, 0.28); box-shadow: none; transform: none;
+}
+.fh-card:hover { border-left-color: var(--tc); }
+.card-footer, .card-media { background: rgba(248, 250, 252, 0.04); border-color: rgba(248, 250, 252, 0.1); }
+
+/* Поля, кнопки, теги */
+.search input, .kb-search, .sort-select, .fh-input, .fh-form input, .fh-form select, .fh-form textarea,
+.filter-tag, .filter-btn, .kb-chip, .hero-tag, .tester-close, .gt-slot, .gt-b, .gt-actions button,
+.btn-secondary, .fh-ghost, .fh-cell, .fh-axes, .fh-card .fh-axes, .fh-card .fh-axes-btn, .fh-ico, .fh-del, .hero-cta-alt {
+  background: rgba(15, 23, 42, 0.5); border: var(--glass-line); color: var(--g-text);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.search input::placeholder, .kb-search::placeholder, .fh-form input::placeholder { color: var(--g-meta); }
+.filter-tag:hover, .filter-btn:hover, .review-filters .filter-btn:hover, .kb-chip:hover, .hero-tag:hover,
+.tester-close:hover, .btn-secondary:hover, .hero-cta-alt:hover, .fh-ghost:hover {
+  background: var(--glass-hover); border: var(--glass-line-hover); color: var(--g-accent);
+}
+.btn-primary, .modal-tester-btn, .hero-cta, .fh-add, .gt-b.on,
+.filter-tag.active, .filter-btn.active, .review-filters .filter-btn.active, .kb-chip.active {
+  background: rgba(56, 189, 248, 0.22); border: 1px solid rgba(56, 189, 248, 0.6); color: #F8FAFC;
+}
+.btn-primary:hover, .modal-tester-btn:hover, .hero-cta:hover, .fh-add:hover,
+.filter-tag.active:hover, .filter-btn.active:hover, .kb-chip.active:hover { background: rgba(56, 189, 248, 0.34); color: #F8FAFC; }
+.badge, .lab-games li, .news-badge, .fh-badge { background: rgba(56, 189, 248, 0.14); color: var(--g-accent); }
+.gt-slot.sel { background: rgba(56, 189, 248, 0.16); border-color: var(--g-accent); }
+.fh-pad { background: rgba(248, 250, 252, 0.12); }
+.bgm-btn:hover { background: rgba(248, 250, 252, 0.08); }
+.bgm-btn.playing { color: var(--g-accent); background: rgba(56, 189, 248, 0.12); box-shadow: none; }
+.header-sep { background: rgba(248, 250, 252, 0.14); }
+
+/* Таблицы и тексты */
+.lat-table th { background: rgba(248, 250, 252, 0.05); color: var(--g-meta); }
+.lat-table th, .lat-table td { border-color: rgba(248, 250, 252, 0.1); }
+.gp-status b, .wg-rows b, .wg-models b, .hs-val { color: var(--g-title); }
+.gp-open { background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.4); }
+.wg-rows i { background: linear-gradient(90deg, var(--g-accent), rgba(56, 189, 248, 0.15)); }
+.wg-tag, .news-tag, .has-img .wg-tag, .has-img .wg-link, .wg-link { color: var(--g-accent); }
+.news-date { color: var(--g-meta); }
+.has-img h3 { color: var(--g-title); }
+.has-img p { color: var(--g-text); }
+.section-title a, .block > a, .news-more, .kb-more, .hero-main a:not(.btn):not(.hero-cta) { color: var(--g-accent); }
+h1, h2, h3, h4, .card-info h3, .news-card h3, .kb-card h3, .cat h3 { color: var(--g-title); }
+.modal-verdict, .modal-column { background: rgba(248, 250, 252, 0.05); color: var(--g-text); border-left-color: rgba(248, 250, 252, 0.25); }
+.modal-verdict h4, .modal-column h4 { color: var(--g-title); }
+/* Тестер: геймпад на тёмной подложке */
+#gt-svg .body { fill: rgba(248, 250, 252, 0.08); stroke: rgba(248, 250, 252, 0.35); }
