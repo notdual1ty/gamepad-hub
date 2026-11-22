@@ -1653,3 +1653,52 @@ body > main { padding-bottom: 64px; }
 .gp-hint, .gp-idx { color: var(--text-3); }
 .gp-open { margin-left: auto; padding: 2px 10px; border: 1px solid #E2E8F0; border-radius: 4px; color: var(--accent); background: var(--accent-soft); }
 .gp-open:hover { border-color: var(--accent); }
+
+/* ===== Атмосфера: живой фон, лого, виджеты ===== */
+body {
+  background-color: #eef2f7;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(37,99,235,.10) 1px, transparent 1.5px),
+    linear-gradient(rgba(15,23,42,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,.025) 1px, transparent 1px),
+    linear-gradient(160deg, #f8fafc 0%, #e9eef6 55%, #dde6f2 100%);
+  background-size: 24px 24px, 96px 96px, 96px 96px, 100% 100%;
+  background-attachment: fixed;
+}
+.home section.block { margin-top: 28px; }
+.section-title { margin-top: 28px; }
+main { padding-top: 24px; }
+
+/* Логотип */
+header { border-bottom: 2px solid #0F172A; }
+header h1 a.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo-mark { width: 12px; height: 26px; background: var(--accent); transform: skewX(-18deg); box-shadow: 5px 0 0 #0F172A; margin-right: 6px; flex: none; }
+.logo-text { font-weight: 800; letter-spacing: 1px; }
+.logo-sub { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #fff; background: #0F172A; padding: 3px 8px 3px 10px; clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%); }
+header h1 a.logo::first-letter { color: inherit; }
+header h1 a.logo:hover .logo-sub { background: var(--accent); }
+@media (max-width: 600px) { .logo-sub { display: none; } }
+
+/* Виджеты */
+.widget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.widget { position: relative; overflow: hidden; background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 22px; }
+.wg-tag { display: inline-block; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; }
+.widget h3 { font-size: 18px; margin-bottom: 12px; }
+.wg-rows { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.wg-rows li { position: relative; display: flex; justify-content: space-between; font-size: 13px; padding-bottom: 6px; color: var(--text-2); }
+.wg-rows b { font-family: var(--mono); color: var(--text); }
+.wg-rows i { position: absolute; left: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #0F172A); transform: skewX(-30deg); }
+.wg-note { font-size: 12px; color: var(--text-3); margin: 12px 0 8px; }
+.wg-link { font-size: 13px; font-weight: 600; }
+.widget p { font-size: 14px; color: var(--text-2); }
+
+/* Слот под кадры NFS ProStreet: --img задаётся из data.js (SITE_IMAGES) */
+.has-img { background-color: #0F172A; background-image: linear-gradient(115deg, #0F172A 0%, #1e293b 100%); border-left-color: #fff; color: #F8FAFC; min-height: 190px; display: flex; align-items: flex-end; }
+.has-img::before { content: ''; position: absolute; inset: 0; background: var(--img) center / cover no-repeat; opacity: .55; z-index: 0; }
+.has-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,23,42,.92) 0%, rgba(15,23,42,.55) 60%, rgba(15,23,42,.25) 100%); z-index: 1; }
+.has-img .wg-body { position: relative; z-index: 2; }
+.has-img h3 { color: #fff; margin-bottom: 8px; }
+.has-img p { color: #CBD5E1; margin-bottom: 10px; max-width: 420px; }
+.has-img .wg-tag { color: #93C5FD; }
+.has-img .wg-link { color: #fff; }
+@media (max-width: 900px) { .widget-grid { grid-template-columns: 1fr; } }

@@ -903,3 +903,14 @@ var FORZA_HALL = [
   });
   render();
 })();
+
+// ===== ИЗОБРАЖЕНИЯ-СЛОТЫ (NFS ProStreet и др.) =====
+// Укажите путь к кадру, напр. 'images/prostreet-forza.jpg'. Пустая строка — слот остаётся градиентом.
+var SITE_IMAGES = { forzaHall: '', racing: '' };
+(function () {
+  var els = document.querySelectorAll('[data-img]');
+  for (var i = 0; i < els.length; i++) {
+    var src = SITE_IMAGES[els[i].getAttribute('data-img')];
+    if (src) els[i].style.setProperty('--img', 'url("' + src + '")');
+  }
+})();

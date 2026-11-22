@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamepad Hub — Честная база знаний о геймпадах</title>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <h1><a href="index.html" class="logo">GAMEPAD HUB</a></h1>
+      <h1><a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text">GAMEPAD HUB</span><span class="logo-sub">TRACK // LAB</span></a></h1>
       <nav id="main-tabs">
       <a href="#home" data-tab="home" class="active">Главная</a>
       <a href="#catalog" data-tab="catalog">Каталог обзоров</a>
@@ -71,6 +71,30 @@
         <a href="accesories.html" class="cat"><span class="cat-idx">06</span><span class="cat-name">Аксессуары для геймпадов</span><span class="cat-count" id="count-accessories">—</span></a>
       </div>
       <p class="cat-forza">Гонщик? <a href="#forza">Forza Hall — сетапы и геймпады коммьюнити →</a></p>
+    </section>
+
+    <section class="block widgets" id="widgets">
+      <div class="widget-grid">
+        <article class="widget wg-latency">
+          <span class="wg-tag">PIT // ЗАДЕРЖКА</span>
+          <h3>Быстрые ориентиры по задержке</h3>
+          <ul class="wg-rows">
+            <li><span>Провод USB</span><b>~4–8 мс</b><i style="width:15%"></i></li>
+            <li><span>2.4 ГГц адаптер</span><b>~8–15 мс</b><i style="width:30%"></i></li>
+            <li><span>Bluetooth</span><b>~20–40 мс</b><i style="width:65%"></i></li>
+          </ul>
+          <p class="wg-note">Ориентировочные диапазоны; точные замеры по моделям — в разделе «В работе».</p>
+          <a href="#testing" class="wg-link">Сравнить модели →</a>
+        </article>
+        <article class="widget wg-forza has-img" data-img="forzaHall">
+          <div class="wg-body">
+            <span class="wg-tag">FORZA HALL</span>
+            <h3>Сетапы и телеметрия</h3>
+            <p>Мёртвые зоны, линейность руля и хват игроков коммьюнити — бери готовый сетап за основу.</p>
+            <a href="#forza" class="wg-link">Открыть Forza Hall →</a>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="block" id="news">
@@ -340,7 +364,7 @@
     <source src="bgm.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="data.js?v=5"></script>
+  <script src="data.js?v=6"></script>
   <script src="gamepad-tester.js?v=5"></script>
   <script>
     // Фоновая музыка с учётом autoplay policy
