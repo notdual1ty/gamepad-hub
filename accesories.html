@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Аксессуары — Gamepad Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
   <header>
@@ -58,5 +58,6 @@
       document.addEventListener('DOMContentLoaded', () => renderAccessories(ACCESSORIES, 'accessory-list'));
     else renderAccessories(ACCESSORIES, 'accessory-list');
   </script>
+<script>(function(){var h=document.querySelector("body > header");if(!h)return;function s(){document.body.style.setProperty("--header-h",h.offsetHeight+"px")}s();window.addEventListener("resize",s);window.addEventListener("load",s);if(window.ResizeObserver)new ResizeObserver(s).observe(h)})();</script>
 </body>
 </html>
