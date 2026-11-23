@@ -2234,3 +2234,17 @@ nav a.active::after { background: #F8FAFC; }
 .fh-card .fh-ico svg { display: block; }
 .fh-card .fh-ico-youtube:hover { border-color: #FF0000; }
 .fh-card .fh-ico-twitch:hover { border-color: #9146FF; }
+
+/* ===== Forza Hall: эмблема команды у левого края, скругление виджетов ===== */
+.fh-card > .fh-wm {
+  left: 14px; right: auto; z-index: 0; pointer-events: none;
+  transform: translateY(-50%) skewX(-12deg);
+  opacity: calc(var(--wm-op, 0.1) * 1.1);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.6) 45%, transparent 100%);
+}
+@media (max-width: 1000px) { .fh-card > .fh-wm { left: 10px; } }
+@media (max-width: 640px) { .fh-card > .fh-wm { left: 8px; right: auto; } }
+.fh-card .fh-pad { border-radius: 12px; }
+.fh-card .fh-axes-btn { border-radius: 12px; }
+.fh-card .fh-axes { border-radius: 14px; }
