@@ -836,19 +836,22 @@ var FORZA_HALL = [
 
   function card(r) {
     var links = (r.links || (r.link ? [{ t: 'Профиль', u: r.link }] : [])).filter(function(l) { return safeUrl(l.u); });
-    var icons = { YouTube: '▶', Twitch: '◈' };
+    var icons = {
+      YouTube: '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="1" y="4.5" width="22" height="15" rx="4.5" fill="#FF0000"/><path d="M9.8 8.6v6.8l6-3.4z" fill="#fff"/></svg>',
+      Twitch: '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="#9146FF" d="M3.2 1L1.5 5.4v14.3h5.2V23h3.2l3.3-3.3h4.3L22.5 14V1H3.2zm17.1 12l-3.3 3.3h-5.4l-2.9 2.9v-2.9H5.6V3.1h14.7V13zM16.8 6.4h-2.1v5.8h2.1V6.4zm-5.7 0H9v5.8h2.1V6.4z"/></svg>'
+    };
     var team = /^(ESV|K1Z|F1R)$/.test(r.team) ? r.team : 'CUSTOM';
     var wm = { ESV: 'ESV MOTORSPORT', K1Z: 'K1Z', F1R: 'F1R // FRIENDS 1ST', CUSTOM: 'CUSTOM' }[team];
     return '<article class="fh-card fh-team-' + team.toLowerCase() + '">' +
       '<span class="fh-wm" aria-hidden="true">' + wm + '</span>' +
       '<div class="fh-who"><span class="fh-lbl">Игрок</span><strong>' + esc(r.nickname) + '</strong>' +
+      (r.rankBadge ? '<div class="fh-rank">' + esc(r.rankBadge) + '</div>' : '') +
       '<span class="fh-badge">' + esc(r.game) + '</span></div>' +
       '<div class="fh-team"><span class="fh-lbl">Команда</span>' +
-      '<div class="fh-tag">' + esc(r.tag || wm) + '</div></div>' +
+      '<div class="fh-tag">' + esc(team === 'CUSTOM' ? '—' : team) + '</div></div>' +
       '<div class="fh-setup"><span class="fh-lbl">Геймпад</span><div class="fh-pad">' + esc(r.gamepad) + '</div>' +
       axesBtn(r.settings) + '</div>' +
       '<div class="fh-ach"><span class="fh-lbl">Достижения</span>' +
-      (r.rankBadge ? '<div class="fh-rank">' + esc(r.rankBadge) + '</div>' : '') +
       '<p class="fh-note">' + esc(r.note) + '</p></div>' +
       '<div class="fh-links">' + links.map(function(l) {
         return '<a class="fh-ico fh-ico-' + esc(l.t.toLowerCase()) + '" href="' + esc(l.u) + '" target="_blank" rel="noopener" title="' + esc(l.t) + '" aria-label="' + esc(l.t) + '">' + (icons[l.t] || '↗') + '</a>';
