@@ -248,17 +248,28 @@
         <label class="fh-wide fh-mode"><input type="checkbox" id="fh-mode" checked> Простой режим: только ник, геймпад и базовые настройки</label>
         <label>Никнейм / Gamertag *<input name="nickname" required maxlength="40"></label>
         <label>Дисциплина<select name="game"><option>Forza Horizon 6</option><option>Forza Horizon 5</option><option>Forza Motorsport</option><option>Обе</option></select></label>
+        <label>Команда (ESV, K1Z, F1R или свой тег)<input name="team" maxlength="4" placeholder="Например, ESV" autocomplete="off" style="text-transform:uppercase"></label>
+        <label>Цвет команды (необязательно)<span class="fh-sync fh-color"><input name="teamColor" type="color" value="#2563EB" aria-label="Цвет команды"><small id="fh-color-hint">Для известных тегов подбирается автоматически</small></span></label>
         <label>Модель геймпада *<input name="gamepad" required maxlength="60"></label>
         <fieldset class="fh-wide fh-adv">
           <legend>Настройки игры (Advanced Controls)</legend>
           <div class="fh-adv-row"><label>Steering Axis Deadzone Inside<span class="fh-sync"><input name="stIn" type="number" min="0" max="30" value="0" required><input type="range" min="0" max="30" value="0" aria-label="Steering Axis Deadzone Inside"></span></label><label>Steering Axis Deadzone Outside<span class="fh-sync"><input name="stOut" type="number" min="70" max="100" value="95" required><input type="range" min="70" max="100" value="95" aria-label="Steering Axis Deadzone Outside"></span></label></div>
           <button type="button" class="fh-axes-btn" id="fh-more" aria-expanded="false">+ Дополнительные оси (Газ, Тормоз, Сцепление, Линейность)</button>
           <div class="fh-extra" id="fh-extra" hidden>
+            <svg class="fh-padmap" viewBox="0 0 160 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <rect x="27" y="3" width="26" height="12" rx="5"/><rect x="107" y="3" width="26" height="12" rx="5"/>
+              <path class="fh-pm-body" d="M36 20c8-3 20-4 44-4s36 1 44 4c13 3 22 18 27 44 4 23 3 40-8 43-10 3-17-7-24-21-4-8-9-10-16-10H57c-7 0-12 2-16 10-7 14-14 24-24 21-11-3-12-20-8-43 5-26 14-41 27-44z"/>
+              <circle class="fh-pm-hl" cx="45" cy="46" r="11"/><circle cx="45" cy="46" r="5"/>
+              <circle cx="98" cy="78" r="10"/><circle cx="98" cy="78" r="4.5"/>
+              <circle cx="80" cy="33" r="5"/>
+              <circle cx="70" cy="46" r="2.6"/><circle cx="90" cy="46" r="2.6"/>
+              <circle cx="115" cy="36" r="4"/><circle cx="125" cy="46" r="4"/><circle cx="105" cy="46" r="4"/><circle cx="115" cy="56" r="4"/>
+              <path class="fh-pm-dp" d="M62 71v14M55 78h14"/>
+              <text x="40" y="12">LT</text><text x="120" y="12">RT</text>
+            </svg>
             <label>Steering Linearity<span class="fh-sync"><input name="lin" type="number" min="0" max="100" value="50" required><input type="range" min="0" max="100" value="50" aria-label="Steering Linearity"></span></label><label>Acceleration Axis Deadzone Inside<span class="fh-sync"><input name="accIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Acceleration Axis Deadzone Inside"></span></label><label>Acceleration Axis Deadzone Outside<span class="fh-sync"><input name="accOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Acceleration Axis Deadzone Outside"></span></label><label>Deceleration Axis Deadzone Inside<span class="fh-sync"><input name="decIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Deceleration Axis Deadzone Inside"></span></label><label>Deceleration Axis Deadzone Outside<span class="fh-sync"><input name="decOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Deceleration Axis Deadzone Outside"></span></label><label>Clutch Axis Deadzone Inside<span class="fh-sync"><input name="clIn" type="number" min="0" max="100" value="0" required><input type="range" min="0" max="100" value="0" aria-label="Clutch Axis Deadzone Inside"></span></label><label>Clutch Axis Deadzone Outside<span class="fh-sync"><input name="clOut" type="number" min="0" max="100" value="100" required><input type="range" min="0" max="100" value="100" aria-label="Clutch Axis Deadzone Outside"></span></label>
           </div>
         </fieldset>
-        <label class="fh-pro">Тег команды (ESV, K1Z, F1R…)<input name="team" maxlength="4" placeholder="Например, ESV" autocomplete="off" style="text-transform:uppercase"></label>
-        <label class="fh-pro">Цвет команды<span class="fh-sync fh-color"><input name="teamColor" type="color" value="#2563EB" aria-label="Цвет команды"><small id="fh-color-hint">Для известных тегов подбирается автоматически</small></span></label>
         <label class="fh-pro">Тип управления<select name="steering"><option>Simulation</option><option>Стандартное</option></select></label>
         <label class="fh-wide">Комментарий о хвате / настройках<textarea name="note" rows="2" maxlength="240"></textarea></label>
         <label class="fh-wide fh-pro">Ссылка на профиль / канал<input name="link" type="url" placeholder="https://"></label>

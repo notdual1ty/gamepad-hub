@@ -1536,7 +1536,9 @@ nav { margin-left: auto; }
 .fh-sync input[type=range] { flex: 1; padding: 0; min-width: 0; accent-color: #2563EB; }
 .fh-axes-btn { align-self: flex-start; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font: inherit; font-size: 12px; color: var(--accent); cursor: pointer; }
 .fh-adv .fh-axes-btn { margin-top: 10px; }
-.fh-extra { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 16px; margin-top: 10px; }
+.fh-extra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; margin: 10px auto 0; max-width: 720px; justify-content: center; }
+.fh-extra > label { min-width: 0; }
+.fh-extra .fh-sync { width: 100%; }
 .fh-extra[hidden] { display: none; }
 .fh-ax { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
 .fh-ax span { flex: 1; }
@@ -1551,7 +1553,7 @@ nav { margin-left: auto; }
 .fh-cell span { font-size: 11px; color: var(--text-3); white-space: nowrap; }
 .fh-cell b { font-family: monospace; font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; }
 @media (max-width: 640px) { .fh-axes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .fh-adv-row, .fh-extra { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .fh-adv-row, .fh-extra { grid-template-columns: minmax(0, 1fr); } }
 
 #view-forza.fh { padding: 20px; border-radius: 12px; }
 #view-forza .fh-card, #view-forza .fh-form { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
@@ -2273,3 +2275,25 @@ nav a.active::after { background: #F8FAFC; }
 .fh-card > .fh-team { align-items: center; text-align: center; }
 .fh-card > .fh-links { align-items: center; }
 .fh-card .fh-lbl { line-height: 1; margin: 0; }
+.fh-card > .fh-setup { align-items: center; text-align: center; }
+.fh-card > .fh-setup .fh-pad, .fh-card > .fh-setup .fh-axes-btn { align-self: center; width: 100%; max-width: 240px; box-sizing: border-box; text-align: center; margin: 0; }
+
+/* Выравнивание «Геймпад» / «Достижения»: общий верх, фиксированная ось */
+.fh-card { align-items: stretch; }
+.fh-card > .fh-setup, .fh-card > .fh-ach { justify-content: flex-start; align-self: stretch; padding-top: 18px; align-items: stretch; text-align: left; }
+.fh-card > .fh-setup .fh-lbl, .fh-card > .fh-ach .fh-lbl { align-self: flex-start; height: 10px; }
+.fh-card > .fh-setup .fh-pad { min-height: 38px; display: flex; align-items: center; justify-content: center; overflow-wrap: anywhere; line-height: 1.25; max-width: none; }
+.fh-card > .fh-setup .fh-axes-btn { max-width: none; }
+.fh-card > .fh-ach .fh-note { margin: 0; }
+
+/* Схема геймпада в Advanced Controls */
+.fh-extra { grid-template-columns: minmax(290px, 360px) repeat(2, minmax(0, 1fr)); max-width: 1120px; align-items: start; }
+.fh-extra .fh-padmap { display: block; grid-column: 1; grid-row: 1 / span 4; align-self: center; justify-self: center; width: 100%; height: auto; min-height: 0; margin: 0 auto; padding: 0; box-sizing: border-box; opacity: 0.8; pointer-events: none; }
+.fh-padmap rect, .fh-padmap circle, .fh-padmap path { fill: rgba(148, 163, 184, 0.10); stroke: #64748B; stroke-width: 1.2; }
+.fh-padmap path.fh-pm-dp { fill: none; stroke-width: 3; stroke-linecap: round; }
+.fh-padmap .fh-pm-hl { stroke: #38BDF8; fill: rgba(56, 189, 248, 0.15); }
+.fh-padmap text { font: 600 8px var(--mono, monospace); fill: #94A3B8; text-anchor: middle; stroke: none; }
+.fh-padmap .fh-pm-t { font-size: 6px; fill: #38BDF8; }
+@media (max-width: 1000px) { .fh-extra { grid-template-columns: minmax(240px, 290px) repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 800px) { .fh-extra { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fh-extra .fh-padmap { display: none; } }
+@media (max-width: 640px) { .fh-extra { grid-template-columns: minmax(0, 1fr); } }
