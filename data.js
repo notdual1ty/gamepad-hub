@@ -840,15 +840,23 @@ var FORZA_HALL = [
       YouTube: '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="1" y="4.5" width="22" height="15" rx="4.5" fill="#FF0000"/><path d="M9.8 8.6v6.8l6-3.4z" fill="#fff"/></svg>',
       Twitch: '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="#9146FF" d="M3.2 1L1.5 5.4v14.3h5.2V23h3.2l3.3-3.3h4.3L22.5 14V1H3.2zm17.1 12l-3.3 3.3h-5.4l-2.9 2.9v-2.9H5.6V3.1h14.7V13zM16.8 6.4h-2.1v5.8h2.1V6.4zm-5.7 0H9v5.8h2.1V6.4z"/></svg>'
     };
-    var team = /^(ESV|K1Z|F1R)$/.test(r.team) ? r.team : 'CUSTOM';
-    var wm = { ESV: 'ESV MOTORSPORT', K1Z: 'K1Z', F1R: 'F1R // FRIENDS 1ST', CUSTOM: 'CUSTOM' }[team];
-    return '<article class="fh-card fh-team-' + team.toLowerCase() + '">' +
-      '<span class="fh-wm" aria-hidden="true">' + wm + '</span>' +
+    var known = /^(ESV|K1Z|F1R)$/.test(r.team);
+    var custom = !known && /^[A-Z0-9]{2,4}$/.test(r.team || '') && r.team !== 'CUSTOM';
+    var team = known ? r.team : 'CUSTOM';
+    var tagText = known || custom ? r.team : '—';
+    var wm = known ? { ESV: 'ESV MOTORSPORT', K1Z: 'K1Z', F1R: 'F1R // FRIENDS 1ST' }[team] : (custom ? r.team : 'CUSTOM');
+    var style = '';
+    if (!known && /^#[0-9a-f]{6}$/i.test(r.teamColor || '')) {
+      var c = r.teamColor, rgb = [1, 3, 5].map(function(i) { return parseInt(c.substr(i, 2), 16); }).join(', ');
+      style = ' style="--tc:' + c + ';--tc-rgb:' + rgb + '"';
+    }
+    return '<article class="fh-card fh-team-' + team.toLowerCase() + '"' + style + '>' +
+      '<span class="fh-wm" aria-hidden="true">' + esc(wm) + '</span>' +
       '<div class="fh-who"><span class="fh-lbl">Игрок</span><strong>' + esc(r.nickname) + '</strong>' +
       (r.rankBadge ? '<div class="fh-rank">' + esc(r.rankBadge) + '</div>' : '') +
       '<span class="fh-badge">' + esc(r.game) + '</span></div>' +
       '<div class="fh-team"><span class="fh-lbl">Команда</span>' +
-      '<div class="fh-tag">' + esc(team === 'CUSTOM' ? '—' : team) + '</div></div>' +
+      '<div class="fh-tag">' + esc(tagText) + '</div></div>' +
       '<div class="fh-setup"><span class="fh-lbl">Геймпад</span><div class="fh-pad">' + esc(r.gamepad) + '</div>' +
       axesBtn(r.settings) + '</div>' +
       '<div class="fh-ach"><span class="fh-lbl">Достижения</span>' +
@@ -889,19 +897,32 @@ var FORZA_HALL = [
     var x = document.getElementById('fh-extra'); x.hidden = !x.hidden;
     this.setAttribute('aria-expanded', String(!x.hidden));
   });
+  var TEAM_COLORS = { ESV: '#DC2626', K1Z: '#71717A', F1R: '#1B5E4B' };
+  var colorTouched = false;
+  form.elements.teamColor.addEventListener('input', function() { colorTouched = true; });
+  form.elements.team.addEventListener('input', function() {
+    var t = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    this.value = t;
+    if (TEAM_COLORS[t]) { form.elements.teamColor.value = TEAM_COLORS[t]; colorTouched = false; }
+  });
+  form.addEventListener('reset', function() { colorTouched = false; form.classList.add('fh-simple'); });
+  document.getElementById('fh-mode').addEventListener('change', function() { form.classList.toggle('fh-simple', this.checked); });
   document.getElementById('fh-toggle').addEventListener('click', function() { form.hidden = !form.hidden; });
 
   function vals() {
     var o = {}; ['nickname', 'game', 'gamepad', 'steering', 'note', 'link'].forEach(function(k) { o[k] = form.elements[k].value.trim(); });
     var n = function(k, d) { var v = parseFloat(form.elements[k].value); return isNaN(v) ? d : v; };
     var p = function(i, io) { return n(i, 0) + ' / ' + n(io, 100); };
-    o.settings = { steeringInside: n('stIn', 0), steeringOutside: n('stOut', 96), linearity: n('lin', 50),
+    o.settings = { steeringInside: n('stIn', 0), steeringOutside: n('stOut', 95), linearity: n('lin', 50),
       accel: p('accIn', 'accOut'), decel: p('decIn', 'decOut'), clutch: p('clIn', 'clOut') };
     return o;
   }
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var o = vals(); o.id = 'u' + Date.now(); o.tag = 'Сообщество'; o.team = 'CUSTOM'; o.rankBadge = '⚙ CUSTOM SETUP';
+    var o = vals(); o.id = 'u' + Date.now(); o.tag = 'Сообщество';
+    var tg = form.elements.team.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4);
+    o.team = tg.length >= 2 ? tg : 'CUSTOM'; o.teamColor = form.elements.teamColor.value;
+    o.rankBadge = '⚙ ' + (tg.length >= 2 ? tg + ' SETUP' : 'CUSTOM SETUP');
     var a = load(); a.push(o); save(a);
     form.reset(); form.hidden = true; render();
   });

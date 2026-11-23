@@ -2248,3 +2248,28 @@ nav a.active::after { background: #F8FAFC; }
 .fh-card .fh-pad { border-radius: 12px; }
 .fh-card .fh-axes-btn { border-radius: 12px; }
 .fh-card .fh-axes { border-radius: 14px; }
+
+/* ===== Forza Hall: единая панель управления, простой режим формы, выравнивание карточек ===== */
+#view-forza .fh-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+#view-forza .fh-bar .fh-input, #view-forza .fh-bar .filter-tag, #view-forza .fh-bar .fh-add {
+  box-sizing: border-box; height: 42px; margin: 0; padding: 0 16px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font: inherit; font-size: 13px; font-weight: 600; line-height: 1; text-transform: uppercase; letter-spacing: 0.4px; border-width: 1px; border-style: solid;
+}
+#view-forza .fh-bar .fh-input { width: 280px; text-transform: none; font-weight: 500; letter-spacing: 0; justify-content: flex-start; }
+#view-forza .fh-bar .fh-filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#view-forza .fh-bar .fh-add { margin-left: auto; }
+@media (max-width: 640px) { #view-forza .fh-bar .fh-input { width: 100%; } #view-forza .fh-bar .fh-add { margin-left: 0; width: 100%; } }
+
+.fh-form.fh-simple .fh-pro { display: none; }
+.fh-mode { flex-direction: row !important; align-items: center; gap: 8px !important; cursor: pointer; }
+.fh-mode input { width: auto !important; }
+.fh-color { gap: 10px; }
+.fh-color input[type=color] { width: 48px; height: 38px; padding: 2px; flex: none; cursor: pointer; }
+.fh-color small { color: var(--text-3); font-size: 11px; line-height: 1.3; }
+
+.fh-card { align-items: center; }
+.fh-card > .fh-who, .fh-card > .fh-team, .fh-card > .fh-setup, .fh-card > .fh-ach, .fh-card > .fh-links { align-self: center; justify-content: center; align-items: flex-start; }
+.fh-card > .fh-team { align-items: center; text-align: center; }
+.fh-card > .fh-links { align-items: center; }
+.fh-card .fh-lbl { line-height: 1; margin: 0; }
