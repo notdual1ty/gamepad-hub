@@ -2150,12 +2150,13 @@ main { padding-top: 32px; }
 }
 
 /* ===== Закреплённая шапка на всех страницах ===== */
-html { height: auto !important; overflow-x: clip; overflow-y: visible; }
-body { overflow-x: clip; overflow-y: visible; transform: none; filter: none; perspective: none; }
-body > header {
+html { scrollbar-gutter: stable; height: auto !important; overflow-x: clip !important; overflow-y: visible !important; }
+body { height: auto !important; overflow-x: clip !important; overflow-y: visible !important; transform: none; filter: none; perspective: none; }
+body > header, header {
   position: fixed !important;
-  top: 0 !important; left: 0 !important; right: 0 !important; width: 100%;
-  z-index: 1000 !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important;
+  transform: none !important; translate: none !important; margin: 0 !important;
+  z-index: 9999 !important;
   background: rgba(17, 24, 39, 0.92) !important;
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
