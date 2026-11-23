@@ -2162,3 +2162,36 @@ body > header, header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 body { padding-top: var(--header-h, 76px); }
+
+/* ===== Точечные правки оформления ===== */
+/* Верхнее меню: без цветных рамок и переходов */
+nav a, nav a:hover, nav a:focus, nav a.active, nav a.active:hover { color: #F8FAFC; border: 0; box-shadow: none; outline: none; transition: none; }
+nav a { opacity: .78; }
+nav a:hover, nav a.active { opacity: 1; }
+nav a.active::after { background: #F8FAFC; }
+
+/* Каталог обзоров: более тёмный фон, светлый читаемый текст */
+#view-catalog .gamepad-card { background-color: rgba(8, 13, 28, 0.82); border-color: rgba(248, 250, 252, 0.16); }
+#view-catalog .gamepad-card:hover { background-color: rgba(8, 13, 28, 0.9); }
+#view-catalog .card-info h3, #view-catalog .gamepad-card h3 { color: #F8FAFC; }
+#view-catalog .card-info .desc, #view-catalog .gamepad-card p { color: #E2E8F0; }
+#view-catalog .card-info .meta, #view-catalog .gamepad-card .meta, #view-catalog .card-info::before { color: #CBD5E1; }
+#view-catalog .card-info .verdict, #view-catalog .gamepad-card .verdict { background: rgba(248, 250, 252, 0.08); color: #F8FAFC; }
+
+/* База знаний: тёмное стекло с изумрудной палитрой */
+#view-kb .kb-card { background-color: rgba(15, 23, 42, 0.62); border: 1px solid rgba(34, 197, 94, 0.45); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #CBD5E1; }
+#view-kb .kb-card:hover { background-color: rgba(15, 23, 42, 0.74); border-color: #10B981; }
+#view-kb .kb-card h3 { color: #F8FAFC; }
+#view-kb .kb-card p { color: #CBD5E1; }
+#view-kb .kb-tag { color: #34D399; }
+#view-kb .kb-more, #view-kb .review-link { color: #34D399; }
+#view-kb .kb-chip { background: rgba(15, 23, 42, 0.62); border: 1px solid rgba(34, 197, 94, 0.45); color: #CBD5E1; }
+#view-kb .kb-chip:hover { background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7; }
+#view-kb .kb-chip.active, #view-kb .kb-chip.active:hover { background: #10B981; border-color: #10B981; color: #052E2B; }
+#view-kb .kb-search { border: 1px solid rgba(34, 197, 94, 0.45); color: #F8FAFC; }
+#view-kb .kb-search:focus { border-color: #10B981; }
+
+/* Forza Hall: цветной ник и команда, заметнее эмблема команды */
+.fh-card .fh-who strong { color: var(--tc); }
+.fh-card .fh-tag { color: var(--tc); font-weight: 600; }
+.fh-team-esv, .fh-team-k1z, .fh-team-f1r, .fh-team-custom { --wm-op: 0.11; }
