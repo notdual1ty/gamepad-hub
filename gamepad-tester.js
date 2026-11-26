@@ -29,7 +29,9 @@
 
   function fromHash() {
     var h = location.hash.replace('#', '');
-    showTab(h === 'gamepad-tester' ? 'tester' : h);
+    // совместимость со старыми ссылками (reviews.html#reviews и т.п.)
+    var ALIAS = { 'gamepad-tester': 'tester', reviews: 'catalog', guides: 'kb', 'in-testing': 'testing', categories: 'home', hero: 'home' };
+    showTab(ALIAS[h] || h);
   }
   function bindTabLink(a) {
     a.addEventListener('click', function(e) {

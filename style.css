@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Russo+One&family=Exo+2:ital,wght@1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Russo+One&family=Exo+2:ital,wght@1,700;1,800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -2180,18 +2180,6 @@ nav a.active::after { background: #F8FAFC; }
 #view-catalog .card-info .meta, #view-catalog .gamepad-card .meta, #view-catalog .card-info::before { color: #CBD5E1; }
 #view-catalog .card-info .verdict, #view-catalog .gamepad-card .verdict { background: rgba(248, 250, 252, 0.08); color: #F8FAFC; }
 
-/* База знаний: тёмное стекло с изумрудной палитрой */
-#view-kb .kb-card { background-color: rgba(15, 23, 42, 0.62); border: 1px solid rgba(34, 197, 94, 0.45); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #CBD5E1; }
-#view-kb .kb-card:hover { background-color: rgba(15, 23, 42, 0.74); border-color: #10B981; }
-#view-kb .kb-card h3 { color: #F8FAFC; }
-#view-kb .kb-card p { color: #CBD5E1; }
-#view-kb .kb-tag { color: #34D399; }
-#view-kb .kb-more, #view-kb .review-link { color: #34D399; }
-#view-kb .kb-chip { background: rgba(15, 23, 42, 0.62); border: 1px solid rgba(34, 197, 94, 0.45); color: #CBD5E1; }
-#view-kb .kb-chip:hover { background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7; }
-#view-kb .kb-chip.active, #view-kb .kb-chip.active:hover { background: #10B981; border-color: #10B981; color: #052E2B; }
-#view-kb .kb-search { border: 1px solid rgba(34, 197, 94, 0.45); color: #F8FAFC; }
-#view-kb .kb-search:focus { border-color: #10B981; }
 
 /* Forza Hall: цветной ник и команда, заметнее эмблема команды */
 .fh-card .fh-who strong { color: var(--tc); }
@@ -2297,3 +2285,972 @@ nav a.active::after { background: #F8FAFC; }
 @media (max-width: 1000px) { .fh-extra { grid-template-columns: minmax(240px, 290px) repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) { .fh-extra { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fh-extra .fh-padmap { display: none; } }
 @media (max-width: 640px) { .fh-extra { grid-template-columns: minmax(0, 1fr); } }
+
+/* =====================================================================
+   ЭТАП 1 РЕДИЗАЙНА: студийная глубина поверхностей
+   Блок должен оставаться последним — переопределяет предыдущие слои.
+   Уровни: base (страница) → surface-1 (полосы) → surface-2 (карточки) → glass (акцентные виджеты)
+   ===================================================================== */
+:root {
+  --bg-base: #0b0d10;
+  --bg-surface-1: #101318;
+  --bg-surface-2: #141820;
+  --bg-surface-2-hover: #181d27;
+  --bg-glass: rgba(20, 24, 32, 0.72);
+  --line: rgba(255, 255, 255, 0.06);
+  --line-hover: rgba(255, 255, 255, 0.14);
+  --border-thin: 1px solid var(--line);
+  --border-thin-hover: 1px solid var(--line-hover);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* перенастройка унаследованных токенов на новую систему */
+  --mono: var(--font-mono);
+  --bg: var(--bg-base);
+  --card: var(--bg-surface-2);
+  --border: var(--line);
+  --soft: var(--bg-surface-2);
+  --soft-hover: var(--bg-surface-2-hover);
+  --soft-line: var(--border-thin);
+  --soft-line-hover: var(--border-thin-hover);
+  --glass: var(--bg-glass);
+  --glass-2: var(--bg-glass);
+  --glass-hover: var(--bg-surface-2-hover);
+  --glass-line: var(--border-thin);
+  --glass-line-hover: var(--border-thin-hover);
+  --glass-sep: var(--line);
+  --ui-border: var(--border-thin);
+}
+
+/* Страница: плоский базовый фон вместо фото */
+html { background: var(--bg-base); }
+body { background: var(--bg-base); background-image: none; color: #CBD5E1; }
+
+/* Шапка и футер */
+body > header, header { background: rgba(11, 13, 16, 0.88) !important; border-bottom: var(--border-thin) !important; }
+footer { background: var(--bg-surface-1); border-top: var(--border-thin); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.footer-bottom, .header-sep { border-color: var(--line); }
+.header-sep { background: var(--line-hover); }
+
+/* Чередующиеся полосы секций (на всю ширину окна) */
+.home #categories, .home #news {
+  position: relative;
+  background: var(--bg-surface-1);
+  box-shadow: 0 0 0 100vmax var(--bg-surface-1);
+  clip-path: inset(0 -100vmax);
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+/* Уровень 2: карточки и интерактивные контейнеры — сплошные, с тонкой границей */
+.gamepad-card, .game-card, .driver-card, .kb-card, .news-card, .lab-card, .queue-card,
+.gt-card, .fh-form, .cat, .hero-quick, .news-featured, .modal-content,
+#view-forza .fh-form, #view-catalog .gamepad-card, .gamepad-card .card-info {
+  background-color: var(--bg-surface-2);
+  border: var(--border-thin);
+  box-shadow: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.gamepad-card .card-info, .news-card { background-color: var(--bg-surface-2); }
+.gamepad-card .card-info { border: 0; }
+.gamepad-card:hover, .game-card:hover, .driver-card:hover, .kb-card:hover, .news-card:hover, .cat:hover,
+.queue-card:hover, .hero-quick:hover, .gt-card:hover, .lab-card:hover, #view-catalog .gamepad-card:hover {
+  background-color: var(--bg-surface-2-hover);
+  border-color: var(--line-hover);
+  box-shadow: none;
+}
+.gamepad-card:hover .card-info { background-color: transparent; }
+.gamepad-card { overflow: hidden; }
+
+/* Кнопки, фильтры, поля — интерактивные контейнеры */
+.filter-tag, .filter-btn, .review-filters .filter-btn, .kb-chip, .hero-tag, .sort-select, .kb-search,
+.search, .search input, .fh-input, .fh-form input, .fh-form select, .fh-form textarea,
+#view-forza .filter-tag:not(.active), .gt-slot, .gt-b, .gt-actions button, .btn-secondary, .tester-close,
+.fh-ghost, .fh-cell, .fh-axes, .fh-card .fh-axes, .fh-card .fh-axes-btn, .fh-ico, .fh-del, .hero-cta-alt,
+#view-kb .kb-chip, #view-kb .kb-search {
+  background-color: var(--bg-surface-2);
+  border: var(--border-thin);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.search input { border: 0; background: transparent; }
+.filter-tag:hover, .filter-btn:hover, .review-filters .filter-btn:hover, .kb-chip:hover, .hero-tag:hover,
+.tester-close:hover, .btn-secondary:hover, .hero-cta-alt:hover, .fh-ghost:hover, .gt-actions button:hover,
+.fh-ico:hover, .fh-del:hover, #view-kb .kb-chip:hover {
+  border: var(--border-thin-hover);
+}
+/* активные состояния сохраняют акцент */
+.filter-tag.active, .filter-btn.active, .kb-chip.active, #view-forza .filter-tag.active { border-color: rgba(56, 189, 248, 0.6); }
+.fh-input:focus, .fh-form input:focus, .fh-form select:focus, .fh-form textarea:focus, .kb-search:focus,
+.search:focus-within { border-color: #38BDF8; }
+
+/* Forza Hall: ливрея команды сохраняется, меняется только обводка */
+.fh-card { border: var(--border-thin); border-left: 2px solid var(--tc); box-shadow: none; }
+.fh-card:hover { border-color: var(--line-hover); border-left-color: var(--tc); }
+
+/* Стекло: акцентные виджеты и телеметрия */
+.widget, .widget.has-img, .forza-widget-bg, .hero-showcase, .gp-status, .lat-table, .stat-chips,
+.footer-lab-card {
+  background-color: var(--bg-glass);
+  border: var(--border-thin);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: none;
+}
+.widget, .widget.has-img { border-left: 2px solid var(--g-accent, #38BDF8); }
+.widget:hover, .gp-status:hover { background-color: var(--bg-glass); border-color: var(--line-hover); }
+.widget:hover { border-left-color: var(--g-accent, #38BDF8); }
+.stat-chips .chip { border-color: var(--line); }
+.stat-chips .chip:hover, .lat-table tr:hover td { background: rgba(255, 255, 255, 0.04); }
+
+/* Внутренние разделители и таблицы */
+.card-media, .card-footer, .lat-table th, .lat-table td, .wg-rows li, .wg-models, .wg-models li,
+.lab-obs li, .kb-toolbar, .driver-compat { border-color: var(--line); }
+.card-media { background: var(--bg-surface-1); }
+.card-info .verdict, .gamepad-card .verdict, .modal-verdict, #view-catalog .card-info .verdict {
+  border-color: var(--line); border-left: 2px solid #38BDF8; background: var(--bg-surface-1);
+}
+.modal-specs, .modal-left { background: var(--bg-surface-1); border: var(--border-thin); }
+.modal-close { border: var(--border-thin-hover); }
+.modal-overlay { background: rgba(5, 7, 9, 0.8); }
+.testing-progress, .footer-lab-progress { background: rgba(255, 255, 255, 0.08); }
+.news-skeleton .sk { background: linear-gradient(90deg, var(--bg-surface-2) 25%, var(--bg-surface-1) 50%, var(--bg-surface-2) 75%); background-size: 200% 100%; }
+
+/* Моноширинные технические показатели: Гц, мс, %, deadzone, счётчики */
+.chip-num, .cat-idx, .cat-count, .news-date, .gt-b, .gt-b i, .gt-status, .gt-axes, .gt-slot, .gt-actions button,
+.gp-status, .latency-line, .lat-table td, .lat-table td.mono, .lat-table th,
+.wg-rows b, .wg-models b, .wg-models em, .lab-days, .lab-obs b, .queue-card span, .footer-lab-days, .footer-status,
+.card-info .meta, .gamepad-card .meta, .modal-meta, .modal-spec strong, .driver-version, .driver-meta,
+.fh-dz, .fh-cell b, .fh-rank, .fh-steer, .fh-sync input[type=number], .testing-label,
+.hs-val, .game-meta, .changelog-date, #gt-svg .pc, #gt-svg .t {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.chip-num, .wg-rows b, .lab-obs b, .fh-cell b { font-weight: 700; }
+
+/* =====================================================================
+   ЭТАП 2: первый экран — асимметричный Hero + приборная панель
+   ===================================================================== */
+.hero .hero-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  padding: 24px 0 8px;
+}
+.hero-main { max-width: none; min-width: 0; }
+.hero .hero-card h1 {
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.hero-main .hero-sub { max-width: 560px; font-size: 16px; margin-bottom: 22px; }
+.hero-main .search { max-width: 520px; margin: 0 0 14px; padding: 4px 4px 4px 16px; }
+.hero-main .search input { font-size: 14px; }
+.hero-main .search button { width: 36px; height: 36px; }
+.hero-main .hero-tags { margin-bottom: 22px; }
+.hero-main .hero-actions .hero-cta {
+  padding: 14px 28px; font-size: 15px; font-weight: 700;
+  background: #2563EB; border: 1px solid rgba(147, 197, 253, 0.5); color: #fff;
+}
+.hero-main .hero-actions .hero-cta:hover { background: #1E40AF; }
+
+/* Живая карточка стендового теста (glass) */
+.hero-live {
+  display: flex; flex-direction: column; gap: 16px; min-width: 0;
+  padding: 22px 24px;
+  background: var(--bg-glass);
+  border: var(--border-thin);
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.hl-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; }
+.hl-status { display: inline-flex; align-items: center; gap: 8px; color: #34D399; font-weight: 700; }
+.hl-dot { width: 8px; height: 8px; border-radius: 50%; background: #34D399; box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18); animation: hl-pulse 1.8s ease-in-out infinite; }
+@keyframes hl-pulse { 50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); } }
+@media (prefers-reduced-motion: reduce) { .hl-dot { animation: none; } }
+.hl-id { color: var(--text-3); }
+.hero-live .hl-title { font-size: 22px; letter-spacing: -0.02em; margin: 0; text-shadow: none; }
+.hl-days { display: flex; align-items: baseline; gap: 8px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.hl-days b { font-size: 34px; line-height: 1; color: #F8FAFC; font-weight: 700; }
+.hl-days span { font-size: 13px; color: var(--text-3); }
+.hl-days em { margin-left: auto; font-style: normal; font-size: 14px; font-weight: 700; color: #38BDF8; }
+.hl-bar { height: 6px; margin-top: 10px; border-radius: 3px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.hl-bar span { display: block; height: 100%; background: linear-gradient(90deg, #2563EB, #38BDF8); border-radius: 3px; }
+.hl-metrics { display: flex; flex-direction: column; margin: 0; }
+.hl-metrics > div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.hl-metrics dt { color: var(--text-2); }
+.hl-metrics dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; color: #F8FAFC; text-align: right; }
+.hl-link { font-size: 13px; font-weight: 600; }
+
+/* Приборная панель: единая строка со статистикой */
+.hero .stat-chips {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: nowrap; gap: 0; margin-top: 28px;
+  background: rgba(15, 18, 24, 0.88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 28px; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  align-items: stretch;
+}
+.hero .stat-chips .chip {
+  flex: 1 1 0; min-width: 0; padding: 4px 20px; gap: 12px; box-sizing: border-box;
+  background: transparent; border: 0; border-left: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0;
+}
+.hero .stat-chips .chip:first-child { border-left: 0; padding-left: 0; }
+.hero .stat-chips .chip:last-child { padding-right: 0; }
+.hero .stat-chips .chip-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 24px; font-weight: 700; line-height: 1; }
+.hero .stat-chips .chip-label { font-size: 10px; line-height: 1.3; }
+.hero .stat-chips .chip-arrow { font-size: 16px; }
+
+@media (max-width: 900px) {
+  .hero .hero-card { grid-template-columns: 1fr; gap: 28px; }
+  .hero .stat-chips { flex-wrap: wrap; padding: 14px 16px; }
+  .hero .stat-chips .chip:first-child, .hero .stat-chips .chip:last-child { padding: 10px 20px; }
+  .hero .stat-chips .chip { padding: 10px 20px; flex: 1 1 33%; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .hero .stat-chips .chip:nth-child(-n+3) { border-top: 0; }
+  .hero .stat-chips .chip:not(:nth-child(3n+1)) { border-left: 1px solid rgba(255, 255, 255, 0.08); }
+}
+@media (max-width: 600px) {
+  .hero .stat-chips .chip { flex-basis: 50%; }
+  .hero .stat-chips .chip:nth-child(-n+3) { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .hero .stat-chips .chip:nth-child(-n+2) { border-top: 0; }
+  .hero .stat-chips .chip:not(:nth-child(3n+1)) { border-left: 0; }
+  .hero .stat-chips .chip:nth-child(2n) { border-left: 1px solid rgba(255, 255, 255, 0.08); }
+  .hero .stat-chips .chip:last-child { flex-basis: 100%; border-left: 0; }
+}
+
+/* =====================================================================
+   ЭТАП 3: каталог — чистое превью + тех. бейджи; «В работе» — инженерный лог
+   ===================================================================== */
+.gamepad-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+/* Карточка каталога: превью — главный элемент, без тяжёлых рамок */
+#view-catalog .gamepad-card, .gamepad-card { border: 1px solid var(--line); border-radius: 10px; }
+.gamepad-card .card-media { position: relative; height: auto; aspect-ratio: 4 / 3; border: 0; background: var(--bg-surface-1); }
+.gamepad-card .card-media img.gamepad-image { transition: transform .5s ease; }
+.gamepad-card:hover .card-media img.gamepad-image { transform: scale(1.04); }
+.gamepad-card .card-media::after { content: ''; position: absolute; inset: auto 0 0 0; height: 45%; background: linear-gradient(180deg, transparent, rgba(11, 13, 16, 0.78)); pointer-events: none; }
+.gamepad-card .telemetry-ph { min-height: 0; }
+
+/* Тех. бейджи поверх превью */
+.spec-badges { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.spec-badges li {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; line-height: 1;
+  padding: 5px 8px; border-radius: 4px; color: #E2E8F0;
+  background: rgba(11, 13, 16, 0.62); border: 1px solid rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.spec-badges li:nth-child(2) { color: #7DD3FC; }
+
+/* Текстовая часть — спокойнее */
+.gamepad-card .card-info { padding: 14px 16px 16px; }
+.gamepad-card .card-info::before { content: none; }
+.gamepad-card .card-info h3 { font-size: 17px; margin-bottom: 4px; }
+.gamepad-card .card-info .meta { font-size: 11px; color: var(--text-3); text-transform: none; margin-bottom: 10px; }
+.gamepad-card .card-info .desc { font-size: 14px; color: var(--text-2); margin-bottom: 14px; }
+.card-info .verdict, .gamepad-card .verdict { font-size: 13px; padding: 8px 10px; border-radius: 0 6px 6px 0; }
+.gamepad-card .review-link { margin-top: 10px; text-align: left; font-size: 11px; letter-spacing: .06em; }
+
+/* «В работе»: инженерный лог */
+#in-testing .lab-grid { counter-reset: lab; gap: 14px; }
+.lab-card { counter-increment: lab; padding: 14px 16px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-surface-2); }
+.lab-card:hover { border-color: var(--line-hover); }
+.lab-card::before {
+  content: 'LOG // ' counter(lab, decimal-leading-zero);
+  display: block; margin-bottom: 4px;
+  font: 600 10px var(--font-mono); letter-spacing: .14em; color: var(--text-3);
+}
+.lab-card h4 { font-size: 15px; margin: 0 0 12px; letter-spacing: -0.01em; }
+.lab-days { margin-bottom: 7px; font: 700 12px var(--font-mono); font-variant-numeric: tabular-nums; color: #F8FAFC; }
+.lab-days span:last-child { color: #38BDF8; }
+.lab-card .testing-progress { height: 3px; border-radius: 0; background: rgba(255, 255, 255, 0.08); margin: 0 0 14px; }
+.lab-card .testing-bar { border-radius: 0; background: #38BDF8; }
+.lab-card:has(.testing-bar[style*="100%"]) .testing-bar { background: #34D399; }
+.lab-card:has(.testing-bar[style*="100%"]) .lab-days span:last-child { color: #34D399; }
+.lab-sub { margin: 12px 0 6px; font: 600 10px var(--font-mono); letter-spacing: .14em; color: var(--text-3); }
+.lab-games li { font: 500 11px var(--font-mono); padding: 3px 7px; margin: 0 4px 4px 0; border-radius: 3px; background: transparent; border: 1px solid var(--line-hover); color: #CBD5E1; }
+.lab-obs li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; align-items: baseline; }
+.lab-obs li:last-child { border-bottom: 0; padding-bottom: 0; }
+.lab-obs li span { color: var(--text-2); }
+.lab-obs b { font: 600 12px var(--font-mono); font-variant-numeric: tabular-nums; color: #F8FAFC; }
+.queue-card { padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; }
+.queue-card span { font: 500 11px var(--font-mono); }
+
+/* =====================================================================
+   ЭТАП 4: «Драйверы и утилиты» — плотный табличный список
+   ===================================================================== */
+.drv-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; border-top: 1px solid var(--line); }
+.drv-row {
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) auto auto; align-items: center; gap: 14px;
+  height: 60px; padding: 0 12px; border-bottom: 1px solid var(--line);
+  color: var(--text); text-decoration: none; transition: background-color .15s;
+}
+.drv-row:hover { background: rgba(255, 255, 255, 0.035); text-decoration: none; }
+.drv-ico {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px;
+  font: 700 11px var(--font-mono); letter-spacing: .02em; color: #7DD3FC;
+  background: var(--bg-surface-2); border: 1px solid var(--line-hover);
+}
+.drv-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.drv-main strong { font-size: 14px; font-weight: 700; line-height: 1.2; color: #F8FAFC; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drv-desc { font-size: 12px; line-height: 1.3; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drv-tag {
+  font: 600 10px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  padding: 4px 8px; border-radius: 4px; color: var(--text-2); border: 1px solid var(--line-hover);
+}
+.drv-btn {
+  font: 600 12px var(--font-mono); white-space: nowrap; padding: 7px 14px; border-radius: 6px;
+  color: #F8FAFC; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.45);
+  transition: background-color .15s, border-color .15s;
+}
+.drv-row:hover .drv-btn { background: rgba(56, 189, 248, 0.3); border-color: #38BDF8; }
+
+@media (max-width: 1100px) { .drv-list { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) {
+  .drv-row { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; padding: 0 4px; }
+  .drv-tag { display: none; }
+  .drv-btn { padding: 6px 10px; }
+}
+
+/* =====================================================================
+   ЭТАП 5: Forza Hall — форма в выдвижной панели, чистая сетка карточек
+   ===================================================================== */
+.fh-backdrop { position: fixed; inset: 0; z-index: 10000; background: rgba(5, 7, 9, 0.7); animation: fh-fade .2s ease; }
+.fh-backdrop[hidden] { display: none; }
+#view-forza .fh-form.fh-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; left: auto; z-index: 10001;
+  width: min(580px, 100vw); margin: 0; padding: 0 24px 0;
+  overflow-y: auto; overscroll-behavior: contain; align-content: start;
+  background: var(--bg-surface-2); border: 0; border-left: var(--border-thin-hover); border-radius: 0;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
+  animation: fh-drawer-in .24s cubic-bezier(.2, .8, .2, 1);
+}
+#view-forza .fh-form.fh-drawer[hidden] { display: none; }
+@keyframes fh-drawer-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes fh-fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .fh-form.fh-drawer, .fh-backdrop { animation: none !important; } }
+.fh-drawer-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; margin: 0 -24px 4px; padding: 18px 24px 14px; background: var(--bg-surface-2); border-bottom: var(--border-thin); }
+.fh-drawer-head h3 { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
+.fh-drawer-close { width: 34px; height: 34px; border-radius: 8px; border: var(--border-thin); background: var(--bg-surface-1); color: var(--text-2); font-size: 14px; cursor: pointer; }
+.fh-drawer-close:hover { border: var(--border-thin-hover); color: #F8FAFC; }
+.fh-drawer .fh-actions { position: sticky; bottom: 0; z-index: 2; margin: 8px -24px 0; padding: 14px 24px 18px; background: var(--bg-surface-2); border-top: var(--border-thin); }
+/* в узкой панели схема геймпада не нужна, оси в две колонки */
+.fh-drawer .fh-extra { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+.fh-drawer .fh-extra .fh-padmap { display: none; }
+.fh-drawer .fh-adv-row { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 640px) {
+  #view-forza .fh-form.fh-drawer { grid-template-columns: minmax(0, 1fr); padding: 0 16px; }
+  .fh-drawer-head { margin: 0 -16px 4px; padding: 14px 16px 12px; }
+  .fh-drawer .fh-actions { margin: 8px -16px 0; padding: 12px 16px 16px; }
+  .fh-drawer .fh-extra { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Телеметрия настроек на карточке */
+.fh-telem { display: flex; gap: 6px; flex-wrap: wrap; }
+.fh-telem span {
+  display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 8px; border-radius: 4px;
+  font: 600 10px var(--font-mono); letter-spacing: .08em; color: var(--text-3);
+  background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line);
+}
+.fh-telem b { font-size: 12px; letter-spacing: 0; color: #F8FAFC; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* =====================================================================
+   ФИНАЛЬНАЯ ПОЛИРОВКА: адаптив 1280 / 768 / 390, без горизонтального скролла
+   ===================================================================== */
+html, body { max-width: 100%; overflow-x: clip; }
+img, svg, canvas, video { max-width: 100%; }
+main, .view, .block { min-width: 0; }
+.gamepad-grid { grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
+.driver-grid { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
+.games-grid { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+.section-head { flex-wrap: wrap; }
+.section-link { white-space: normal; }
+#latency-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.lat-table { min-width: 0; }
+.gt-skin-wait { white-space: normal; width: max-content; max-width: 92%; text-align: center; }
+.gt-title strong, .fh-who strong, .card-info h3 { overflow-wrap: anywhere; }
+
+@media (max-width: 768px) {
+  .lat-table th, .lat-table td { padding: 8px 8px; font-size: 12px; }
+  .section-title { font-size: 11px; }
+  .fh-bar { align-items: stretch; }
+  .tester-bar h2 { font-size: 20px; }
+}
+@media (max-width: 480px) {
+  .hero .hero-card h1 { font-size: clamp(28px, 9vw, 36px); }
+  .hero-main .hero-actions .hero-cta { width: 100%; text-align: center; }
+  .hero-live { padding: 18px 16px; }
+  .quick-filters, .fh-filters, .kb-chips { gap: 6px; }
+  .gt-btns { grid-template-columns: repeat(4, 1fr); }
+  .gt-sticks { grid-template-columns: 1fr; }
+  .gt-actions button { flex: 1 1 100%; }
+  .lat-table th:last-child, .lat-table td:last-child { display: none; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* =====================================================================
+   ИСПРАВЛЕНИЯ ПОСЛЕ РЕДИЗАЙНА: обои, нижний ряд виджетов, мета категорий
+   ===================================================================== */
+/* Обои teamreact.jpg + тёмный градиент (градиент по высоте страницы, фото фиксировано) */
+body {
+  background-color: var(--bg-base);
+  background-image:
+    linear-gradient(180deg, rgba(11, 13, 16, 0.72) 0%, #0b0d10 100%),
+    url('./teamreact.jpg');
+  background-size: 100% 100%, cover;
+  background-position: top center, center top;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: scroll, fixed;
+}
+/* Hero прозрачный: обои не перекрываются */
+.hero, .hero.block, .hero .hero-card, .hero .hero-main { background: transparent !important; }
+/* Полосы секций полупрозрачные, чтобы обои читались */
+.home #categories, .home #news {
+  background: rgba(16, 19, 24, 0.82);
+  box-shadow: 0 0 0 100vmax rgba(16, 19, 24, 0.82);
+}
+
+/* Нижний ряд: PIT // ЗАДЕРЖКА и FORZA HALL — одинаковая высота */
+.widget-grid { align-items: stretch; }
+.widget-grid > .widget { height: 100%; }
+.widget.has-img { align-items: stretch; min-height: 0; }
+.has-img .wg-body { display: flex; flex-direction: column; width: 100%; }
+.has-img .wg-body .wg-link { margin-top: auto; padding-top: 10px; }
+.has-img p { max-width: none; }
+.wg-setups { list-style: none; margin: 8px 0 12px; padding: 0; display: flex; flex-direction: column; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.wg-setups li { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.wg-setups a {
+  display: grid; grid-template-columns: 28px 52px minmax(120px, auto) 1fr; align-items: center; gap: 12px;
+  padding: 9px 6px; color: #E2E8F0; font-size: 13px; text-decoration: none;
+  border-radius: 8px; transition: background 0.15s ease;
+}
+.wg-setups a:hover { color: #F8FAFC; background: rgba(255, 255, 255, 0.03); text-decoration: none; }
+.ws-pos { font: 600 11px var(--font-mono); color: rgba(255, 255, 255, 0.4); font-variant-numeric: tabular-nums; }
+.ws-team { font: 700 11px var(--font-mono); letter-spacing: .06em; text-align: center; padding: 2px 0; border-radius: 4px; color: #38BDF8; background: rgba(56, 189, 248, 0.14); }
+.ws-team-esv { color: #60A5FA; background: rgba(96, 165, 250, 0.16); }
+.ws-team-k1z { color: #F87171; background: rgba(248, 113, 113, 0.16); }
+.ws-team-f1r { color: #FBBF24; background: rgba(251, 191, 36, 0.16); }
+.ws-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ws-val { font: 500 12px var(--font-mono); white-space: nowrap; justify-self: end; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 3px 9px; color: rgba(255, 255, 255, 0.85); }
+.wg-setups li:nth-child(1) .ws-pos { color: #38bdf8; }
+.wg-setups li:nth-child(2) .ws-pos, .wg-setups li:nth-child(3) .ws-pos { color: rgba(255, 255, 255, 0.75); }
+@media (max-width: 480px) { .wg-setups a { grid-template-columns: 24px 44px minmax(0, 1fr); } .ws-val { display: none; } }
+
+/* Декор: череп в правой части карточки Forza Hall */
+.widget.wg-forza { position: relative; overflow: hidden; }
+.widget.wg-forza::after {
+  content: ""; position: absolute; right: -10px; bottom: 0; width: 220px; aspect-ratio: 1;
+  background: url("images/skull.png") no-repeat right bottom / contain;
+  opacity: 0.16; mix-blend-mode: screen; pointer-events: none; z-index: 0;
+}
+.widget.wg-forza .wg-body { position: relative; z-index: 1; }
+
+/* Счётчики в карточках категорий */
+.category-grid .cat-count, .cat-count {
+  font-size: 12px; font-weight: 600; letter-spacing: .06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.category-grid .cat:hover .cat-count { color: rgba(255, 255, 255, 0.8); }
+
+/* =====================================================================
+   FORZA HALL: жёсткая табличная сетка карточек игроков
+   ИГРОК 240 · КОМАНДА 100 · ГЕЙМПАД 230 · ДОСТИЖЕНИЯ 1fr · СОЦСЕТИ auto
+   ===================================================================== */
+.fh-grid .fh-card {
+  display: grid;
+  grid-template-columns: 240px 100px 230px minmax(0, 1fr) auto;
+  column-gap: 24px; row-gap: 14px;
+  align-items: start; align-content: start;
+  padding: 16px 20px;
+}
+/* общие правила колонок: единая верхняя линия и левая ось */
+.fh-grid .fh-card > .fh-who,
+.fh-grid .fh-card > .fh-team,
+.fh-grid .fh-card > .fh-setup,
+.fh-grid .fh-card > .fh-ach,
+.fh-grid .fh-card > .fh-links {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;
+  align-self: start; text-align: left; gap: 6px;
+  min-width: 0; margin: 0; padding: 0; border: 0;
+}
+.fh-grid .fh-card > .fh-links { flex-direction: row !important; align-items: center; justify-content: flex-end; gap: 8px; }
+/* заголовки колонок — на одной базовой линии */
+.fh-grid .fh-card .fh-lbl { display: block; height: 12px; line-height: 12px; margin: 0 0 2px; align-self: flex-start; }
+.fh-grid .fh-card .fh-who strong { max-width: 100%; }
+.fh-grid .fh-card .fh-rank, .fh-grid .fh-card .fh-badge { align-self: flex-start; max-width: 100%; white-space: normal; }
+.fh-grid .fh-card .fh-tag { text-align: left; overflow-wrap: anywhere; }
+
+/* колонка ГЕЙМПАД: одна левая линия, перенос длинных названий внутри плашки */
+.fh-grid .fh-card > .fh-setup > * { align-self: stretch; }
+.fh-grid .fh-card > .fh-setup .fh-lbl { align-self: flex-start; }
+.fh-grid .fh-card > .fh-setup .fh-pad {
+  width: 100%; max-width: none; box-sizing: border-box; margin: 0;
+  display: block; min-height: 38px; text-align: left; line-height: 1.3;
+  overflow-wrap: anywhere; word-break: normal; hyphens: auto;
+}
+.fh-grid .fh-card > .fh-setup .fh-telem { justify-content: flex-start; }
+.fh-grid .fh-card > .fh-setup .fh-axes-btn {
+  width: 100%; max-width: none; box-sizing: border-box; margin: 0; text-align: left;
+}
+.fh-grid .fh-card > .fh-ach .fh-note { margin: 0; text-align: left; overflow-wrap: anywhere; }
+.fh-grid .fh-card .fh-axes { grid-column: 1 / -1; margin: 0; }
+
+/* меньшие контейнеры: сохраняем структуру, слегка сжимаем фиксированные колонки */
+@media (max-width: 1200px) {
+  .fh-grid .fh-card { grid-template-columns: 200px 90px 200px minmax(0, 1fr) auto; column-gap: 20px; }
+}
+/* < 992px: компактная двухколоночная сетка, без горизонтального скролла */
+@media (max-width: 991px) {
+  .fh-grid .fh-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 20px; row-gap: 16px; }
+  .fh-grid .fh-card > .fh-links { grid-column: 1 / -1; justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .fh-grid .fh-card { grid-template-columns: minmax(0, 1fr); padding: 14px 16px; }
+}
+
+/* =====================================================================
+   НИЖНИЙ РЯД: PIT // ЗАДЕРЖКА и FORZA HALL — без обрезки, плотный фон, контраст
+   ===================================================================== */
+.widget-grid { align-items: stretch; }
+.widget-grid > .widget {
+  height: auto; min-height: 0; max-height: none;
+  overflow: visible;                       /* ничего не обрезаем по нижнему краю */
+  padding-bottom: 20px;
+  display: flex; flex-direction: column;
+  background-color: rgba(16, 19, 24, 0.9);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+}
+.widget-grid > .widget:hover { background-color: rgba(16, 19, 24, 0.9); }
+/* подложки с картинкой повторяют скругление карточки */
+.widget.has-img::before, .widget.has-img::after { border-radius: inherit; }
+/* нижняя ссылка всегда прижата к низу и видна целиком */
+.widget-grid > .widget > .wg-link,
+.widget-grid > .widget .wg-body > .wg-link { margin-top: auto; padding-top: 12px; display: inline-block; align-self: flex-start; }
+.widget.has-img { align-items: stretch; }
+.widget.has-img > .wg-body { flex: 1 1 auto; display: flex; flex-direction: column; width: 100%; }
+
+/* читаемость списка задержек */
+.wg-rows li, .wg-rows li span, .wg-models li, .wg-models li span { color: rgba(255, 255, 255, 0.85); }
+.wg-models em { color: rgba(255, 255, 255, 0.55); }
+.wg-note { color: rgba(255, 255, 255, 0.6); }
+.wg-setups a, .wg-setups .ws-name { color: rgba(255, 255, 255, 0.85); }
+
+/* =====================================================================
+   МЕТАЛЛ: шлифованная текстура, объём и hover для карточек
+   (.cat = category-card, .wg-latency = PIT, .wg-forza = превью Forza Hall,
+    .kb-card = «База знаний», .fh-drawer = боковая панель)
+   ===================================================================== */
+.category-grid .cat,
+.widget-grid > .widget.wg-latency,
+.widget-grid > .widget.wg-forza,
+.kb-card,
+#view-kb .kb-card,
+.guide-item {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+    linear-gradient(155deg, rgba(31, 36, 46, 0.92) 0%, rgba(15, 18, 24, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 12px 28px -8px rgba(0, 0, 0, 0.75);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.category-grid .cat:hover,
+.widget-grid > .widget.wg-latency:hover,
+.widget-grid > .widget.wg-forza:hover,
+.kb-card:hover,
+#view-kb .kb-card:hover,
+.guide-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: inset 0 1px 0 rgba(56, 189, 248, 0.35), 0 16px 32px -8px rgba(0, 0, 0, 0.85);
+}
+.category-grid .cat:hover .cat-idx { color: var(--text-3); }
+.category-grid .cat:hover::after { color: #38BDF8; }
+
+
+/* Боковая панель: тот же металл, но непрозрачный; без подъёма */
+#view-forza .fh-form.fh-drawer {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+    linear-gradient(155deg, #1F242E 0%, #0F1218 100%);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.04), -24px 0 60px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* Карточка-слот «+ Добавить свой сетап» в конце сетки Forza Hall */
+.fh-slot {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; min-height: 72px; padding: 16px 20px; box-sizing: border-box;
+  border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 8px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px), rgba(15, 18, 24, 0.5);
+  color: var(--text-2); font: inherit; font-weight: 600; cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.fh-slot-plus { font-size: 22px; line-height: 1; font-weight: 400; }
+.fh-slot:hover, .fh-slot:focus-visible {
+  transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.6); color: #38BDF8; outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .category-grid .cat, .kb-card, .fh-slot { transition: none; }
+  .category-grid .cat:hover, .kb-card:hover, .fh-slot:hover { transform: none; }
+}
+
+/* =====================================================================
+   ПРАВКИ ВЁРСТКИ ГЛАВНОЙ: новости, плотность подложек, футер, счётчики
+   (.category-card = .cat, .pit-card = .wg-latency, .forza-preview-card = .wg-forza)
+   ===================================================================== */
+/* 1. Новости: шапка на одной линии, карточки одной высоты, ссылка внизу */
+.home #news .section-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: nowrap; gap: 16px; }
+.home #news .section-head .section-link { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 600px) { .home #news .section-head { flex-wrap: wrap; } }
+.news-grid { grid-auto-rows: 1fr; }
+.news-card { display: flex; flex-direction: column; height: 100%; }
+.news-card .news-meta { flex-wrap: nowrap; }
+.news-card .news-tag { white-space: nowrap; flex-shrink: 0; }
+.news-card .review-link { margin-top: auto; }
+
+/* 2. Плотная подложка поверх обоев */
+.category-grid .cat,
+.widget-grid > .widget.wg-latency,
+.widget-grid > .widget.wg-forza,
+.news-card,
+.news-card:hover {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+    linear-gradient(155deg, rgba(15, 18, 24, 0.94) 0%, rgba(15, 18, 24, 0.94) 100%);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.widget-grid > .widget.wg-latency:hover,
+.widget-grid > .widget.wg-forza:hover,
+.category-grid .cat:hover {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+    linear-gradient(155deg, rgba(15, 18, 24, 0.94) 0%, rgba(15, 18, 24, 0.94) 100%);
+}
+.wg-models li, .wg-models li span { color: rgba(255, 255, 255, 0.85); }
+
+/* 3. Футер: ширина контейнера и чёткая сетка */
+.footer-container { max-width: 1440px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 48px; align-items: start; }
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .footer-brand { grid-column: auto; }
+}
+
+/* 4. Счётчики категорий */
+.category-grid .cat-count, .cat-count { font-size: 12px; color: rgba(255, 255, 255, 0.65); }
+
+/* =====================================================================
+   БЕСШОВНАЯ ШАПКА И ОВЕРЛЕЙ ОБОЕВ (без серой полосы под навигацией)
+   ===================================================================== */
+body > header, header {
+  background: rgba(11, 13, 16, 0.65) !important;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+}
+body {
+  background-color: #0b0d10;
+  background-image:
+    linear-gradient(180deg, rgba(11, 13, 16, 0.78) 0%, rgba(11, 13, 16, 0.55) 35%, rgba(11, 13, 16, 0.88) 75%, #0b0d10 100%),
+    url('./teamreact.jpg');
+  background-size: 100% 100%, cover;
+  background-position: top center, center top;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: scroll, fixed;
+}
+.hero, .hero.block, .hero .hero-card, .hero .hero-main {
+  background: transparent !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+}
+
+/* =====================================================================
+   БЕЗ ПОЛОС НА ВСЮ ШИРИНУ: секции главной прозрачны, плотность — только у карточек
+   ===================================================================== */
+.home section, .home section.block,
+.home #hero, .home #categories, .home #widgets, .home #news {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+
+/* Skull в виджете «Геймпады сообщества»: поверх подложки, под строками лидерборда */
+.widget.wg-forza { position: relative; overflow: hidden; isolation: isolate; }
+.widget.wg-forza::after {
+  content: ""; position: absolute; right: -15px; bottom: -10px; width: 240px; aspect-ratio: 1;
+  background: url("images/skull.png") no-repeat right bottom / contain;
+  z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: 0.28; filter: contrast(1.15);
+}
+.widget.wg-forza .wg-body { position: relative; z-index: 2; }
+
+/* Hero-виджет RADAR */
+.rd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rd-list li { border-top: 1px solid var(--line); }
+.rd-list a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; color: inherit; text-decoration: none; }
+.rd-main { display: flex; flex-direction: column; min-width: 0; }
+.rd-main strong { font-size: 14px; color: #F8FAFC; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rd-main small { font-size: 11px; color: var(--text-3); letter-spacing: .06em; }
+.rd-status { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: #38BDF8; white-space: nowrap; }
+.rd-list a:hover strong { color: #38BDF8; }
+.rd-empty { padding: 10px 0; color: var(--text-3); font-size: 13px; }
+
+/* =====================================================================
+   ФУТЕР: 4 колонки, виджет быстрой проверки, плавный стык с обоями
+   Контейнер = main (max-width 1440, padding 24) — одна ширина с контентом
+   ===================================================================== */
+body > footer {
+  position: relative; margin-top: 0;
+  background: linear-gradient(180deg, rgba(19, 23, 31, 0.90) 0%, rgba(12, 15, 20, 0.95) 100%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: var(--text-2);
+}
+body > footer .footer-container {
+  max-width: 1440px; width: 100%; margin: 0 auto; box-sizing: border-box;
+  padding: 48px 24px 0;
+}
+body > footer .footer-grid {
+  display: grid; grid-template-columns: 1.3fr 0.85fr 1fr 1.35fr; gap: 32px; align-items: start; width: 100%;
+}
+body > footer .footer-brand, body > footer .footer-col { min-width: 0; }
+body > footer .footer-logo { color: #F8FAFC; }
+body > footer .footer-brand p { margin-top: 10px; max-width: 360px; line-height: 1.55; }
+body > footer .footer-status { margin-top: 12px; }
+.footer-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.footer-badge {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; color: #CBD5E1;
+  border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.04);
+}
+.footer-quick {
+  width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
+  background: linear-gradient(155deg, rgba(31, 36, 46, 0.92) 0%, rgba(15, 18, 24, 0.96) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.fq-title { color: #F8FAFC; font-size: 15px; }
+.fq-status { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-3); line-height: 1.4; }
+.fq-status span { min-width: 0; overflow-wrap: anywhere; }
+.fq-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #64748B; }
+.footer-quick.is-live .fq-status { color: #E2E8F0; }
+.footer-quick.is-live .fq-dot { background: #22C55E; box-shadow: 0 0 8px rgba(34, 197, 94, 0.8); }
+.fq-actions { display: flex; flex-direction: column; gap: 8px; }
+body > footer .footer-col a.fq-btn {
+  display: flex; align-items: center; justify-content: center; padding: 9px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; text-align: center; transition: background .2s, border-color .2s, color .2s;
+}
+body > footer .footer-col a.fq-primary {
+  color: #F8FAFC; border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, #3b4352 0%, #232a36 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+body > footer .footer-col a.fq-primary:hover { border-color: var(--accent); color: #fff; }
+body > footer .footer-col a.fq-secondary { color: #CBD5E1; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; }
+body > footer .footer-col a.fq-secondary:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+body > footer .footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  width: 100%; margin: 40px 0 0; padding: 20px 0 24px; box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left; font-size: 13px; color: var(--text-3);
+}
+body > footer .footer-note { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+@media (max-width: 1024px) {
+  body > footer .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body > footer .footer-brand { grid-column: auto; }
+}
+@media (max-width: 600px) {
+  body > footer .footer-container { padding-left: 16px; padding-right: 16px; }
+  body > footer .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+
+/* COMMS // TERMINAL (footer col 4) */
+.comms-terminal {
+  width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; padding: 12px;
+  border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08);
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31, 36, 46, 0.94) 0%, rgba(15, 18, 24, 0.96) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 28px -8px rgba(0, 0, 0, 0.75);
+}
+body > footer .footer-col a.comms-row {
+  display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 8px; color: #CBD5E1;
+  border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02);
+  transition: transform .2s, border-color .2s, color .2s;
+}
+body > footer .footer-col a.comms-row:hover { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.45); color: #fff; }
+.comms-ico { flex: none; color: #94A3B8; }
+.comms-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.comms-txt strong { color: #F8FAFC; font-size: 13px; overflow-wrap: anywhere; }
+.comms-txt small { color: var(--text-3); font-size: 12px; }
+.comms-badge {
+  flex: none; font-family: var(--mono, 'JetBrains Mono', monospace); font-variant-numeric: tabular-nums;
+  font-size: 11px; letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; color: #7DD3FC;
+  border: 1px solid rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.08); white-space: nowrap;
+}
+body > footer .footer-col a.comms-cta {
+  display: flex; align-items: center; justify-content: center; padding: 10px 12px; border-radius: 8px;
+  font-family: var(--mono, 'JetBrains Mono', monospace); font-size: 12px; font-weight: 600; text-align: center; color: #F8FAFC;
+  border: 1px solid rgba(255, 255, 255, 0.18); background: linear-gradient(180deg, #3b4352 0%, #232a36 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15); transition: border-color .2s, color .2s;
+}
+body > footer .footer-col a.comms-cta:hover { border-color: rgba(56, 189, 248, 0.45); color: #fff; }
+/* Footer engineering stamp */
+.footer-stamp { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-2); }
+.footer-stamp::first-letter { color: inherit; }
+.footer-stamp-mark { display: block; flex: none; }
+.footer-stamp-label { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.footer-stamp:hover .footer-stamp-label { color: #38bdf8; }
+body > footer .footer-stamp { color: rgba(248, 250, 252, 0.62); }
+/* ===== «База знаний» и «Полезное»: единый строгий стиль (финальный, без цветов категорий) ===== */
+#view-kb .kb-card, .guide-item { border: 1px solid rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: none; backdrop-filter: none; }
+#view-kb .kb-card:hover, .guide-item:hover { border-color: rgba(56, 189, 248, 0.45); }
+#view-kb .kb-card, .guide-item { display: flex; flex-direction: column; }
+#view-kb .kb-card { height: 100%; }
+#view-kb .kb-card h3, .guide-item h3 { color: #f8fafc; }
+#view-kb .kb-card p, .guide-item p:not(.difficulty) { color: rgba(255, 255, 255, 0.65); }
+#view-kb .kb-tag { display: flex; align-items: center; gap: 8px; font-family: var(--mono, 'JetBrains Mono', monospace); font-variant-numeric: tabular-nums; color: #94a3b8; }
+#view-kb .kb-tag-name { color: #38bdf8; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 2px 7px; }
+#view-kb .kb-tag-time, .guide-item .difficulty { color: rgba(255, 255, 255, 0.45); }
+#view-kb .kb-more, #view-kb .review-link, .guide-item a { color: #38bdf8; margin-top: auto; }
+#view-kb .kb-more, #view-kb .review-link { padding-top: 14px; }
+#view-kb .kb-chip { background: rgba(15, 18, 24, 0.9); border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.7); }
+#view-kb .kb-chip:hover { background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.45); color: #f8fafc; }
+#view-kb .kb-chip.active, #view-kb .kb-chip.active:hover { background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.45); color: #f8fafc; font-weight: 600; }
+#view-kb .kb-search:focus { border-color: #38bdf8; }
+
+/* ===== Модалка: задержки, отзыв владельца, где купить; цены в карточке ===== */
+.modal-latency, .modal-owner, .modal-buy, .modal-content > .modal-review { margin: 0 40px 20px; }
+.modal-content > .modal-review { margin-top: 0; }
+.modal-latency, .modal-buy {
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0px, rgba(255,255,255,0.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31,36,46,0.94) 0%, rgba(15,18,24,0.96) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 12px 28px -8px rgba(0,0,0,0.75);
+  border-radius: 14px; padding: 16px 18px; color: #F8FAFC;
+}
+.modal-latency h4, .modal-buy h4 { margin: 0 0 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #94A3B8; }
+.mlat-table { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 13px; }
+.mlat-table th, .mlat-table td { padding: 7px 8px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.mlat-table thead th { color: #7DD3FC; font-weight: 600; font-size: 12px; }
+.mlat-table tbody th { text-align: left; color: #94A3B8; font-weight: 500; }
+.mlat-table td { color: #F8FAFC; }
+.mlat-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 12px; color: #94A3B8; }
+.mlat-foot b { color: #F8FAFC; }
+.mlat-foot a { color: #38bdf8; text-decoration: none; }
+.mlat-foot a:hover { text-decoration: underline; }
+.modal-owner { border-left: 3px solid #38bdf8; background: rgba(15,23,42,0.5); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #E2E8F0; }
+.modal-owner-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #38bdf8; margin-bottom: 6px; }
+.modal-owner h4 { margin: 0 0 6px; color: #F8FAFC; }
+.modal-owner p { margin: 0; line-height: 1.6; }
+.modal-buy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+.shop-btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px;
+  background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.12); color: #F8FAFC; text-decoration: none; font-size: 14px;
+  transition: transform .15s, border-color .15s;
+}
+.shop-btn:hover { transform: translateY(-2px); border-color: rgba(56,189,248,0.45); text-decoration: none; }
+.shop-price { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: #7DD3FC; }
+.shop-go { color: #38bdf8; }
+.modal-buy-row .modal-tester-btn { margin-left: auto; display: inline-flex; align-items: center; }
+.card-prices { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 12px; color: #94A3B8; }
+.cp-item { cursor: pointer; }
+.cp-item b { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: #7DD3FC; font-weight: 600; }
+.cp-item:hover { color: #F8FAFC; }
+@media (max-width: 720px) {
+  .modal-latency, .modal-owner, .modal-buy, .modal-content > .modal-review { margin-left: 16px; margin-right: 16px; }
+  .modal-buy-row .modal-tester-btn { margin-left: 0; }
+}
+
+/* ===== Сравнение 3 моделей + футер таблицы задержек (вкладка «В работе») ===== */
+.cmp-hint { margin: -6px 0 16px; font-size: 13px; color: var(--text-3); }
+.cmp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cmp-card {
+  display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 16px; border-radius: 8px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31, 36, 46, 0.94) 0%, rgba(15, 18, 24, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 28px -8px rgba(0, 0, 0, 0.75);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.cmp-card:hover { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.45); }
+.cmp-select {
+  width: 100%; padding: 9px 10px; border-radius: 6px; cursor: pointer;
+  background: rgba(11, 13, 16, 0.8); color: #F8FAFC; border: 1px solid rgba(255, 255, 255, 0.14);
+  font: 600 13px 'JetBrains Mono', monospace;
+}
+.cmp-select:focus { outline: 2px solid rgba(56, 189, 248, 0.6); outline-offset: 1px; }
+.cmp-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cmp-media { height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: rgba(0, 0, 0, 0.25); overflow: hidden; }
+.cmp-media img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cmp-name { margin: 0; font-size: 15px; letter-spacing: -0.01em; color: #F8FAFC; }
+.cmp-poll { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--text-2); }
+.cmp-poll b { font: 700 15px 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: #38BDF8; }
+.cmp-sub { font: 600 10px 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); }
+.cmp-lat { display: grid; grid-template-columns: 52px 1fr 76px; align-items: center; gap: 8px; font-size: 12px; }
+.cmp-lat-l { color: var(--text-2); }
+.cmp-lat-v { font: 600 12px 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: #F8FAFC; text-align: right; }
+.cmp-bar { height: 8px; border-radius: 2px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.cmp-bar i { display: block; height: 100%; width: 0; background: #64748B; transition: width 0.3s ease; }
+.cmp-bar i.good { background: #34D399; }
+.cmp-bar i.mid { background: #38BDF8; }
+.cmp-bar i.slow { background: #FBBF24; }
+.cmp-spec { list-style: none; margin: 4px 0 0; padding: 0; font-size: 12px; }
+.cmp-spec li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line, rgba(255, 255, 255, 0.06)); }
+.cmp-spec span { color: var(--text-2); flex: none; }
+.cmp-spec b { color: #F8FAFC; font-weight: 600; text-align: right; }
+.cmp-price { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+.cmp-open {
+  margin-top: 4px; padding: 9px 12px; text-align: center; border-radius: 6px; text-decoration: none;
+  font: 600 12px 'JetBrains Mono', monospace; letter-spacing: .04em; color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.45); transition: background 0.2s ease;
+}
+.cmp-open:hover { background: rgba(56, 189, 248, 0.12); }
+.lat-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 12px; font-size: 12px; color: var(--text-3); }
+.lat-refresh {
+  padding: 8px 14px; border-radius: 6px; cursor: pointer; background: transparent; color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.45); font: 600 12px 'JetBrains Mono', monospace;
+}
+.lat-refresh:hover:not(:disabled) { background: rgba(56, 189, 248, 0.12); }
+.lat-refresh:disabled { opacity: 0.6; cursor: wait; }
+.lat-stamp { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: var(--text-2); }
+.lat-stamp b { color: #F8FAFC; }
+.lat-note { flex-basis: 100%; color: rgba(255, 255, 255, 0.6); }
+
+/* ROADMAP // РАЗВИТИЕ ПРОЕКТА */
+.road-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.road-card {
+  display: flex; flex-direction: column; gap: 10px; padding: 18px 20px; border-radius: 8px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31, 36, 46, 0.94) 0%, rgba(15, 18, 24, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 28px -8px rgba(0, 0, 0, 0.75);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.road-card:hover { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.45); }
+.road-tag { font: 600 11px 'JetBrains Mono', monospace; letter-spacing: .8px; text-transform: uppercase; color: #38bdf8; }
+.road-card h4 { margin: 0; font-size: 16px; color: #F8FAFC; }
+.road-card p { margin: 0; font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, 0.7); }
+.road-link {
+  align-self: flex-start; margin-top: auto; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  color: #38bdf8; text-decoration: none; border: 1px solid rgba(56, 189, 248, 0.45); background: rgba(56, 189, 248, 0.08);
+}
+.road-link:hover { background: rgba(56, 189, 248, 0.18); }
+@media (max-width: 900px) { .road-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cmp-grid { grid-template-columns: 1fr; } }
+
+/* PIT // ЗАДЕРЖКА: реальные данные Gamepadla */
+.wg-rows b, .wg-models b, .wg-note b { font-family: var(--mono, 'JetBrains Mono', monospace); font-variant-numeric: tabular-nums; }
+.wg-note { color: rgba(255, 255, 255, 0.65); font-variant-numeric: tabular-nums; }
+.wg-note b { color: #F8FAFC; font-weight: 600; }
+.wg-rows i { transition: width .4s ease; }
+.wg-models .wg-pick-row { display: block; border-bottom: 0; padding: 0 0 4px; }
+.wg-pick { width: 100%; font: 12px var(--mono, 'JetBrains Mono', monospace); color: #F8FAFC; padding: 7px 10px; border-radius: 8px; cursor: pointer;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.014) 0, rgba(255,255,255,.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31,36,46,.94), rgba(15,18,24,.96));
+  border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.wg-pick:hover, .wg-pick:focus { border-color: rgba(56, 189, 248, 0.45); outline: 0; }
+.wg-pick option { background: #0f1218; color: #F8FAFC; }
+.wg-models .wg-detail { display: block; font-size: 11px; line-height: 1.5; color: rgba(255, 255, 255, 0.65); font-variant-numeric: tabular-nums; }
+.wg-models .wg-detail:empty { display: none; }
+.wg-models .wg-detail b { font-size: 11px; color: #F8FAFC; }

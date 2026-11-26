@@ -95,3 +95,23 @@ Add an entry to the `DRIVERS` array in **drivers.js**:
   url: "https://download-link.com",
   discussion: "https://github.com/user/repo/discussions/1"
 }
+
+## UI & Design System (Engineering Dark UI)
+
+### Environment & Token Efficiency
+- **OS:** Windows 11 (PowerShell). Never use Linux shell commands (`wc`, `grep`, `sed`, `awk`).
+- **Editing strategy:** Edit only targeted CSS/HTML blocks; avoid rewriting entire large files (`style.css`, `index.html`) from scratch to minimize token usage.
+
+### Visual Tokens & Surfaces
+- **Base background:** `#0b0d10` (with full-bleed background wallpaper on `body`; never add opaque or semi-transparent full-width horizontal bands to `<section>` elements that cut across the wallpaper).
+- **Card surface (Brushed Metal):**
+  - `background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px), linear-gradient(155deg, rgba(31, 36, 46, 0.94) 0%, rgba(15, 18, 24, 0.96) 100%);`
+  - `border: 1px solid rgba(255, 255, 255, 0.08);`
+  - `box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 28px -8px rgba(0, 0, 0, 0.75);`
+- **Card `:hover` state:** `transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.45);`
+- **Telemetry typography:** Use monospace (`JetBrains Mono` / `monospace`) with `font-variant-numeric: tabular-nums` for latency (ms), polling rate (Hz), deadzones, and counters.
+- **Layout alignment:** Header, main content sections, and footer must share the exact same `max-width` container and horizontal padding.
+
+### Strict DOM & JS Constraints
+- **Never delete or rename** existing `id`, `data-*` attributes, or classes bound to JavaScript logic (`data.js`, `drivers.js`, gamepad tester, Forza Hall, and shared header/footer snippets).
+- **Vanilla ES5:** Keep all JavaScript compatible with existing ES5 IIFE patterns (`var`, `function() {}`) unless explicitly requested otherwise.

@@ -1,0 +1,138 @@
+{
+  "updated": "2026-11-26T16:27:18.210Z",
+  "source": "https://gamepadla.com",
+  "models": {
+    "flydigi-vader-4-pro": {
+      "name": "Flydigi Vader 4 Pro",
+      "pollingRate": 1000,
+      "cableBtn": 6.4,
+      "cableStick": 16.2,
+      "dongleBtn": 7.6,
+      "dongleStick": 19.2,
+      "btBtn": 22.2,
+      "btStick": 28.8,
+      "url": "https://gamepadla.com/flydigi-vader-4-pro.html",
+      "verified": true
+    },
+    "flydigi-vader-5s": {
+      "name": "Flydigi Vader 5S",
+      "pollingRate": 500,
+      "cableBtn": 3.4,
+      "cableStick": 4.2,
+      "dongleBtn": 4.5,
+      "dongleStick": 6,
+      "btBtn": null,
+      "btStick": null,
+      "url": "https://gamepadla.com/flydigi-vader-5s.html",
+      "verified": true
+    },
+    "flydigi-apex-4": {
+      "name": "Flydigi Apex 4",
+      "pollingRate": 1000,
+      "cableBtn": 7,
+      "cableStick": 42.8,
+      "dongleBtn": 7.7,
+      "dongleStick": 50.7,
+      "btBtn": 22.4,
+      "btStick": 73.5,
+      "url": "https://gamepadla.com/flydigi-apex-4.html",
+      "verified": true
+    },
+    "apex-5": {
+      "name": "Flydigi Apex 5",
+      "pollingRate": 1000,
+      "cableBtn": 3,
+      "cableStick": 2.8,
+      "dongleBtn": 4.9,
+      "dongleStick": 5.5,
+      "btBtn": 22.3,
+      "btStick": 23,
+      "url": "https://gamepadla.com/flydigi-apex-5.html",
+      "verified": true
+    },
+    "flydigi-apex-6": {
+      "name": "Flydigi Apex 6",
+      "pollingRate": 1000,
+      "cableBtn": 3,
+      "cableStick": null,
+      "dongleBtn": 4.3,
+      "dongleStick": null,
+      "btBtn": null,
+      "btStick": null,
+      "url": "https://gamepadla.com/",
+      "verified": false
+    },
+    "xbox-elite-2": {
+      "name": "Xbox Elite Wireless Controller Series 2",
+      "pollingRate": 125,
+      "cableBtn": 7.9,
+      "cableStick": 13.2,
+      "dongleBtn": 6.6,
+      "dongleStick": null,
+      "btBtn": 10.9,
+      "btStick": null,
+      "url": "https://gamepadla.com/xbox-elite-series-2-controller.html",
+      "verified": true
+    },
+    "zd-ultimate-legend": {
+      "name": "ZD Ultimate Legend",
+      "pollingRate": 8000,
+      "cableBtn": 2.4,
+      "cableStick": 1.4,
+      "dongleBtn": 11.2,
+      "dongleStick": 9.6,
+      "btBtn": 11,
+      "btStick": 22,
+      "url": "https://gamepadla.com/zd-ultimate-legend.html",
+      "verified": true
+    },
+    "gamesir-g7-pro": {
+      "name": "GameSir G7 Pro",
+      "pollingRate": 1000,
+      "cableBtn": 2.4,
+      "cableStick": 2.7,
+      "dongleBtn": 5.7,
+      "dongleStick": 15,
+      "btBtn": 5.4,
+      "btStick": 5.8,
+      "url": "https://gamepadla.com/gamesir-g7-pro.html",
+      "verified": true
+    },
+    "dualsense": {
+      "name": "Sony PlayStation 5 DualSense",
+      "pollingRate": 250,
+      "cableBtn": 11.3,
+      "cableStick": 8.2,
+      "dongleBtn": 6,
+      "dongleStick": 5.4,
+      "btBtn": 6,
+      "btStick": 5,
+      "url": "https://gamepadla.com/sony-dualsense.html",
+      "verified": true
+    },
+    "xbox-one-1708": {
+      "name": "Microsoft Xbox One Wireless Controller (Rev. 1708)",
+      "pollingRate": 125,
+      "cableBtn": 5.5,
+      "cableStick": null,
+      "dongleBtn": 5.9,
+      "dongleStick": null,
+      "btBtn": 10.2,
+      "btStick": null,
+      "url": "https://gamepadla.com/xbox-one-controller.html",
+      "verified": true
+    },
+    "xbox-series-xs": {
+      "name": "Microsoft Xbox Wireless Controller (Series X|S)",
+      "pollingRate": 125,
+      "cableBtn": 6.5,
+      "cableStick": 8.3,
+      "dongleBtn": 7.2,
+      "dongleStick": 8.9,
+      "btBtn": 12.2,
+      "btStick": 13,
+      "url": "https://gamepadla.com/xbox-core-controller.html",
+      "verified": true
+    }
+  }
+}

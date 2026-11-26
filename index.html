@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamepad Hub — Честная база знаний о геймпадах</title>
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
   <header>
@@ -50,6 +50,15 @@
         <a href="#tester" class="hero-cta">Открыть тестер геймпада →</a>
       </div>
       </div>
+      <aside class="hero-live" id="hero-live" aria-label="Будущие релизы">
+        <div class="hl-head">
+          <span class="hl-status"><i class="hl-dot" aria-hidden="true"></i>RADAR // АНОНСЫ И ВЫСТАВКИ</span>
+          <span class="hl-id">CES / TGS / YT</span>
+        </div>
+        <h3 class="hl-title">Будущие релизы</h3>
+        <ul class="rd-list" id="radar-list"></ul>
+        <a href="#catalog" class="hl-link">Все новинки и обзоры →</a>
+      </aside>
      </div>
       <section class="stat-chips">
         <a href="#catalog" class="chip"><span class="chip-num">7</span><span class="chip-label">Геймпадов<br>в базе</span><span class="chip-arrow">›</span></a>
@@ -79,20 +88,19 @@
           <span class="wg-tag">PIT // ЗАДЕРЖКА</span>
           <h3>Быстрые ориентиры по задержке</h3>
           <ul class="wg-rows">
-            <li><span>Провод USB</span><b>~4–8 мс</b><i style="width:15%"></i></li>
-            <li><span>2.4 ГГц адаптер</span><b>~8–15 мс</b><i style="width:30%"></i></li>
-            <li><span>Bluetooth</span><b>~20–40 мс</b><i style="width:65%"></i></li>
+            <li data-k="cableBtn"><span>Провод USB</span><b>~4–8 мс</b><i style="width:15%"></i></li>
+            <li data-k="dongleBtn"><span>2.4 ГГц адаптер</span><b>~8–15 мс</b><i style="width:30%"></i></li>
+            <li data-k="btBtn"><span>Bluetooth</span><b>~20–40 мс</b><i style="width:65%"></i></li>
           </ul>
           <ul class="wg-models" id="wg-models"></ul>
-          <p class="wg-note">Ориентировочные диапазоны; точные замеры по моделям — в разделе «В работе».</p>
+          <p class="wg-note" id="wg-note">Диапазоны по базе Gamepadla · загрузка…</p>
           <a href="#testing" class="wg-link">Сравнить модели →</a>
         </article>
         <article class="widget wg-forza has-img forza-widget-bg" data-img="forzaHall">
           <div class="wg-body">
             <span class="wg-tag">FORZA HALL</span>
-            <h3>Сетапы и телеметрия</h3>
-            <p>Мёртвые зоны, линейность руля и хват игроков коммьюнити — бери готовый сетап за основу.</p>
-            <ul class="wg-facts"><li>ESV · K1Z · F1R</li><li>Forza Horizon 6 / Motorsport</li><li>Deadzone &amp; Linearity</li></ul>
+            <h3>Геймпады сообщества</h3>
+            <ul class="wg-setups" id="wg-setups" aria-label="Лидерборд геймпадов сообщества"></ul>
             <a href="#forza" class="wg-link">Открыть Forza Hall →</a>
           </div>
         </article>
@@ -160,47 +168,20 @@
     <section class="block">
       <h2 class="section-title">В работе</h2>
       <div id="in-testing">
-      <h3 class="lab-h">Сейчас на 90-дневном тесте</h3>
-      <div class="lab-grid">
-        <article class="lab-card">
-          <h4>Flydigi Vader 4 Pro</h4>
-          <div class="lab-days"><span>60/90 дней</span><span>67%</span></div>
-          <div class="testing-progress"><div class="testing-bar" style="width:67%"></div></div>
-          <div class="lab-sub">Протестированные игры</div>
-          <ul class="lab-games"><li>Forza Horizon 5</li><li>Elden Ring</li><li>Apex Legends</li></ul>
-          <div class="lab-sub">Наблюдения</div>
-          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>не обнаружен</b></li><li><span>Автономность</span><b>~28 ч</b></li><li><span>Сборка</span><b>без люфтов</b></li></ul>
-        </article>
-        <article class="lab-card">
-          <h4>8BitDo Ultimate Bluetooth</h4>
-          <div class="lab-days"><span>30/90 дней</span><span>33%</span></div>
-          <div class="testing-progress"><div class="testing-bar" style="width:33%"></div></div>
-          <div class="lab-sub">Протестированные игры</div>
-          <ul class="lab-games"><li>Hades</li><li>Celeste</li><li>Street Fighter 6</li></ul>
-          <div class="lab-sub">Наблюдения</div>
-          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>не обнаружен</b></li><li><span>Автономность</span><b>~20 ч</b></li><li><span>Сборка</span><b>лёгкий скрип корпуса</b></li></ul>
-        </article>
-        <article class="lab-card">
-          <h4>Turtle Beach React-R</h4>
-          <div class="lab-days"><span>90/90 дней</span><span>100%</span></div>
-          <div class="testing-progress"><div class="testing-bar" style="width:100%"></div></div>
-          <div class="lab-sub">Протестированные игры</div>
-          <ul class="lab-games"><li>Forza Horizon 5</li><li>Rocket League</li><li>DOOM Eternal</li></ul>
-          <div class="lab-sub">Наблюдения</div>
-          <ul class="lab-obs"><li><span>Дрифт стиков</span><b>лёгкий, ~2%</b></li><li><span>Автономность</span><b>проводной</b></li><li><span>Сборка</span><b>пластик гнётся у бамперов</b></li></ul>
-        </article>
-      </div>
+      <h3 class="lab-h">Сравнение 3 моделей лицом к лицу</h3>
+      <p class="cmp-hint">Выберите модель в каждом слоте — задержки, опрос и цена обновятся сразу.</p>
+      <div class="cmp-grid" id="compare-grid"></div>
       </div>
       <div id="latency-block" style="margin-top:32px">
         <h3 class="lab-h">Сравнение задержек</h3>
         <div id="latency-table"></div>
       </div>
       <div id="planned" style="margin-top:32px">
-        <h3 class="lab-h">Запланировано к тестированию</h3>
-        <div class="queue-grid">
-          <div class="queue-card"><strong>GameSir G7 SE</strong><span>Старт: декабрь 2026</span></div>
-          <div class="queue-card"><strong>Razer Wolverine V3 Pro</strong><span>Старт: январь 2027</span></div>
-          <div class="queue-card"><strong>PowerA Fusion Pro 4</strong><span>Старт: февраль 2027</span></div>
+        <h3 class="lab-h">Дорожная карта проекта <span style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,.6)">// ROADMAP — РАЗВИТИЕ ПРОЕКТА</span></h3>
+        <div class="road-grid">
+          <div class="road-card"><span class="road-tag">В работе // База данных</span><h4>Пополнение сетапов и замеров</h4><p>Добавление новых профилей кривых отклика и мёртвых зон для гонок и шутеров, расширение каталога драйверов и утилит калибровки.</p></div>
+          <div class="road-card"><span class="road-tag">В планах // Инструменты</span><h4>Расширение встроенного тестера</h4><p>Добавление теста круговости стиков (Circularity Error %), замера частоты опроса в реальном времени и сравнения двух контроллеров в одном окне.</p></div>
+          <div class="road-card"><span class="road-tag">Сообщество // GitHub</span><h4>Открытые правки и предложения</h4><p>Любая модель, замер или игровой сетап добавляются через репозиторий проекта.</p><a class="road-link" href="https://github.com/notdual1ty/gamepad-hub/issues/new" target="_blank" rel="noopener">Предложить идею или замер ↗</a></div>
         </div>
       </div>
     </section>
@@ -210,7 +191,15 @@
     <section class="block kb">
       <h2 class="section-title">Драйверы и утилиты</h2>
       <p style="margin-bottom:20px;color:var(--text-2)">Полезное ПО для настройки, эмуляции и калибровки геймпадов на ПК.</p>
-      <div class="kb-grid"><a class="kb-card" href="https://store.steampowered.com/about/" target="_blank" rel="noopener"><span class="kb-tag">Встроенный в Steam</span><h3>Steam Input</h3><p>Универсальная настройка любых геймпадов: Xbox, DualShock/DualSense, Switch Pro, 8BitDo. Переназначение кнопок, гироскоп, профили для каждой игры (в т.ч. не из Steam).</p><p><b>Подходит для:</b> Xbox, PlayStation, Switch Pro, 8BitDo, Flydigi</p><span class="review-link kb-more">Скачать Steam →</span></a><a class="kb-card" href="https://github.com/schmaldeo/DS4Windows/releases" target="_blank" rel="noopener"><span class="kb-tag">Эмулятор Xbox</span><h3>DS4Windows</h3><p>Эмулирует Xbox 360-геймпад для DualShock 4 и DualSense, чтобы игры без поддержки PlayStation видели контроллер. Тачпад, гироскоп, макросы.</p><p><b>Подходит для:</b> DualShock 4, DualSense, DualSense Edge</p><span class="review-link kb-more">Страница загрузки →</span></a><a class="kb-card" href="https://apps.microsoft.com/detail/9nblggh30xj3" target="_blank" rel="noopener"><span class="kb-tag">Microsoft Store</span><h3>Xbox Accessories</h3><p>Официальное приложение: переназначение кнопок, настройка триггеров и стиков, обновление прошивки геймпадов Xbox.</p><p><b>Подходит для:</b> Xbox Wireless, Elite Series 2, Adaptive</p><span class="review-link kb-more">Открыть в Store →</span></a><a class="kb-card" href="https://store.steampowered.com/app/1812620/DSX/" target="_blank" rel="noopener"><span class="kb-tag">Адаптивные триггеры</span><h3>DualSenseX / DSX</h3><p>Настройка адаптивных триггеров и вибрации DualSense в играх на ПК, световая панель и эмуляция Xbox-геймпада.</p><p><b>Подходит для:</b> DualSense, DualSense Edge</p><span class="review-link kb-more">Страница в Steam →</span></a><a class="kb-card" href="https://github.com/nefarius/HidHide/releases" target="_blank" rel="noopener"><span class="kb-tag">Драйвер</span><h3>HidHide</h3><p>Скрывает физический геймпад от игр, оставляя только виртуальный. Устраняет двойной ввод при работе с DS4Windows и reWASD.</p><p><b>Подходит для:</b> Любые HID-геймпады</p><span class="review-link kb-more">Страница загрузки →</span></a><a class="kb-card" href="https://www.x360ce.com/" target="_blank" rel="noopener"><span class="kb-tag">Эмулятор XInput</span><h3>x360ce</h3><p>Позволяет играм, требующим XInput, работать со старыми DirectInput-геймпадами: ручной маппинг осей и кнопок.</p><p><b>Подходит для:</b> Старые и бюджетные DirectInput-геймпады, рули</p><span class="review-link kb-more">Сайт x360ce →</span></a><a class="kb-card" href="#tester"><span class="kb-tag">Калибровка</span><h3>Gamepad Tester Calibration</h3><p>Калибровка стиков и триггеров средствами Windows (Win+R → joy.cpl), затем проверка дрейфа и мёртвых зон в нашем онлайн-тестере.</p><p><b>Подходит для:</b> Все геймпады, определяемые Windows</p><span class="review-link kb-more">Открыть тестер →</span></a></div>
+      <div class="drv-list">
+        <a class="drv-row" href="https://store.steampowered.com/about/" target="_blank" rel="noopener" title="Подходит для: Xbox, PlayStation, Switch Pro, 8BitDo, Flydigi"><span class="drv-ico" aria-hidden="true">SI</span><span class="drv-main"><strong>Steam Input</strong><span class="drv-desc">Универсальная настройка геймпадов: переназначение, гироскоп, профили по играм</span></span><span class="drv-tag">Steam</span><span class="drv-btn">Скачать</span></a>
+        <a class="drv-row" href="https://github.com/schmaldeo/DS4Windows/releases" target="_blank" rel="noopener" title="Подходит для: DualShock 4, DualSense, DualSense Edge"><span class="drv-ico" aria-hidden="true">DS</span><span class="drv-main"><strong>DS4Windows</strong><span class="drv-desc">Эмуляция Xbox 360 для DualShock 4 и DualSense: тачпад, гироскоп, макросы</span></span><span class="drv-tag">Эмулятор</span><span class="drv-btn">Скачать</span></a>
+        <a class="drv-row" href="https://apps.microsoft.com/detail/9nblggh30xj3" target="_blank" rel="noopener" title="Подходит для: Xbox Wireless, Elite Series 2, Adaptive"><span class="drv-ico" aria-hidden="true">XA</span><span class="drv-main"><strong>Xbox Accessories</strong><span class="drv-desc">Официальное приложение: кнопки, триггеры, стики и прошивка геймпадов Xbox</span></span><span class="drv-tag">Microsoft Store</span><span class="drv-btn">Открыть</span></a>
+        <a class="drv-row" href="https://store.steampowered.com/app/1812620/DSX/" target="_blank" rel="noopener" title="Подходит для: DualSense, DualSense Edge"><span class="drv-ico" aria-hidden="true">DX</span><span class="drv-main"><strong>DualSenseX / DSX</strong><span class="drv-desc">Адаптивные триггеры, вибрация и световая панель DualSense на ПК</span></span><span class="drv-tag">Steam</span><span class="drv-btn">Открыть</span></a>
+        <a class="drv-row" href="https://github.com/nefarius/HidHide/releases" target="_blank" rel="noopener" title="Подходит для: Любые HID-геймпады"><span class="drv-ico" aria-hidden="true">HH</span><span class="drv-main"><strong>HidHide</strong><span class="drv-desc">Скрывает физический геймпад от игр и убирает двойной ввод</span></span><span class="drv-tag">Драйвер</span><span class="drv-btn">Скачать</span></a>
+        <a class="drv-row" href="https://www.x360ce.com/" target="_blank" rel="noopener" title="Подходит для: Старые и бюджетные DirectInput-геймпады, рули"><span class="drv-ico" aria-hidden="true">XC</span><span class="drv-main"><strong>x360ce</strong><span class="drv-desc">Эмулятор XInput для старых DirectInput-геймпадов и рулей, ручной маппинг</span></span><span class="drv-tag">Эмулятор</span><span class="drv-btn">Открыть</span></a>
+        <a class="drv-row" href="#tester" title="Подходит для: Все геймпады, определяемые Windows"><span class="drv-ico" aria-hidden="true">GT</span><span class="drv-main"><strong>Gamepad Tester Calibration</strong><span class="drv-desc">Калибровка через joy.cpl и проверка дрейфа и мёртвых зон в нашем тестере</span></span><span class="drv-tag">Онлайн</span><span class="drv-btn">Открыть</span></a>
+        </div>
     </section>
     </div>
 
@@ -242,9 +231,14 @@
           <button type="button" class="filter-tag" data-g="Forza Horizon 5">Forza Horizon 5</button>
           <button type="button" class="filter-tag" data-g="Forza Motorsport">Forza Motorsport</button>
         </div>
-        <button type="button" id="fh-toggle" class="fh-add">+ Добавить свой сетап</button>
+        <button type="button" id="fh-toggle" class="fh-add" aria-haspopup="dialog" aria-controls="fh-form" aria-expanded="false">+ Добавить свой сетап</button>
       </div>
-      <form id="fh-form" class="fh-form fh-simple" hidden>
+      <div id="fh-backdrop" class="fh-backdrop" hidden></div>
+      <form id="fh-form" class="fh-form fh-simple fh-drawer" role="dialog" aria-modal="true" aria-labelledby="fh-drawer-title" hidden>
+        <div class="fh-drawer-head fh-wide">
+          <h3 id="fh-drawer-title">Добавить свой сетап</h3>
+          <button type="button" id="fh-close" class="fh-drawer-close" aria-label="Закрыть">✕</button>
+        </div>
         <label class="fh-wide fh-mode"><input type="checkbox" id="fh-mode" checked> Простой режим: только ник, геймпад и базовые настройки</label>
         <label>Никнейм / Gamertag *<input name="nickname" required maxlength="40"></label>
         <label>Дисциплина<select name="game"><option>Forza Horizon 6</option><option>Forza Horizon 5</option><option>Forza Motorsport</option><option>Обе</option></select></label>
@@ -348,29 +342,42 @@
     <div class="footer-container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="footer-logo">GAMEPAD HUB</a>
-        <p>Независимые обзоры геймпадов. Все устройства куплены за свои деньги, рекламных интеграций нет.</p>
-        <p class="footer-status">Методика 90 дней • Обновлено: ноябрь 2026</p>
+        <a href="index.html" class="footer-logo footer-stamp" aria-label="Gamepad Hub — TRACK // LAB"><svg class="footer-stamp-mark" viewBox="0 0 40 28" width="40" height="28" role="img" aria-hidden="true" focusable="false"><rect x="0.5" y="0.5" width="39" height="27" rx="6" fill="none" stroke="rgba(255,255,255,0.16)"/><path d="M15 8H9.5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 9.5 20H15v-5h-3.5" fill="none" stroke="#F8FAFC" stroke-width="1.6" stroke-linecap="square"/><path d="M19 8v12M19 14h6.5M25.5 8v12" fill="none" stroke="#F8FAFC" stroke-width="1.6" stroke-linecap="square"/><path d="M27 20L32 8h2.5l-5 12z" fill="#38bdf8"/></svg><span class="footer-stamp-label">TRACK // LAB · REV 2026</span></a>
+        <p>Открытая база обзоров, замеров задержки, драйверов и игровых сетапов для геймпадов. Сделано энтузиастами для тех, кто выбирает контроллер под реальные игры.</p>
       </div>
-      <div class="footer-col">
-        <h4>Дополнительно</h4>
-        <a href="#drivers">Драйверы и утилиты (ПО)</a>
-        <a href="#about">О проекте и методика тестов</a>
+      <nav class="footer-col" aria-label="Навигация">
+        <h4>Навигация</h4>
+        <a href="#home">Главная</a>
+        <a href="#catalog">Каталог обзоров</a>
+        <a href="#kb">База знаний</a>
+        <a href="#forza">Forza Hall</a>
+        <a href="#testing">В работе</a>
+      </nav>
+      <nav class="footer-col" aria-label="Подборки и ПО">
+        <h4>Подборки и ПО</h4>
+        <a href="#drivers">Драйверы и утилиты</a>
         <a href="#catalog" data-footer-filter="budget">Топ до 3 000 ₽</a>
         <a href="#catalog" data-footer-filter="gyro">Модели с гироскопом</a>
-      </div>
-      <div class="footer-col footer-lab">
-        <h4>Статус лаборатории</h4>
-        <div class="footer-lab-card">
-          <span class="footer-lab-label">Сейчас на стенде</span>
-          <strong>Flydigi Vader 4 Pro</strong>
-          <div class="footer-lab-progress"><span style="width:67%"></span></div>
-          <span class="footer-lab-days">60 / 90 дней</span>
-          <a href="#testing" class="footer-lab-btn">В работе →</a>
+        <a href="#about">О проекте и методика</a>
+      </nav>
+      <div class="footer-col footer-tools">
+        <h4>COMMS // КАНАЛЫ ПРОЕКТА</h4>
+        <div class="comms-terminal">
+          <a class="comms-row" href="https://github.com/notdual1ty/gamepad-hub" target="_blank" rel="noopener">
+            <svg class="comms-ico" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+            <span class="comms-txt"><strong>GitHub (notdual1ty/gamepad-hub)</strong><small>Исходный код и база данных</small></span>
+            <span class="comms-badge" id="comms-gh-badge">REPO ↗</span>
+          </a>
+          <a class="comms-row" href="https://www.twitch.tv/dual1tyquell" target="_blank" rel="noopener">
+            <svg class="comms-ico" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.3 3 3 6.4v13.1h4.5V22h2.6l2.5-2.5h3.7L21 14.9V3H4.3zm14.9 10.9-2.9 2.9h-4.6l-2.5 2.5v-2.5H6.7V4.8h12.5v9.1zM16.3 8v4.8h-1.8V8h1.8zm-4.8 0v4.8H9.7V8h1.8z"/></svg>
+            <span class="comms-txt"><strong>Twitch (dual1tyquell)</strong></span>
+            <span class="comms-badge">TWITCH ↗</span>
+          </a>
+          <a class="comms-cta" href="https://github.com/notdual1ty/gamepad-hub/issues/new" target="_blank" rel="noopener">Предложить сетап или правку на GitHub ↗</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 Gamepad Hub. Все права защищены.</div>
+    <div class="footer-bottom"><span>© 2026 Gamepad Hub. Все права защищены.</span><span class="footer-note">Track // Lab · Hardware Telemetry</span></div>
     </div>
   </footer>
 
@@ -379,8 +386,9 @@
     <source src="bgm.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="data.js?v=7"></script>
-  <script src="gamepad-tester.js?v=5"></script>
+  <script src="data.js?v=13"></script>
+  <script src="gamepad-tester.js?v=6"></script>
+  <script src="radar.js?v=1"></script>
   <script>
     // Фоновая музыка с учётом autoplay policy
     (function() {
@@ -445,5 +453,6 @@
     })();
   </script>
 <script>(function(){var h=document.querySelector("body > header");if(!h)return;function s(){document.body.style.setProperty("--header-h",h.offsetHeight+"px")}s();window.addEventListener("resize",s);window.addEventListener("load",s);if(window.ResizeObserver)new ResizeObserver(s).observe(h)})();</script>
+  <script src="footer-comms.js?v=1"></script>
 </body>
 </html>
